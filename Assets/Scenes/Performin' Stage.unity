@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 249321451}
   - component: {fileID: 249321453}
   - component: {fileID: 249321452}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 791623312}
   - component: {fileID: 791623314}
   - component: {fileID: 791623313}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Event Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +397,7 @@ RectTransform:
   - {fileID: 1228056470}
   - {fileID: 1598271555}
   m_Father: {fileID: 1293527238}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -533,7 +533,7 @@ GameObject:
   - component: {fileID: 941448135}
   - component: {fileID: 941448134}
   - component: {fileID: 941448133}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Choice A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,7 +548,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941448131}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1631816871}
@@ -827,7 +827,7 @@ GameObject:
   - component: {fileID: 1023185857}
   - component: {fileID: 1023185856}
   - component: {fileID: 1023185859}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -974,7 +974,7 @@ GameObject:
   - component: {fileID: 1228056473}
   - component: {fileID: 1228056472}
   - component: {fileID: 1228056471}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Choice B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -989,7 +989,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228056469}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 249321451}
@@ -1201,8 +1201,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 794378046}
-  - {fileID: 1743502954}
   - {fileID: 791623312}
+  - {fileID: 1743502954}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1236,7 +1236,7 @@ GameObject:
   - component: {fileID: 1598271555}
   - component: {fileID: 1598271557}
   - component: {fileID: 1598271556}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1251,7 +1251,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1598271554}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 791623312}
@@ -1315,7 +1315,7 @@ GameObject:
   - component: {fileID: 1631816871}
   - component: {fileID: 1631816873}
   - component: {fileID: 1631816872}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1394,7 +1394,7 @@ GameObject:
   - component: {fileID: 1743502954}
   - component: {fileID: 1743502956}
   - component: {fileID: 1743502955}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1408,18 +1408,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743502953}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1023185855}
   m_Father: {fileID: 1293527238}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 297.1291, y: 0}
-  m_SizeDelta: {x: -522.0218, y: 0}
+  m_AnchoredPosition: {x: 273, y: -0.07312012}
+  m_SizeDelta: {x: -522.02185, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1743502955
 MonoBehaviour:
@@ -1434,7 +1434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1595,7 +1595,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Overall Joy: 150'
+  m_Text: 'Overall Happiness: 150'
 --- !u!222 &1883330749
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1694,7 +1694,7 @@ GameObject:
   - component: {fileID: 2144790771}
   - component: {fileID: 2144790773}
   - component: {fileID: 2144790772}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
