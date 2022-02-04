@@ -14,7 +14,6 @@ public class Employee : MonoBehaviour
     public string fName;
     public string lName;
 
-    public bool isMale;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,11 +22,10 @@ public class Employee : MonoBehaviour
 //        ethic = (int)(Random.value * (MAX_STAT - MIN_STAT)) + MIN_STAT;
     }
 
-    public void Create(string first, string last, bool male, int p, int c, int e)
+    public void Create(string first, string last, int p, int c, int e)
     {
         fName = first;
         lName = last;
-        isMale = male;
         personal = p;
         capability = c;
         ethic = e;

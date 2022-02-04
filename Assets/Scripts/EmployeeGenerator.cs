@@ -8,6 +8,7 @@ public class EmployeeGenerator : MonoBehaviour
     private static int MIN_STAT = 16;
 
     string[] lNames;
+    string[] fNames;
 
     string[] femNames;
     string[] mNames;
@@ -15,11 +16,12 @@ public class EmployeeGenerator : MonoBehaviour
     public Color[] skinColors = {new Color(0.956f, 0.909f, 0.824f), new Color(0.878f, 0.780f, 0.616f), new Color(0.368f, 0.270f, 0.102f) };
     public Color[] hairColors = {new Color(0.93f, 0.93f, 0.83f), new Color(0.666f, 0.545f, 0.278f), new Color(0.1f, 0.1f, 0.1f) };
 
-    public Sprite[] mShirts;
-    public Sprite[] mHeads;
-    public Sprite[] mHats;
+    public Sprite[] shirts;
+    public Sprite[] heads;
+    public Sprite[] hats;
 
     public TextAsset lNamelist;
+    public TextAsset fNamelist;
     public TextAsset femNamelist;
     public TextAsset mNamelist;
 
@@ -34,6 +36,7 @@ public class EmployeeGenerator : MonoBehaviour
     {
 
         lNames = lNamelist.text.Split('\n');
+        fNames = fNamelist.text.Split('\n');
         femNames = femNamelist.text.Split('\n');
         mNames = mNamelist.text.Split('\n');
 
@@ -49,13 +52,7 @@ public class EmployeeGenerator : MonoBehaviour
         string lName = lNames[Random.Range(0, lNames.Length)];
         string fName;
 
-        if (isMale)
-        {
-            fName = mNames[Random.Range(0, mNames.Length)];
-        } else
-        {
-            fName = femNames[Random.Range(0, femNames.Length)];
-        }
+        fName = fNames[Random.Range(0, fNames.Length)];
 
         int personal = Random.Range(MIN_STAT, MAX_STAT + 1);
         int capability = Random.Range(MIN_STAT, MAX_STAT + 1);
@@ -65,17 +62,19 @@ public class EmployeeGenerator : MonoBehaviour
 
         //Body
         emp.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Random.ColorHSV(0, 1, 0.33f, 0.35f, 0.95f, 0.97f);
-        emp.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = mShirts[Random.Range(0, mShirts.Length)];
+        emp.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = shirts[Random.Range(0, shirts.Length)];
 
         //Head
-        emp.transform.GetChild(1).GetComponent<SpriteRenderer>().color = skinColors[Random.Range(0, skinColors.Length)];
-        emp.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = mHeads[Random.Range(0, mHeads.Length)];
+        emp.transform.GetChild(1).GetComponent<SpriteRenderer>().color = Random.ColorHSV(0, 1, 0.8f, 1f, 0.4f, 0.8f);
+        //skinColors[Random.Range(0, skinColors.Length)];
+        emp.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = heads[Random.Range(0, heads.Length)];
 
         //Hat
-        emp.transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = mHats[Random.Range(0, mHats.Length)];
-        emp.transform.GetChild(2).GetComponent<SpriteRenderer>().color = hairColors[Random.Range(0, hairColors.Length)];
+        emp.transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = hats[Random.Range(0, hats.Length)];
+        emp.transform.GetChild(2).GetComponent<SpriteRenderer>().color = Random.ColorHSV(0, 1, 0f, 1f, 0.2f, 1f);
+        //hatColors[Random.Range(0, hairColors.Length)];
 
-        emp.GetComponent<Employee>().Create(fName, lName, isMale, personal, capability, ethic);
+        emp.GetComponent<Employee>().Create(fName, lName, personal, capability, ethic);
 
         return emp;
     }
