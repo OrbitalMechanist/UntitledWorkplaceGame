@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class EmployeeGenerator : MonoBehaviour
 {
@@ -57,12 +59,15 @@ public class EmployeeGenerator : MonoBehaviour
             GameObject emp = generateEmployee();
             emp.transform.parent = employeeManagerInstance.transform;
             emp.transform.localPosition = Vector3.zero;
+            GameObject UIElement = Instantiate(UiDisplayItemPrefab);
+            UIElement.transform.GetChild(0).GetComponent<Text>().text = emp.GetComponent<Employee>().fName;
+            UIElement.transform.SetParent(UiContainerInstance.transform, false);
         }
     }
 
     GameObject generateEmployee()
     {
-        bool isMale = true; //Random.value < 0.5;
+//        bool isMale = true; //Random.value < 0.5;
 
         string lName = lNames[Random.Range(0, lNames.Length)];
         string fName;
