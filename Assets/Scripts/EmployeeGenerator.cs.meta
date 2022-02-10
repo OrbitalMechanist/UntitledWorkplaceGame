@@ -3,7 +3,15 @@ guid: 1f5e3cb1263026b459fc689abcb75e63
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - lNamelist: {fileID: 4900000, guid: e5e037e3a03fb454bb42d7db7ab205ae, type: 3}
+  - fNamelist: {fileID: 4900000, guid: fc6f1d0f63a86b446aa2d4327cdda0b2, type: 3}
+  - femNamelist: {fileID: 4900000, guid: c6573b4c4fd6e254d91a2270bf8f93ad, type: 3}
+  - mNamelist: {fileID: 4900000, guid: a89101558ce92e14a887532e603021b7, type: 3}
+  - employeePrefab: {fileID: 5204304335863479497, guid: 21e677d4f6b4ba84da09f92cfc5e7c27, type: 3}
+  - shirtSprite: {instanceID: 0}
+  - faceSprite: {instanceID: 0}
+  - hatSprite: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
