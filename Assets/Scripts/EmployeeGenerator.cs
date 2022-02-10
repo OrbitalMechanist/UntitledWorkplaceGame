@@ -7,6 +7,8 @@ public class EmployeeGenerator : MonoBehaviour
     private static int MAX_STAT = 256;
     private static int MIN_STAT = 16;
 
+    public int numToGenerate = 5;
+
     string[] lNames;
     string[] fNames;
 
@@ -33,6 +35,12 @@ public class EmployeeGenerator : MonoBehaviour
     public Sprite faceSprite;
     public Sprite hatSprite;
 
+    public GameObject employeeManagerInstance;
+
+    public GameObject UiContainerInstance;
+
+    public GameObject UiDisplayItemPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +52,12 @@ public class EmployeeGenerator : MonoBehaviour
 
         Debug.Log(lNames[Random.Range(0, lNames.Length)]);
 
-        generateEmployee();
+        for(int i = 0; i < numToGenerate; i++)
+        {
+            GameObject emp = generateEmployee();
+            emp.transform.parent = employeeManagerInstance.transform;
+            emp.transform.localPosition = Vector3.zero;
+        }
     }
 
     GameObject generateEmployee()
