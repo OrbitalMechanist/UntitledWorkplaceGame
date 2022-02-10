@@ -61,6 +61,17 @@ public class EmployeeGenerator : MonoBehaviour
             emp.transform.localPosition = Vector3.zero;
             GameObject UIElement = Instantiate(UiDisplayItemPrefab);
             UIElement.transform.GetChild(0).GetComponent<Text>().text = emp.GetComponent<Employee>().fName;
+            UIElement.transform.GetChild(1).GetComponent<Text>().text = emp.GetComponent<Employee>().lName;
+            UIElement.transform.GetChild(2).GetComponent<UnityEngine.UI.Slider>().value = emp.GetComponent<Employee>().capability;
+            UIElement.transform.GetChild(3).GetComponent<UnityEngine.UI.Slider>().value = emp.GetComponent<Employee>().ethic;
+            UIElement.transform.GetChild(4).GetComponent<UnityEngine.UI.Slider>().value = emp.GetComponent<Employee>().personal;
+            UIElement.transform.GetChild(5).GetComponent<UnityEngine.UI.Image>().sprite = emp.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite;
+            UIElement.transform.GetChild(5).GetComponent<UnityEngine.UI.Image>().color = emp.transform.GetChild(1).GetComponent<SpriteRenderer>().color;
+            UIElement.transform.GetChild(6).GetComponent<UnityEngine.UI.Image>().sprite = emp.transform.GetChild(2).GetComponent<SpriteRenderer>().sprite;
+            UIElement.transform.GetChild(6).GetComponent<UnityEngine.UI.Image>().color = emp.transform.GetChild(2).GetComponent<SpriteRenderer>().color;
+            UIElement.transform.GetChild(7).GetComponent<UnityEngine.UI.Image>().sprite = emp.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+            UIElement.transform.GetChild(7).GetComponent<UnityEngine.UI.Image>().color = emp.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
+
             UIElement.transform.SetParent(UiContainerInstance.transform, false);
         }
     }
