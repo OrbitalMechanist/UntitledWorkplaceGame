@@ -52,14 +52,49 @@ public class EmployeeGenerator : MonoBehaviour
         femNames = femNamelist.text.Split('\n');
         mNames = mNamelist.text.Split('\n');
 
-        //Generate given number of employees
-        for(int i = 0; i < numToGenerate; i++)
-        {
-            GameObject emp = generateEmployee();
-            emp.transform.parent = employeeManagerInstance.transform;
-            emp.transform.localPosition = Vector3.zero;
+        //Calculate sizes for the UI
+        float containerWidth = UiContainerInstance.GetComponent<RectTransform>().rect.width;
+        float itemWidth = UiDisplayItemPrefab.GetComponent<RectTransform>().rect.width;
+        float itemHeight = UiDisplayItemPrefab.GetComponent<RectTransform>().rect.height;
 
-            createEmployeeUi(UiDisplayItemPrefab, emp).transform.SetParent(UiContainerInstance.transform, false);
+        float vPadding = 20; //could be calculated somehow if necessary but it can be a constant
+
+        int numElementsPerRow = (int)containerWidth / (int)itemWidth;
+
+        float spacePerItem = containerWidth / numElementsPerRow;
+        float leftPaddingPerItem = (spacePerItem - containerWidth) / 2;
+
+        //Resize scrollable area to fit the necessary number of items
+        UiContainerInstance.GetComponent<RectTransform>().sizeDelta = new Vector2(containerWidth, (itemHeight + vPadding) * 
+            (numToGenerate / numElementsPerRow + (numToGenerate % numElementsPerRow > 0 ? 1 : 0)) + vPadding);
+
+        //Generate employees and set up their UI display
+        int y = 1;
+        int i = 0;
+        while (i < numToGenerate)
+        {
+            for (int x = 1; x <= numElementsPerRow; x++) {
+                GameObject emp = generateEmployee();
+
+                //Add employee object to manager object and keep it off the screen
+                emp.transform.parent = employeeManagerInstance.transform;
+                emp.transform.localPosition = Vector3.zero;
+
+                //create the UI element and attach it to the container
+                GameObject ui = createEmployeeUi(UiDisplayItemPrefab, emp);
+                ui.transform.SetParent(UiContainerInstance.transform, false);
+
+                //set UI element position in its container
+                ui.transform.localPosition = new Vector3(x * spacePerItem + leftPaddingPerItem,
+                    -1 * ((itemHeight + vPadding) * y) + itemHeight/2);
+
+                i++;
+                if(i == numToGenerate)
+                {
+                    break;
+                }
+            }
+            y++;
         }
     }
 
