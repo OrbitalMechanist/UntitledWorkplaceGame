@@ -1394,13 +1394,14 @@ GameObject:
   - component: {fileID: 1743502954}
   - component: {fileID: 1743502956}
   - component: {fileID: 1743502955}
+  - component: {fileID: 1743502957}
   m_Layer: 7
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1743502954
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1459,6 +1460,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743502953}
   m_CullTransparentMesh: 1
+--- !u!114 &1743502957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743502953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f5e3cb1263026b459fc689abcb75e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinColors:
+  - {r: 0.956, g: 0.909, b: 0.824, a: 1}
+  - {r: 0.878, g: 0.78, b: 0.616, a: 1}
+  - {r: 0.368, g: 0.27, b: 0.102, a: 1}
+  hairColors:
+  - {r: 0.93, g: 0.93, b: 0.83, a: 1}
+  - {r: 0.666, g: 0.545, b: 0.278, a: 1}
+  - {r: 0.1, g: 0.1, b: 0.1, a: 1}
+  mShirts: []
+  mHeads: []
+  mHats: []
+  lNamelist: {fileID: 0}
+  femNamelist: {fileID: 0}
+  mNamelist: {fileID: 0}
+  employeePrefab: {fileID: 0}
+  shirtSprite: {fileID: 0}
+  faceSprite: {fileID: 0}
+  hatSprite: {fileID: 0}
 --- !u!1 &1787441667
 GameObject:
   m_ObjectHideFlags: 0
