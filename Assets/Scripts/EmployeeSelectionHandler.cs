@@ -34,7 +34,7 @@ public class EmployeeSelectionHandler : MonoBehaviour
         //of the ones we deal with later on
         for (int i = numEmployees - 1; i >= 0; i--)
         {
-            if(selectedIndeces.First.Value != i)
+            if(selectedIndeces.Count == 0 || selectedIndeces.First.Value != i)
             {
                 Destroy(employeeOwnerInstance.transform.GetChild(i).gameObject);
             } else
