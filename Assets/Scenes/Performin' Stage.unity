@@ -793,8 +793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e28580fd24b50cf4faa90a5a71bdff47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 0
-  button: {fileID: 6666054568556546852, guid: 8a4f00a60dddf964eb0691e7fce61cce, type: 3}
+  button: {fileID: 6902521487753483856, guid: 8a4f00a60dddf964eb0691e7fce61cce, type: 3}
   canvas: {fileID: 1293527234}
   Event: {fileID: 1093100239277753127, guid: 57082038c653f094cb2829b45351614e, type: 3}
   company: {fileID: 213383239}
