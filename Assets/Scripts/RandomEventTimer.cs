@@ -47,7 +47,7 @@ public class RandomEventTimer : MonoBehaviour
             Button newButton = Instantiate(button);
             newButton.transform.SetParent(newEvent.transform, false);
             newButton.transform.localPosition = new Vector3(0, -160+(i*50));
-            newButton.onClick.AddListener(delegate{closeEvent(newEvent);});
+            newButton.onClick.AddListener(delegate{RaiseMoney(100);closeEvent(newEvent);});
         }
         return newEvent;
     }
