@@ -10,6 +10,7 @@ public class Employee : MonoBehaviour
     public int personal;
     public int capability;
     public int ethic;
+    public int happiness = 125;
 
     public string fName;
     public string lName;
