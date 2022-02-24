@@ -1,0 +1,18 @@
+{
+    "Events": [
+        {
+            "desc": "This is a sample event from JSON.",
+            "buttons": [
+                {
+                    "text": "Confirm",
+                    "functions": [
+                        {
+                            "index": 0,
+                            "value": 100
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
