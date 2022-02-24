@@ -42,8 +42,11 @@ public class RandomEventTimer : MonoBehaviour
 
     public GameObject randomizeEvents() {
         GameObject newEvent = Instantiate(Event);
+        RectTransform rt = newEvent.transform.GetChild(1).GetComponent<RectTransform>();
+        rt.offsetMax = new Vector2(rt.offsetMax.x, -350);
         int buttonCount = Random.Range(0, 3);
         for (int i = 0; i <= buttonCount; i++) {
+            rt.offsetMax = new Vector2(rt.offsetMax.x, rt.offsetMax.y+(float)37.5);
             Button newButton = Instantiate(button);
             newButton.transform.SetParent(newEvent.transform, false);
             newButton.transform.localPosition = new Vector3(0, -160+(i*(float)37.5));
