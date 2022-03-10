@@ -1,0 +1,21 @@
+{
+    "Events": [
+        "This is a sample event from JSON."
+    ],
+    "EventButtons": [
+        [0, 0, 0, 0]
+    ],
+    "ButtonTexts": [
+        "Confirm"
+    ],
+    "ButtonIndices": [
+        [
+            0
+        ]
+    ],
+    "ButtonValues": [
+        [
+            100
+        ]
+    ]
+}
