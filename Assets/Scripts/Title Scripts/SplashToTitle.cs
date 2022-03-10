@@ -6,7 +6,7 @@
 public class SplashToTitle : MonoBehaviour
 {
     private const int splashLength = 5;
-    private const string title = "title";
+    private const int titleSceneIndex = 1;
 
     void Start()
     {
@@ -16,6 +16,6 @@ public class SplashToTitle : MonoBehaviour
     IEnumerator loadTitleAfterSplash()
     {
         yield return new WaitForSeconds(splashLength);
-        SceneManager.LoadScene (sceneName:title); 
+        SceneManager.LoadScene(titleSceneIndex); 
     }
 }
