@@ -1,75 +1,150 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine;
 
 public class RandomEventTimer : MonoBehaviour
 {
+    private static int MAX_STAT = 256;
+    private static int MIN_STAT = 0;
+    bool hasEvent = false;
     int count;
     int randEvent;
     UnityAction buttonCallBack;
     
-    public float time;
+    float time;
+    public GameObject employee;
+    public Button button;
+    public GameObject canvas;
     public GameObject Event;
     public GameObject company;
+    public class EventObject {
+        public string[] Events;
+        public List<List<int>> EventButtons = new List<List<int>>();
+        public string[] ButtonTexts;
+        public List<List<int>> ButtonIndices = new List<List<int>>();
+        public List<List<int>> ButtonValues = new List<List<int>>();
+    }
+    public delegate void MethodDelegate (int delta);
+    List<MethodDelegate> delList;
+    EventObject myEvents;
+    string eventJson;
     // Start is called before the first frame update
     void Start()
     {
-        count = 0;
         time = Random.Range(5.0f, 10.0f);
+        eventJson = File.ReadAllText("./Assets/Data/Event Lists/Events.json");
+        eventJson = eventJson.Replace("\n", "").Replace("\r", "").Replace("    ", "");
+        myEvents = JsonUtility.FromJson<EventObject>(eventJson);
+        delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness};
+        count = 0;
+        string buttons = File.ReadAllText("./Assets/Data/Event Lists/EventButtons.txt");
+        int i = 0;
+        foreach (var row in buttons.Split('\n')) {
+            myEvents.EventButtons.Add(new List<int>());
+            foreach (var index in row.Split(' ')) {
+                myEvents.EventButtons[i].Add(int.Parse(index));
+            }
+            i++;
+        }
+        i = 0;
+        string indices = File.ReadAllText("./Assets/Data/Event Lists/ButtonIndices.txt");
+        foreach (var row in indices.Split('\n')) {
+            myEvents.ButtonIndices.Add(new List<int>());
+            foreach (var index in row.Split(' ')) {
+                myEvents.ButtonIndices[i].Add(int.Parse(index));
+            }
+            i++;
+        }
+        i = 0;
+        string values = File.ReadAllText("./Assets/Data/Event Lists/ButtonValues.txt");
+        foreach (var row in values.Split('\n')) {
+            myEvents.ButtonValues.Add(new List<int>());
+            foreach (var index in row.Split(' ')) {
+                myEvents.ButtonValues[i].Add(int.Parse(index));
+            }
+            i++;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!Event.activeSelf) {
+        if (!hasEvent) {
             if (time<=0.0f) {
                 count++;
                 time = Random.Range(5.0f, 10.0f);
                 Event.SetActive(true);
-                randomizeEvents();
+                GameObject test = randomizeEvents();
+                test.transform.SetParent(canvas.transform, false);
+                hasEvent = true;
             } else {
                 time-=Time.deltaTime;
             }
         }
     }
 
-    public void randomizeEvents() {
-        Button ChoiceA = GameObject.Find("Choice A").GetComponent<Button>();
-        Button ChoiceB = GameObject.Find("Choice B").GetComponent<Button>();
-        Text desc = GameObject.Find("Desc").GetComponent<Text>();
-        ChoiceA.onClick.RemoveAllListeners();
-        ChoiceB.onClick.RemoveAllListeners();
-        randEvent = Random.Range(1, 4);
-        if (randEvent==1) {
-            desc.text = "Both buttons will raise money by $100";
-            ChoiceA.onClick.AddListener(delegate{RaiseMoney();});
-            ChoiceB.onClick.AddListener(delegate{RaiseMoney();});
-        } else if (randEvent==2) {
-            desc.text = "Both buttons will lower money by $100";
-            ChoiceA.onClick.AddListener(delegate{LowerMoney();});
-            ChoiceB.onClick.AddListener(delegate{LowerMoney();});
-        } else if (randEvent==3) {
-            desc.text = "Button A will raise money by $100, Button B will lower money by $100";
-            ChoiceA.onClick.AddListener(delegate{RaiseMoney();});
-            ChoiceB.onClick.AddListener(delegate{LowerMoney();});            
-        } else if (randEvent==4) {
-            desc.text = "Button A will lower money by $100, Button B will raise money by $100";
-            ChoiceA.onClick.AddListener(delegate{LowerMoney();});
-            ChoiceB.onClick.AddListener(delegate{RaiseMoney();});              
+    public GameObject randomizeEvents() {
+        GameObject newEvent = Instantiate(Event);
+        newEvent.GetComponentInChildren<Text>().text = myEvents.Events[0];
+        RectTransform rt = newEvent.transform.GetChild(1).GetComponent<RectTransform>();
+        rt.offsetMax = new Vector2(rt.offsetMax.x, -350);
+        int buttonCount = Random.Range(0, 3);
+        for (int i = 0; i < myEvents.EventButtons[0].Count; i++) {
+            int temp  = myEvents.EventButtons[0][i];
+            rt.offsetMax = new Vector2(rt.offsetMax.x, rt.offsetMax.y+(float)37.5);
+            Button newButton = Instantiate(button);
+            newButton.transform.SetParent(newEvent.transform, false);
+            newButton.transform.localPosition = new Vector3(0, -160+(i*(float)37.5));
+            newButton.onClick.AddListener(delegate{delList[myEvents.ButtonIndices[temp][0]](myEvents.ButtonValues[temp][0]);closeEvent(newEvent);});
+            newButton.GetComponentInChildren<Text>().text = myEvents.ButtonTexts[temp];
+        }
+        return newEvent;
+    }
+    public void closeEvent(GameObject thisEvent) {
+        Destroy(thisEvent);
+        hasEvent = false;
+    }
+    public void RaiseMoney(int delta)
+    {
+        company.GetComponent<Company>().cash+=delta;
+    }
+    public void ChangeHappiness(int delta) {
+        employee.GetComponent<Employee>().happiness+=delta;
+        if (employee.GetComponent<Employee>().happiness > MAX_STAT) {
+            employee.GetComponent<Employee>().happiness = MAX_STAT;
+        } if (employee.GetComponent<Employee>().happiness < MIN_STAT) {
+            employee.GetComponent<Employee>().happiness = MIN_STAT;
         }
     }
-
-    public void RaiseMoney()
-    {
-        company.GetComponent<Company>().cash+=100;
-        Event.SetActive(false);
+    public void ChangePersonality(int delta) {
+        employee.GetComponent<Employee>().personal+=delta;
+        if (employee.GetComponent<Employee>().personal > MAX_STAT) {
+            employee.GetComponent<Employee>().personal = MAX_STAT;
+        } if (employee.GetComponent<Employee>().personal < MIN_STAT) {
+            employee.GetComponent<Employee>().personal = MIN_STAT;
+        }
     }
+    public void ChangeCapability(int delta) {
+        employee.GetComponent<Employee>().capability+=delta;
+        if (employee.GetComponent<Employee>().capability > MAX_STAT) {
+            employee.GetComponent<Employee>().capability = MAX_STAT;
+        } if (employee.GetComponent<Employee>().capability < MIN_STAT) {
+            employee.GetComponent<Employee>().capability = MIN_STAT;
+        }
+    }
+    public void ChangeEthic(int delta) {
+        employee.GetComponent<Employee>().ethic+=delta;
+        if (employee.GetComponent<Employee>().ethic > MAX_STAT) {
+            employee.GetComponent<Employee>().ethic = MAX_STAT;
+        } if (employee.GetComponent<Employee>().ethic < MIN_STAT) {
+            employee.GetComponent<Employee>().ethic = MIN_STAT;
+        }
+    }
+    public void MassChangeHappiness(int delta) {
 
-    public void LowerMoney()
-    {
-        company.GetComponent<Company>().cash-=100;
-        Event.SetActive(false);
     }
 }
