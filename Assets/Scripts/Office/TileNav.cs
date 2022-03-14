@@ -14,8 +14,18 @@ public class TileNav : MonoBehaviour
     //The size of a tile in Unity units.
     public float tileSize = 1;
 
+    //How many seconds it takes to move one tile
+    public float secondsPerStep = 0.5f;
+
     //List of steps to take.
     private List<Vector3> directions;
+
+    //Needs to be set to true to start moving.
+    private bool needsToMove = false;
+
+    //Internal variables that have to be preserved between frames
+    private int stepIndex = 0;
+    private float stepElapsedTime = 0;
 
     //This is a somewhat crappy version of the A* algorithm designed to
     //avoid making an actual graph representation. It's a little slower.
@@ -79,30 +89,40 @@ public class TileNav : MonoBehaviour
         return instructions;
     }
 
-    public IEnumerator StepMoveByList(List<Vector3> instructions)
-    {
-        foreach(Vector3 i in instructions)
-        {
-            yield return new WaitForSeconds(0.5f);
-            this.transform.position += i;
-        }
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         Vector3 targetLoc = navTargetInstance.transform.position;
         directions = AStarToPos(targetLoc);
-        foreach(Vector3 i in directions)
-        {
-            Debug.Log(i);
-        }
-        StartCoroutine(StepMoveByList(directions));
+        needsToMove = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (needsToMove) // Smooth movement
+        {
+            if(stepElapsedTime >= secondsPerStep) //step completion
+            {
+                stepElapsedTime = 0;
+                stepIndex++;
+
+                //we are doing a lot of division and floating point errors as well as timing issues
+                //do add up. By forcibly compensating every step, the snapping can be almost invisible.
+                transform.position = navigableTileSystemInstance.GetComponent<Grid>()
+                    .CellToWorld(navigableTileSystemInstance.GetComponent<Grid>().WorldToCell(transform.position)) 
+                    + new Vector3(tileSize / 2, tileSize / 2); 
+            }
+            if (stepIndex >= directions.Count) //movement completion
+            {
+                stepIndex = 0;
+                needsToMove = false;
+            }
+            else
+            {
+                transform.position += directions[stepIndex] * (Time.deltaTime / secondsPerStep);
+                stepElapsedTime += Time.deltaTime;
+            }
+        }
     }
 }
