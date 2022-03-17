@@ -8,9 +8,6 @@ public class TileNav : MonoBehaviour
     //The tile system to avoid collisions with. Walkable spaces must not contain any tiles.
     public GameObject navigableTileSystemInstance;
 
-    //An object we want to go to.
-    public GameObject navTargetInstance;
-
     //The size of a tile in Unity units.
     public float tileSize = 1;
 
@@ -89,12 +86,38 @@ public class TileNav : MonoBehaviour
         return instructions;
     }
 
+    //START moving to position. Execution will continue without waiting for it to be done.
+    public void MoveTo(Vector3 targetLoc)
+    {
+        directions = AStarToPos(targetLoc);
+        needsToMove = true;
+    }
+
+    //I may implement this properly but for now I'm giving up on it.
+    /*
+    //Once you start executing this function, the next instruction will not fire until it's done.
+    public IEnumerator BlockingMoveTo(Vector3 targetLoc)
+    {
+        directions = AStarToPos(targetLoc);
+        needsToMove = true;
+        int i = 0;
+        while (needsToMove && i < 255)
+        {
+            singleFrameWait();
+            i++;
+        }
+        yield return ;
+    }
+    */
+    public bool moving => needsToMove;
+
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 targetLoc = navTargetInstance.transform.position;
-        directions = AStarToPos(targetLoc);
-        needsToMove = true;
+        if(navigableTileSystemInstance == null)
+        {
+            navigableTileSystemInstance = GameObject.FindWithTag("Nav Tile System");
+        }
     }
 
     // Update is called once per frame
