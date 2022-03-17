@@ -17,6 +17,7 @@ public class RandomEventTimer : MonoBehaviour
     UnityAction buttonCallBack;
     
     float time;
+    public int empCount;
     public GameObject employee;
     public Button button;
     public GameObject canvas;
@@ -87,8 +88,24 @@ public class RandomEventTimer : MonoBehaviour
             }
         }
     }
-
+    public GameObject[] randomEmployees() {
+        GameObject employees = company.transform.GetChild(0).gameObject;
+        empCount = company.transform.GetChild(0).childCount;
+        GameObject[] empList = new GameObject[empCount];
+        int[] empInd = new int[empCount];
+        for (int i = 0; i < empCount; i++) {
+            empInd[i] = (int)Random.Range(i, empCount);
+            for (int j = 0; j < i; j++) {
+                if (empInd[i]<=empInd[j]) {
+                    empInd[i]--;
+                }
+            }
+            empList[i] = employees.transform.GetChild(empInd[i]).gameObject;
+        }
+        return empList;
+    }
     public GameObject randomizeEvents() {
+        GameObject[] randEmploy = randomEmployees();
         GameObject newEvent = Instantiate(Event);
         newEvent.GetComponentInChildren<Text>().text = myEvents.Events[0];
         RectTransform rt = newEvent.transform.GetChild(1).GetComponent<RectTransform>();
