@@ -95,10 +95,12 @@ public class RandomEventTimer : MonoBehaviour
         int[] empInd = new int[empCount];
         for (int i = 0; i < empCount; i++) {
             empInd[i] = (int)Random.Range(i, empCount);
+            int delta = 0;
             for (int j = 0; j < i; j++) {
                 if (empInd[i]<=empInd[j]) {
-                    empInd[i]--;
+                    delta++;
                 }
+                empInd[i]-=delta;
             }
             empList[i] = employees.transform.GetChild(empInd[i]).gameObject;
         }
