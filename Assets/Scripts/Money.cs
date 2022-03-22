@@ -11,7 +11,7 @@ public class Money : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        display.text = "$" + parseCash(company.GetComponent<Company>().cash);
+        display.text = parseCash(company.GetComponent<Company>().cash);
     }
 
     string parseCash(int cash) {
