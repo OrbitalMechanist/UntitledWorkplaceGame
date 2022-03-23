@@ -13952,6 +13952,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1364367284}
   - component: {fileID: 1364367283}
+  - component: {fileID: 1364367285}
   m_Layer: 0
   m_Name: EventRandomizer
   m_TagString: Untagged
@@ -13971,6 +13972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e28580fd24b50cf4faa90a5a71bdff47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  empCount: 0
   employee: {fileID: 0}
   button: {fileID: 6902521487753483856, guid: 8a4f00a60dddf964eb0691e7fce61cce, type: 3}
   canvas: {fileID: 1293527234}
@@ -13990,6 +13992,19 @@ Transform:
   m_Father: {fileID: 1293527238}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1364367285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364367282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f44d86bca1086449acaed29e50cd9f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  company: {fileID: 213383239}
 --- !u!1001 &1618231905
 PrefabInstance:
   m_ObjectHideFlags: 0
