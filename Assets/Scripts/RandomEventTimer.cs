@@ -15,7 +15,7 @@ public class RandomEventTimer : MonoBehaviour
     int count;
     int randEvent;
     UnityAction buttonCallBack;
-    
+    GameObject[] randEmploy;
     float time;
     public int empCount;
     public GameObject employee;
@@ -107,7 +107,7 @@ public class RandomEventTimer : MonoBehaviour
         return empList;
     }
     public GameObject randomizeEvents() {
-        GameObject[] randEmploy = randomEmployees();
+        randEmploy = randomEmployees();
         GameObject newEvent = Instantiate(Event);
         newEvent.GetComponentInChildren<Text>().text = myEvents.Events[0];
         RectTransform rt = newEvent.transform.GetChild(1).GetComponent<RectTransform>();
@@ -133,35 +133,35 @@ public class RandomEventTimer : MonoBehaviour
         company.GetComponent<Company>().cash+=delta;
     }
     public void ChangeHappiness(int delta) {
-        employee.GetComponent<Employee>().happiness+=delta;
-        if (employee.GetComponent<Employee>().happiness > MAX_STAT) {
-            employee.GetComponent<Employee>().happiness = MAX_STAT;
-        } if (employee.GetComponent<Employee>().happiness < MIN_STAT) {
-            employee.GetComponent<Employee>().happiness = MIN_STAT;
+        randEmploy[0].GetComponent<Employee>().happiness+=delta;
+        if (randEmploy[0].GetComponent<Employee>().happiness > MAX_STAT) {
+            randEmploy[0].GetComponent<Employee>().happiness = MAX_STAT;
+        } if (randEmploy[0].GetComponent<Employee>().happiness < MIN_STAT) {
+            randEmploy[0].GetComponent<Employee>().happiness = MIN_STAT;
         }
     }
     public void ChangePersonality(int delta) {
-        employee.GetComponent<Employee>().personal+=delta;
-        if (employee.GetComponent<Employee>().personal > MAX_STAT) {
-            employee.GetComponent<Employee>().personal = MAX_STAT;
-        } if (employee.GetComponent<Employee>().personal < MIN_STAT) {
-            employee.GetComponent<Employee>().personal = MIN_STAT;
+        randEmploy[0].GetComponent<Employee>().personal+=delta;
+        if (randEmploy[0].GetComponent<Employee>().personal > MAX_STAT) {
+            randEmploy[0].GetComponent<Employee>().personal = MAX_STAT;
+        } if (randEmploy[0].GetComponent<Employee>().personal < MIN_STAT) {
+            randEmploy[0].GetComponent<Employee>().personal = MIN_STAT;
         }
     }
     public void ChangeCapability(int delta) {
-        employee.GetComponent<Employee>().capability+=delta;
-        if (employee.GetComponent<Employee>().capability > MAX_STAT) {
-            employee.GetComponent<Employee>().capability = MAX_STAT;
-        } if (employee.GetComponent<Employee>().capability < MIN_STAT) {
-            employee.GetComponent<Employee>().capability = MIN_STAT;
+        randEmploy[0].GetComponent<Employee>().capability+=delta;
+        if (randEmploy[0].GetComponent<Employee>().capability > MAX_STAT) {
+            randEmploy[0].GetComponent<Employee>().capability = MAX_STAT;
+        } if (randEmploy[0].GetComponent<Employee>().capability < MIN_STAT) {
+            randEmploy[0].GetComponent<Employee>().capability = MIN_STAT;
         }
     }
     public void ChangeEthic(int delta) {
-        employee.GetComponent<Employee>().ethic+=delta;
-        if (employee.GetComponent<Employee>().ethic > MAX_STAT) {
-            employee.GetComponent<Employee>().ethic = MAX_STAT;
-        } if (employee.GetComponent<Employee>().ethic < MIN_STAT) {
-            employee.GetComponent<Employee>().ethic = MIN_STAT;
+        randEmploy[0].GetComponent<Employee>().ethic+=delta;
+        if (randEmploy[0].GetComponent<Employee>().ethic > MAX_STAT) {
+            randEmploy[0].GetComponent<Employee>().ethic = MAX_STAT;
+        } if (randEmploy[0].GetComponent<Employee>().ethic < MIN_STAT) {
+            randEmploy[0].GetComponent<Employee>().ethic = MIN_STAT;
         }
     }
     public void MassChangeHappiness(int delta) {
