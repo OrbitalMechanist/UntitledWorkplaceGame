@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -14,8 +15,9 @@ public class RandomEventTimer : MonoBehaviour
     int count;
     int randEvent;
     UnityAction buttonCallBack;
-    
+    GameObject[] randEmploy;
     float time;
+    public int empCount;
     public GameObject employee;
     public Button button;
     public GameObject canvas;
@@ -39,7 +41,7 @@ public class RandomEventTimer : MonoBehaviour
         eventJson = File.ReadAllText("./Assets/Data/Event Lists/Events.json");
         eventJson = eventJson.Replace("\n", "").Replace("\r", "").Replace("    ", "");
         myEvents = JsonUtility.FromJson<EventObject>(eventJson);
-        delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness};
+        delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame};
         count = 0;
         string buttons = File.ReadAllText("./Assets/Data/Event Lists/EventButtons.txt");
         int i = 0;
@@ -86,8 +88,26 @@ public class RandomEventTimer : MonoBehaviour
             }
         }
     }
-
+    public GameObject[] randomEmployees() {
+        GameObject employees = company.transform.GetChild(0).gameObject;
+        empCount = company.transform.GetChild(0).childCount;
+        GameObject[] empList = new GameObject[empCount];
+        int[] empInd = new int[empCount];
+        for (int i = 0; i < empCount; i++) {
+            empInd[i] = (int)Random.Range(i, empCount);
+            int delta = 0;
+            for (int j = 0; j < i; j++) {
+                if (empInd[i]<=empInd[j]) {
+                    delta++;
+                }
+                empInd[i]-=delta;
+            }
+            empList[i] = employees.transform.GetChild(empInd[i]).gameObject;
+        }
+        return empList;
+    }
     public GameObject randomizeEvents() {
+        randEmploy = randomEmployees();
         GameObject newEvent = Instantiate(Event);
         newEvent.GetComponentInChildren<Text>().text = myEvents.Events[0];
         RectTransform rt = newEvent.transform.GetChild(1).GetComponent<RectTransform>();
@@ -113,38 +133,42 @@ public class RandomEventTimer : MonoBehaviour
         company.GetComponent<Company>().cash+=delta;
     }
     public void ChangeHappiness(int delta) {
-        employee.GetComponent<Employee>().happiness+=delta;
-        if (employee.GetComponent<Employee>().happiness > MAX_STAT) {
-            employee.GetComponent<Employee>().happiness = MAX_STAT;
-        } if (employee.GetComponent<Employee>().happiness < MIN_STAT) {
-            employee.GetComponent<Employee>().happiness = MIN_STAT;
+        randEmploy[0].GetComponent<Employee>().happiness+=delta;
+        if (randEmploy[0].GetComponent<Employee>().happiness > MAX_STAT) {
+            randEmploy[0].GetComponent<Employee>().happiness = MAX_STAT;
+        } if (randEmploy[0].GetComponent<Employee>().happiness < MIN_STAT) {
+            randEmploy[0].GetComponent<Employee>().happiness = MIN_STAT;
         }
     }
     public void ChangePersonality(int delta) {
-        employee.GetComponent<Employee>().personal+=delta;
-        if (employee.GetComponent<Employee>().personal > MAX_STAT) {
-            employee.GetComponent<Employee>().personal = MAX_STAT;
-        } if (employee.GetComponent<Employee>().personal < MIN_STAT) {
-            employee.GetComponent<Employee>().personal = MIN_STAT;
+        randEmploy[0].GetComponent<Employee>().personal+=delta;
+        if (randEmploy[0].GetComponent<Employee>().personal > MAX_STAT) {
+            randEmploy[0].GetComponent<Employee>().personal = MAX_STAT;
+        } if (randEmploy[0].GetComponent<Employee>().personal < MIN_STAT) {
+            randEmploy[0].GetComponent<Employee>().personal = MIN_STAT;
         }
     }
     public void ChangeCapability(int delta) {
-        employee.GetComponent<Employee>().capability+=delta;
-        if (employee.GetComponent<Employee>().capability > MAX_STAT) {
-            employee.GetComponent<Employee>().capability = MAX_STAT;
-        } if (employee.GetComponent<Employee>().capability < MIN_STAT) {
-            employee.GetComponent<Employee>().capability = MIN_STAT;
+        randEmploy[0].GetComponent<Employee>().capability+=delta;
+        if (randEmploy[0].GetComponent<Employee>().capability > MAX_STAT) {
+            randEmploy[0].GetComponent<Employee>().capability = MAX_STAT;
+        } if (randEmploy[0].GetComponent<Employee>().capability < MIN_STAT) {
+            randEmploy[0].GetComponent<Employee>().capability = MIN_STAT;
         }
     }
     public void ChangeEthic(int delta) {
-        employee.GetComponent<Employee>().ethic+=delta;
-        if (employee.GetComponent<Employee>().ethic > MAX_STAT) {
-            employee.GetComponent<Employee>().ethic = MAX_STAT;
-        } if (employee.GetComponent<Employee>().ethic < MIN_STAT) {
-            employee.GetComponent<Employee>().ethic = MIN_STAT;
+        randEmploy[0].GetComponent<Employee>().ethic+=delta;
+        if (randEmploy[0].GetComponent<Employee>().ethic > MAX_STAT) {
+            randEmploy[0].GetComponent<Employee>().ethic = MAX_STAT;
+        } if (randEmploy[0].GetComponent<Employee>().ethic < MIN_STAT) {
+            randEmploy[0].GetComponent<Employee>().ethic = MIN_STAT;
         }
     }
     public void MassChangeHappiness(int delta) {
 
+    }
+    public void EndGame(int state) {
+        SceneManager.LoadScene("results");
+        DontDestroyOnLoad(company);
     }
 }
