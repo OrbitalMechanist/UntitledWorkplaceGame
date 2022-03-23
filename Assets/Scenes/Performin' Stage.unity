@@ -13954,7 +13954,7 @@ GameObject:
   - component: {fileID: 1364367283}
   - component: {fileID: 1364367285}
   m_Layer: 0
-  m_Name: EventRandomizer
+  m_Name: Organizer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
