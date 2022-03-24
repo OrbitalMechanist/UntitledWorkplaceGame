@@ -9,22 +9,28 @@ public class ProgressBar : MonoBehaviour
     Text progressText;
     [SerializeField]
     RectTransform currentProgress;
-    int currentTicks = 0;
-    private const int maxTicks = 100;
-    private const int progressLength = 285;
+    GameObject eventOrganizer;
+    RandomEventTimer eventScript;
+    int currentTicks;
+    private const int maxTicks = 20;
+    private float progressLength;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        progressLength = currentProgress.rect.width;
+        eventOrganizer = GameObject.Find("Organizer");
+        eventScript = eventOrganizer.GetComponent<RandomEventTimer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentTicks++;
-        progressText.text = "Progress: " + currentTicks / maxTicks + "%";
-        setProgress(progressLength - (currentTicks / maxTicks));
+        currentTicks = eventScript.count;
+
+        double percentProgress = (double)currentTicks / (double)maxTicks;
+        progressText.text = "Progress: " + (int)(percentProgress * 100) + "%";
+        setProgress((float)(progressLength - (progressLength * percentProgress)));
     }
 
     private void setProgress(float right) {

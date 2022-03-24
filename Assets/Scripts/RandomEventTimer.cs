@@ -12,7 +12,7 @@ public class RandomEventTimer : MonoBehaviour
     private static int MAX_STAT = 256;
     private static int MIN_STAT = 0;
     bool hasEvent = false;
-    int count;
+    public int count;
     int randEvent;
     UnityAction buttonCallBack;
     GameObject[] randEmploy;
