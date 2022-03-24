@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class LoadEmployeeList : MonoBehaviour
 {
-    GameObject[] employeeList;
     public GameObject employeeManagerInstance; 
     public GameObject UiContainerInstance;
     public GameObject UiDisplayItemPrefab;
@@ -14,10 +13,12 @@ public class LoadEmployeeList : MonoBehaviour
     private float containerHeight;
     private float itemWidth;
     private float itemHeight;
-    private const float vPadding = 25;
-    private const int numEmployees = 5;
+
+    private const float V_PADDING = 25;
+    private const int NUM_EMPLOYEES = 5;
 
     public void Start() {
+        // Find the employee owner to use later
         employeeManagerInstance = GameObject.Find("employeeOwner");
 
         //Calculate sizes for the UI
@@ -70,8 +71,10 @@ public class LoadEmployeeList : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
 
-        for (int i = 0; i < numEmployees; i++)
+        // Display all employees in list panel
+        for (int i = 0; i < NUM_EMPLOYEES; i++)
         {
+            // Get the employee of the current idnex
             GameObject emp = employeeManagerInstance.transform.GetChild(i).gameObject;
 
             //create the UI element and attach it to the container
@@ -79,10 +82,12 @@ public class LoadEmployeeList : MonoBehaviour
             ui.transform.SetParent(UiContainerInstance.transform, false);
 
             //set UI element position in its container
+
+            // Special case to handle the very first employee
             if (i == 0) {
-                ui.transform.localPosition = new Vector3(containerWidth / 2, (-1 * (vPadding + (itemHeight / 2))));
+                ui.transform.localPosition = new Vector3(containerWidth / 2, (-1 * (V_PADDING + (itemHeight / 2))));
             }
-            ui.transform.localPosition = new Vector3(containerWidth / 2, (-1 * ((itemHeight + vPadding) * i) + (itemHeight / 2)));
+            ui.transform.localPosition = new Vector3(containerWidth / 2, (-1 * ((itemHeight + V_PADDING) * i) + (itemHeight / 2)));
         }
     }
 }

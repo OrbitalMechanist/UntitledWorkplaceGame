@@ -5,16 +5,20 @@ using UnityEngine.UI;
 
 public class ShareEmail : MonoBehaviour
 {
-    [SerializeField]
     public Text result;
-    private const string appStoreLink = "http://www.PLACEHOLDER.ca"; //UPDATE WHEN HOST LINK IS AVAILABLE
+
+    private const string GAME_LINK = "https://www.game.cultureindex.io/";
 
     public void ShareByEmail()
     {
+        // Email header
         string email = "";
         string subject = CreateEscapeURL("Untitled Workplace Culture Game!");
-        string body = CreateEscapeURL("I got " + result.text + " on the Untitled Workplace Culture Game!\n\nTry the game yourself here:\n" + appStoreLink);
 
+        // Create excape URL with email message
+        string body = CreateEscapeURL("I got " + result.text + " on the Untitled Workplace Culture Game!\n\nTry the game yourself here:\n" + GAME_LINK);
+
+        // Open email applcation
         Application.OpenURL("mailto:" + email + "?subject=" + subject + "&body=" + body);
     }
 
