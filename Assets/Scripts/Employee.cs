@@ -63,7 +63,7 @@ public class Employee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isWorking) // if the employee is working, add progress gaining money and check if it's time to go on break
+        if (distractionInstance != null && isWorking) // if the employee is working, add progress gaining money and check if it's time to go on break
         {
             if(framesSinceIncome > MAX_STAT - capability)
             {
