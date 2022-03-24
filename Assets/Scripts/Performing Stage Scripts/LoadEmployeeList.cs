@@ -6,18 +6,23 @@ using UnityEngine.UI;
 public class LoadEmployeeList : MonoBehaviour
 {
     GameObject[] employeeList;
-    public GameObject employeeManagerInstance; // ?
+    public GameObject employeeManagerInstance; 
     public GameObject UiContainerInstance;
     public GameObject UiDisplayItemPrefab;
 
     private float containerWidth;
+    private float containerHeight;
     private float itemWidth;
     private float itemHeight;
-    private const float vPadding = 20;
+    private const float vPadding = 25;
+    private const int numEmployees = 5;
 
     public void Start() {
+        employeeManagerInstance = GameObject.Find("employeeOwner");
+
         //Calculate sizes for the UI
         containerWidth = UiContainerInstance.GetComponent<RectTransform>().rect.width;
+        containerHeight = UiContainerInstance.GetComponent<RectTransform>().rect.height;
         itemWidth = UiDisplayItemPrefab.GetComponent<RectTransform>().rect.width;
         itemHeight = UiDisplayItemPrefab.GetComponent<RectTransform>().rect.height;
     }
@@ -58,23 +63,26 @@ public class LoadEmployeeList : MonoBehaviour
         return UIElement;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void loadEmployees()
     {
-        for (int i = 0; i < employeeList.Length; i++)
-        {
-            GameObject emp = employeeList[i]; // probably needs adjusting
+        // Clear pre-existing loaded employees
+        foreach (Transform child in UiContainerInstance.transform) {
+            GameObject.Destroy(child.gameObject);
+        }
 
-            //Add employee object to manager object and keep it off the screen
-            emp.transform.parent = employeeManagerInstance.transform;
-            emp.transform.localPosition = Vector3.zero;
+        for (int i = 0; i < numEmployees; i++)
+        {
+            GameObject emp = employeeManagerInstance.transform.GetChild(i).gameObject;
 
             //create the UI element and attach it to the container
             GameObject ui = createEmployeeUi(UiDisplayItemPrefab, emp);
             ui.transform.SetParent(UiContainerInstance.transform, false);
 
             //set UI element position in its container
-            ui.transform.localPosition = new Vector3(0, -1 * ((itemHeight + vPadding) * (i + 1)) + itemHeight/2);
+            if (i == 0) {
+                ui.transform.localPosition = new Vector3(containerWidth / 2, (-1 * (vPadding + (itemHeight / 2))));
+            }
+            ui.transform.localPosition = new Vector3(containerWidth / 2, (-1 * ((itemHeight + vPadding) * i) + (itemHeight / 2)));
         }
     }
 }
