@@ -181,6 +181,7 @@ public class RandomEventTimer : MonoBehaviour
 
     }
     public void EndGame(int state, int ph) {
+        company.GetComponent<Company>().endState = state;
         SceneManager.LoadScene("results");
         DontDestroyOnLoad(company);
     }
