@@ -113,29 +113,68 @@ public class RandomEventTimer : MonoBehaviour
         }
         return empList;
     }
+    // GameObject generateEmployee()
+    // {
+
+    //     string lName = lNames[Random.Range(0, lNames.Length)];
+    //     string fName = fNames[Random.Range(0, fNames.Length)];
+
+    //     int personal = Random.Range(MIN_STAT, MAX_STAT + 1);
+    //     int capability = Random.Range(MIN_STAT, MAX_STAT + 1);
+    //     int ethic = Random.Range(MIN_STAT, MAX_STAT + 1);
+
+    //     GameObject emp = Instantiate(employeePrefab);
+
+    //     //Body image + color
+    //     emp.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Random.ColorHSV(0, 1, 0.33f, 0.35f, 0.95f, 0.97f);
+    //     emp.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = shirts[Random.Range(0, shirts.Length)];
+
+    //     //Head image + color
+    //     emp.transform.GetChild(1).GetComponent<SpriteRenderer>().color = skinColors[Random.Range(0, skinColors.Length)];
+    //     // Random.ColorHSV(0, 1, 0.8f, 1f, 0.4f, 0.8f);
+    //     emp.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = heads[Random.Range(0, heads.Length)];
+
+    //     //Hat image + color. Hair counts as a hat.
+    //     emp.transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = hats[Random.Range(0, hats.Length)];
+    //     emp.transform.GetChild(2).GetComponent<SpriteRenderer>().color = hatColors[Random.Range(0, hatColors.Length)];
+    //     //Random.ColorHSV(0, 1, 0f, 1f, 0.2f, 1f);
+
+    //     //Give name and ability parameters to the actual employee object
+    //     emp.GetComponent<Employee>().Create(fName, lName, personal, capability, ethic);
+
+    //     return emp;
+    // }
     public GameObject randomizeEvents() {
         randEmploy = randomEmployees();
         GameObject newEvent = Instantiate(Event);
-        newEvent.GetComponentInChildren<Text>().text = myEvents.Events[0];
+        string desc = myEvents.Events[0];
+        for (int i = 0; i < randEmploy.Length; i++) {
+            desc = System.String.Format(desc, randEmploy[i].GetComponent<Employee>().fName, randEmploy[i].GetComponent<Employee>().lName, "{0}", "{1}", "{2}", "{3}", "{4}", "{5}", "{6}", "{7}");
+        }
+        newEvent.GetComponentInChildren<Text>().text = desc;
         RectTransform descRT = newEvent.transform.GetChild(0).GetComponent<RectTransform>();
-        //descRT.offsetMin = new Vector2(descRT.offsetMin.x, 0);
+        descRT.offsetMin = new Vector2(descRT.offsetMin.x, 0);
         RectTransform rt = newEvent.transform.GetChild(1).GetComponent<RectTransform>();
         rt.offsetMax = new Vector2(rt.offsetMax.x, -350);
         int buttonCount = Random.Range(0, 3);
         for (int i = 0; i < myEvents.EventButtons[0].Count; i++) {
             int temp  = myEvents.EventButtons[0][i];
             rt.offsetMax = new Vector2(rt.offsetMax.x, rt.offsetMax.y+(float)37.5);
-            //descRT.offsetMin = new Vector2(descRT.offsetMin.x, 0);
+            descRT.offsetMin = new Vector2(descRT.offsetMin.x, descRT.offsetMin.y+(float)40);
             Button newButton = Instantiate(button);
             newButton.transform.SetParent(newEvent.transform, false);
             newButton.transform.localPosition = new Vector3(0, -160+(i*(float)37.5));
+            string btext = myEvents.ButtonTexts[temp];
+            for (int k = 0; k < myEvents.EmployeeIndices[temp].Count; k++) {
+                btext = System.String.Format(btext, randEmploy[myEvents.EmployeeIndices[temp][k]].GetComponent<Employee>().fName, "{0}", "{1}", "{2}", "{3}", "{4}");
+            }
             newButton.onClick.AddListener(delegate{
                 for (int k = 0; k < myEvents.ButtonIndices[temp].Count; k++) {
                     int bTemp = k;
                     delList[myEvents.ButtonIndices[temp][bTemp]](myEvents.ButtonValues[temp][bTemp], myEvents.EmployeeIndices[temp][bTemp]);
                 }
                 closeEvent(newEvent);});
-            newButton.GetComponentInChildren<Text>().text = myEvents.ButtonTexts[temp];
+            newButton.GetComponentInChildren<Text>().text = btext;
         }
         return newEvent;
     }
