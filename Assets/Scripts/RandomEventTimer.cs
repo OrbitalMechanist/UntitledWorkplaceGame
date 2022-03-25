@@ -18,7 +18,6 @@ public class RandomEventTimer : MonoBehaviour
     GameObject[] randEmploy;
     float time;
     public int empCount;
-    public GameObject employee;
     public Button button;
     public GameObject canvas;
     public GameObject Event;
@@ -71,7 +70,8 @@ public class RandomEventTimer : MonoBehaviour
             }
             i++;
         }
-        string emp = File.ReadAllText("./Assets/Data/Event Lists/ButtonValues.txt");
+        i = 0;
+        string emp = File.ReadAllText("./Assets/Data/Event Lists/EmployeeIndices.txt");
         foreach (var row in emp.Split('\n')) {
             myEvents.ButtonValues.Add(new List<int>());
             foreach (var index in row.Split(' ')) {
@@ -129,7 +129,7 @@ public class RandomEventTimer : MonoBehaviour
             newButton.transform.SetParent(newEvent.transform, false);
             newButton.transform.localPosition = new Vector3(0, -160+(i*(float)37.5));
             newButton.onClick.AddListener(delegate{
-                for (int k = 0; k < myEvents.EventButtons.Count; k++) {
+                for (int k = 0; k < myEvents.ButtonIndices[temp].Count; k++) {
                     delList[myEvents.ButtonIndices[temp][k]](myEvents.ButtonValues[temp][k], myEvents.EmployeeIndices[temp][k]);
                 }
                 closeEvent(newEvent);});
