@@ -81,14 +81,6 @@ public class LoadEmployeeList : MonoBehaviour
             //create the UI element and attach it to the container
             GameObject ui = createEmployeeUi(UiDisplayItemPrefab, emp);
             ui.transform.SetParent(UiContainerInstance.transform, false);
-
-            //set UI element position in its container
-
-            // Special case to handle the very first employee
-            if (i == 0) {
-                ui.transform.localPosition = new Vector3(containerWidth / 2, (-1 * (V_PADDING + (itemHeight / 2))));
-            }
-            ui.transform.localPosition = new Vector3(containerWidth / 2, (-1 * ((itemHeight + V_PADDING) * i) + (itemHeight / 2)));
         }
     }
 }
