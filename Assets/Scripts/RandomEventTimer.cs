@@ -12,10 +12,13 @@ public class RandomEventTimer : MonoBehaviour
     private static int MAX_STAT = 256;
     private static int MIN_STAT = 0;
     bool hasEvent = false;
+    public int count;
     int randEvent;
     UnityAction buttonCallBack;
     GameObject[] randEmploy;
     float time;
+    public int empCount;
+    public GameObject employee;
     public Button button;
     public GameObject canvas;
     public GameObject Event;
@@ -40,6 +43,7 @@ public class RandomEventTimer : MonoBehaviour
         eventJson = File.ReadAllText("./Assets/Data/Event Lists/Events.json");
         eventJson = eventJson.Replace("\n", "").Replace("\r", "").Replace("    ", "");
         myEvents = JsonUtility.FromJson<EventObject>(eventJson);
+        count = 0;
         delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame, Fire};
         string buttons = File.ReadAllText("./Assets/Data/Event Lists/EventButtons.txt");
         int i = 0;
@@ -113,7 +117,8 @@ public class RandomEventTimer : MonoBehaviour
         }
         return empList;
     }
-    // GameObject generateEmployee()
+
+// GameObject generateEmployee()
     // {
 
     //     string lName = lNames[Random.Range(0, lNames.Length)];
@@ -227,6 +232,10 @@ public class RandomEventTimer : MonoBehaviour
     }
     public void EndGame(int state, int ph) {
         company.GetComponent<Company>().endState = state;
+        SceneManager.LoadScene("results");
+        DontDestroyOnLoad(company);
+    }
+    public void EndGame(int state) {
         SceneManager.LoadScene("results");
         DontDestroyOnLoad(company);
     }
