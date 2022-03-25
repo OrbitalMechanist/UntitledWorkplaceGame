@@ -27,10 +27,11 @@ public class RandomEventTimer : MonoBehaviour
         public string[] Events;
         public List<List<int>> EventButtons = new List<List<int>>();
         public string[] ButtonTexts;
+        public List<List<int>> EmployeeIndices = new List<List<int>>();
         public List<List<int>> ButtonIndices = new List<List<int>>();
         public List<List<int>> ButtonValues = new List<List<int>>();
     }
-    public delegate void MethodDelegate (int delta);
+    public delegate void MethodDelegate (int delta, int emp);
     List<MethodDelegate> delList;
     EventObject myEvents;
     string eventJson;
@@ -64,6 +65,14 @@ public class RandomEventTimer : MonoBehaviour
         i = 0;
         string values = File.ReadAllText("./Assets/Data/Event Lists/ButtonValues.txt");
         foreach (var row in values.Split('\n')) {
+            myEvents.ButtonValues.Add(new List<int>());
+            foreach (var index in row.Split(' ')) {
+                myEvents.ButtonValues[i].Add(int.Parse(index));
+            }
+            i++;
+        }
+        string emp = File.ReadAllText("./Assets/Data/Event Lists/ButtonValues.txt");
+        foreach (var row in emp.Split('\n')) {
             myEvents.ButtonValues.Add(new List<int>());
             foreach (var index in row.Split(' ')) {
                 myEvents.ButtonValues[i].Add(int.Parse(index));
@@ -119,7 +128,11 @@ public class RandomEventTimer : MonoBehaviour
             Button newButton = Instantiate(button);
             newButton.transform.SetParent(newEvent.transform, false);
             newButton.transform.localPosition = new Vector3(0, -160+(i*(float)37.5));
-            newButton.onClick.AddListener(delegate{delList[myEvents.ButtonIndices[temp][0]](myEvents.ButtonValues[temp][0]);closeEvent(newEvent);});
+            newButton.onClick.AddListener(delegate{
+                for (int k = 0; k < myEvents.EventButtons.Count; k++) {
+                    delList[myEvents.ButtonIndices[temp][k]](myEvents.ButtonValues[temp][k], myEvents.EmployeeIndices[temp][k]);
+                }
+                closeEvent(newEvent);});
             newButton.GetComponentInChildren<Text>().text = myEvents.ButtonTexts[temp];
         }
         return newEvent;
@@ -128,11 +141,11 @@ public class RandomEventTimer : MonoBehaviour
         Destroy(thisEvent);
         hasEvent = false;
     }
-    public void RaiseMoney(int delta)
+    public void RaiseMoney(int delta, int emp)
     {
         company.GetComponent<Company>().cash+=delta;
     }
-    public void ChangeHappiness(int delta) {
+    public void ChangeHappiness(int delta, int emp) {
         randEmploy[0].GetComponent<Employee>().happiness+=delta;
         if (randEmploy[0].GetComponent<Employee>().happiness > MAX_STAT) {
             randEmploy[0].GetComponent<Employee>().happiness = MAX_STAT;
@@ -140,7 +153,7 @@ public class RandomEventTimer : MonoBehaviour
             randEmploy[0].GetComponent<Employee>().happiness = MIN_STAT;
         }
     }
-    public void ChangePersonality(int delta) {
+    public void ChangePersonality(int delta, int emp) {
         randEmploy[0].GetComponent<Employee>().personal+=delta;
         if (randEmploy[0].GetComponent<Employee>().personal > MAX_STAT) {
             randEmploy[0].GetComponent<Employee>().personal = MAX_STAT;
@@ -148,7 +161,7 @@ public class RandomEventTimer : MonoBehaviour
             randEmploy[0].GetComponent<Employee>().personal = MIN_STAT;
         }
     }
-    public void ChangeCapability(int delta) {
+    public void ChangeCapability(int delta, int emp) {
         randEmploy[0].GetComponent<Employee>().capability+=delta;
         if (randEmploy[0].GetComponent<Employee>().capability > MAX_STAT) {
             randEmploy[0].GetComponent<Employee>().capability = MAX_STAT;
@@ -156,7 +169,7 @@ public class RandomEventTimer : MonoBehaviour
             randEmploy[0].GetComponent<Employee>().capability = MIN_STAT;
         }
     }
-    public void ChangeEthic(int delta) {
+    public void ChangeEthic(int delta, int emp) {
         randEmploy[0].GetComponent<Employee>().ethic+=delta;
         if (randEmploy[0].GetComponent<Employee>().ethic > MAX_STAT) {
             randEmploy[0].GetComponent<Employee>().ethic = MAX_STAT;
@@ -164,10 +177,10 @@ public class RandomEventTimer : MonoBehaviour
             randEmploy[0].GetComponent<Employee>().ethic = MIN_STAT;
         }
     }
-    public void MassChangeHappiness(int delta) {
+    public void MassChangeHappiness(int delta, int emp) {
 
     }
-    public void EndGame(int state) {
+    public void EndGame(int state, int ph) {
         SceneManager.LoadScene("results");
         DontDestroyOnLoad(company);
     }
