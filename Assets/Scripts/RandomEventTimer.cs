@@ -17,7 +17,6 @@ public class RandomEventTimer : MonoBehaviour
     UnityAction buttonCallBack;
     GameObject[] randEmploy;
     float time;
-    public int empCount;
     public Button button;
     public GameObject canvas;
     public GameObject Event;
@@ -73,9 +72,9 @@ public class RandomEventTimer : MonoBehaviour
         i = 0;
         string emp = File.ReadAllText("./Assets/Data/Event Lists/EmployeeIndices.txt");
         foreach (var row in emp.Split('\n')) {
-            myEvents.ButtonValues.Add(new List<int>());
+            myEvents.EmployeeIndices.Add(new List<int>());
             foreach (var index in row.Split(' ')) {
-                myEvents.ButtonValues[i].Add(int.Parse(index));
+                myEvents.EmployeeIndices[i].Add(int.Parse(index));
             }
             i++;
         }
@@ -99,18 +98,19 @@ public class RandomEventTimer : MonoBehaviour
     }
     public GameObject[] randomEmployees() {
         GameObject employees = company.transform.GetChild(0).gameObject;
-        empCount = company.transform.GetChild(0).childCount;
+        int empCount = company.transform.GetChild(0).childCount;
         GameObject[] empList = new GameObject[empCount];
         int[] empInd = new int[empCount];
+        int[] delta = new int[empCount];
         for (int i = 0; i < empCount; i++) {
             empInd[i] = (int)Random.Range(i, empCount);
-            int delta = 0;
+            delta[i] = 0;
             for (int j = 0; j < i; j++) {
-                if (empInd[i]<=empInd[j]) {
-                    delta++;
+                if (empInd[i]<=(empInd[j]+delta[j])) {
+                    delta[i]++;
                 }
-                empInd[i]-=delta;
             }
+            empInd[i]-=delta[i];
             empList[i] = employees.transform.GetChild(empInd[i]).gameObject;
         }
         return empList;
