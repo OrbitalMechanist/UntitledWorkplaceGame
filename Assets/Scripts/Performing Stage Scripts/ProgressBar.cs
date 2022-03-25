@@ -21,6 +21,9 @@ public class ProgressBar : MonoBehaviour
         // Get length of the progress bar UI element
         progressLength = currentProgress.rect.width;
 
+        // Set progress to 0
+        setProgress(progressLength);
+
         // Get event timer script so event ticks can be accessed
         eventOrganizer = GameObject.Find("Organizer");
         eventScript = eventOrganizer.GetComponent<RandomEventTimer>();
