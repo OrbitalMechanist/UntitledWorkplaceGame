@@ -5,11 +5,14 @@ using UnityEngine;
 public class Company : MonoBehaviour
 {
     public int cash;
+    public int count;
     public int endState;
+    public int happiness;
     // Start is called before the first frame update
     void Start()
     {
         cash = 1000;
+        happiness = 100;
     }
 
     // Update is called once per frame

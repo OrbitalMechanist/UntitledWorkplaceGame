@@ -1,12 +1,15 @@
 {
     "Events": [
-        "This is a sample event from JSON."
+        "{0} {1} is treating {2} {3} poorly. No one wants to confronts {0} and something must be done. Do you..."
+    ],
+    "Results": [
+
     ],
     "ButtonTexts": [
-        "+$100",
-        "+100 Happiness",
-        "+100 Personality",
-        "+100 Capability",
+        "Confront {0}",
+        "Ask {0} what happened then address it",
+        "Fire them both and move on",
+        "Convene a meeting with the entire company to hash it out",
         "End game with state 0"
     ]
 }
