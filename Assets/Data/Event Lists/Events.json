@@ -1,11 +1,50 @@
 {
     "Events": [
-        "This is a sample event from JSON."
+        "{0} {1} is treating {2} {3} poorly. No one wants to confronts {0} and something must be done. \nDo you...",
+        "Your first office space is your apartment. You welcome the early team to join you. Your family begins to feel a little cramped after two weeks. \nDo you...",
+        "Your early investment funds are caught up with the investment bankers and you are unable to pay your team after their third week working. \nDo you...",
+        "Your company's first logo results in a lawsuit from the largest company in the world as their lawyers consider it too close to the logo of an acquisition they made 10 years ago and shelved. \nDo you...",
+        "You're presented with an opportunity to partner with a big traditional national media company. They'll put you in newspapers, TV, and radio for a cut of your business. This partnership will certainly mean more exposure. \nDo you...",
+        "Your first large customer asks you to customize your product for their specific needs. It may be a deal breaker, but you can't be sure. \nDo you..",
+        "A competitor has copied your best feature, but it's not quite as good. \nDo you...",
+        "Your early team members aren't happy with {0} {1}. Their attitude and behaviors are (maybe unknowingly) disrespectful to the other team members, but they never show this side to leadership. \nDo you...",
+        "Your team begins to grow"
+    ],
+    "Results": [
+
     ],
     "ButtonTexts": [
-        "+$100",
-        "+100 Happiness",
-        "+100 Personality",
-        "+100 Capability"
+        "Confront {0}",
+        "Ask {0} what happened then address it",
+        "Fire them both and move on",
+        "Convene a meeting with the entire company to hash it out",
+        "Help your family find another place to live",
+        "Ask your team to work from a remote location that isn't your home",
+        "Spend the money on a working spave that will work for your team for now",
+        "Hope the problem goes away in a week",
+        "Take out a short term personal loan to pay your team",
+        "Beg your investors to release funds to you early",
+        "Tell your team the truth and make them wait to get paid",
+        "Hide in your office and hope the problem goes away",
+        "Reach out to a famous local graphic designer for your new logo",
+        "Ask your cousin to design a new logo",
+        "Hit up Fiverr for a new logo",
+        "Ignore the lawsuit and plow ahead",
+        "Accept on their terms to ensure it happens",
+        "Make acceptance contingent on your terms",
+        "Say thanks but no thanks",
+        "Consult your investors and follow their advice",
+        "Use your resources to build for this customer",
+        "Explain that your team will get to that need when possible",
+        "Ask other customers if they want the same thing",
+        "Say yes and add the cost to their contract",
+        "Spend your time and money letting the world know yours is better",
+        "Take them to court and try to defend your first mover advantage",
+        "Double down making your feature far superior",
+        "Ignore your competitor and focus on the next big thing",
+        "Let them know directly that the leadership team is aware of their behavior and that it cannot continue",
+        "Fire them immediately",
+        "Invite them to dinner with a few other leaders and ask them directly about it",
+        "Do nothing"
     ]
 }

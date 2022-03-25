@@ -5326,6 +5326,7 @@ GameObject:
   - component: {fileID: 232148222}
   - component: {fileID: 232148224}
   - component: {fileID: 232148223}
+  - component: {fileID: 232148225}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -5394,6 +5395,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 232148221}
   m_CullTransparentMesh: 1
+--- !u!114 &232148225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232148221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d666b1b46f121045badccb7db647fae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressText: {fileID: 843139193}
+  currentProgress: {fileID: 540617511}
+  moneyDisplay: {fileID: 1152302647}
+  happyDisplay: {fileID: 484518254}
+  company: {fileID: 213383239}
 --- !u!1001 &299760377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13313,7 +13331,6 @@ GameObject:
   - component: {fileID: 1152302645}
   - component: {fileID: 1152302648}
   - component: {fileID: 1152302647}
-  - component: {fileID: 1152302646}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -13340,20 +13357,6 @@ RectTransform:
   m_AnchoredPosition: {x: 32.20883, y: 0.2999878}
   m_SizeDelta: {x: 214.61, y: 17.957119}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1152302646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1152302644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d666b1b46f121045badccb7db647fae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  display: {fileID: 1152302647}
-  company: {fileID: 213383239}
 --- !u!114 &1152302647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13387,7 +13390,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1,000,000
+  m_Text: 1,000
 --- !u!222 &1152302648
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13610,8 +13613,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e28580fd24b50cf4faa90a5a71bdff47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  empCount: 0
-  employee: {fileID: 0}
   button: {fileID: 6902521487753483856, guid: 8a4f00a60dddf964eb0691e7fce61cce, type: 3}
   canvas: {fileID: 1293527234}
   Event: {fileID: 1093100239277753127, guid: 57082038c653f094cb2829b45351614e, type: 3}
@@ -13936,7 +13937,6 @@ GameObject:
   - component: {fileID: 1787441670}
   - component: {fileID: 1787441669}
   - component: {fileID: 1787441668}
-  - component: {fileID: 1787441671}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -13992,20 +13992,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1787441671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787441667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e757303e92e9b1f4abd6391b0a6c17d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  progressText: {fileID: 843139193}
-  currentProgress: {fileID: 540617511}
 --- !u!1 &1837669898 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5558748123702422194, guid: b10e17dc4884032488937e7a39f4054b, type: 3}

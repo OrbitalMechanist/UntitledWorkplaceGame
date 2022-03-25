@@ -6,12 +6,14 @@ using UnityEngine.UI;
 
 public class Money : MonoBehaviour
 {
-    public Text display;
+    public Text moneyDisplay;
+    public Text happyDisplay;
     public GameObject company;
     // Update is called once per frame
     void Update()
     {
-        display.text = parseCash(company.GetComponent<Company>().cash);
+        moneyDisplay.text = parseCash(company.GetComponent<Company>().cash);
+        happyDisplay.text = parseCash(company.GetComponent<Company>().happiness);
     }
 
     string parseCash(int cash) {
