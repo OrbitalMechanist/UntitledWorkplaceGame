@@ -13,13 +13,14 @@ public class LoadEmployeeList : MonoBehaviour
     private float containerHeight;
     private float itemWidth;
     private float itemHeight;
+    private int numEmployees;
 
     private const float V_PADDING = 25;
-    private const int NUM_EMPLOYEES = 5;
 
     public void Start() {
         // Find the employee owner to use later
         employeeManagerInstance = GameObject.Find("employeeOwner");
+        numEmployees = employeeManagerInstance.transform.childCount;
 
         //Calculate sizes for the UI
         containerWidth = UiContainerInstance.GetComponent<RectTransform>().rect.width;
@@ -72,7 +73,7 @@ public class LoadEmployeeList : MonoBehaviour
         }
 
         // Display all employees in list panel
-        for (int i = 0; i < NUM_EMPLOYEES; i++)
+        for (int i = 0; i < numEmployees; i++)
         {
             // Get the employee of the current idnex
             GameObject emp = employeeManagerInstance.transform.GetChild(i).gameObject;
