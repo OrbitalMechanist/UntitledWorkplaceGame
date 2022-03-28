@@ -12,10 +12,13 @@ public class RandomEventTimer : MonoBehaviour
     private static int MAX_STAT = 256;
     private static int MIN_STAT = 0;
     bool hasEvent = false;
+    public int count;
     int randEvent;
     UnityAction buttonCallBack;
     GameObject[] randEmploy;
     float time;
+    public int empCount;
+    public GameObject employee;
     public Button button;
     public GameObject canvas;
     public GameObject Event;
@@ -40,6 +43,7 @@ public class RandomEventTimer : MonoBehaviour
         eventJson = File.ReadAllText("./Assets/Data/Event Lists/Events.json");
         eventJson = eventJson.Replace("\n", "").Replace("\r", "").Replace("    ", "");
         myEvents = JsonUtility.FromJson<EventObject>(eventJson);
+        count = 0;
         delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame, Fire, generateResult};
         string buttons = File.ReadAllText("./Assets/Data/Event Lists/EventButtons.txt");
         int i = 0;
@@ -113,7 +117,8 @@ public class RandomEventTimer : MonoBehaviour
         }
         return empList;
     }
-    // GameObject generateEmployee()
+
+// GameObject generateEmployee()
     // {
 
     //     string lName = lNames[Random.Range(0, lNames.Length)];
@@ -185,14 +190,14 @@ public class RandomEventTimer : MonoBehaviour
         RectTransform descRT = result.transform.GetChild(0).GetComponent<RectTransform>();
         descRT.offsetMin = new Vector2(descRT.offsetMin.x, 40);
         RectTransform rt = result.transform.GetChild(1).GetComponent<RectTransform>();
-        rt.offsetMax = new Vector2(rt.offsetMax.x, -312.5);
-        button resultButton = Instantiate(button);
+        rt.offsetMax = new Vector2(rt.offsetMax.x, (float)-312.5);
+        Button resultButton = Instantiate(button);
         resultButton.transform.SetParent(result.transform, false);
         resultButton.transform.localPosition = new Vector3(0, -160);
         if (gamestateIndex==1) {
             resultButton.GetComponentInChildren<Text>().text = "Game Over";
             resultButton.onClick.AddListener(delegate{EndGame(resultIndex, 0);});
-        } else if (count=20) {
+        } else if (count==20) {
             resultButton.GetComponentInChildren<Text>().text = "Congratulations!";
             resultButton.onClick.AddListener(delegate{EndGame(resultIndex, 0);});
         } else {
@@ -202,7 +207,7 @@ public class RandomEventTimer : MonoBehaviour
         result.transform.SetParent(canvas.transform);
     }
     public void closeEvent(GameObject thisEvent) {
-        company.GetComponent<Company>().count++;
+        count++;
         Destroy(thisEvent);
     }
     public void closeResult(GameObject result) {
@@ -253,6 +258,10 @@ public class RandomEventTimer : MonoBehaviour
     }
     public void EndGame(int state, int ph) {
         company.GetComponent<Company>().endState = state;
+        SceneManager.LoadScene("results");
+        DontDestroyOnLoad(company);
+    }
+    public void EndGame(int state) {
         SceneManager.LoadScene("results");
         DontDestroyOnLoad(company);
     }
