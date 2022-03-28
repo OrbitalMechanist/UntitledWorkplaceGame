@@ -40,7 +40,7 @@ public class RandomEventTimer : MonoBehaviour
         eventJson = File.ReadAllText("./Assets/Data/Event Lists/Events.json");
         eventJson = eventJson.Replace("\n", "").Replace("\r", "").Replace("    ", "");
         myEvents = JsonUtility.FromJson<EventObject>(eventJson);
-        delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame, Fire};
+        delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame, Fire, generateResult};
         string buttons = File.ReadAllText("./Assets/Data/Event Lists/EventButtons.txt");
         int i = 0;
         foreach (var row in buttons.Split('\n')) {
@@ -178,10 +178,36 @@ public class RandomEventTimer : MonoBehaviour
         }
         return newEvent;
     }
+    public void generateResult(int resultIndex, int gamestateIndex) {
+        GameObject result = Instantiate(Event);
+        string desc = myEvents.Results[resultIndex];
+        result.GetComponentInChildren<Text>().text = desc;
+        RectTransform descRT = result.transform.GetChild(0).GetComponent<RectTransform>();
+        descRT.offsetMin = new Vector2(descRT.offsetMin.x, 40);
+        RectTransform rt = result.transform.GetChild(1).GetComponent<RectTransform>();
+        rt.offsetMax = new Vector2(rt.offsetMax.x, -312.5);
+        button resultButton = Instantiate(button);
+        resultButton.transform.SetParent(result.transform, false);
+        resultButton.transform.localPosition = new Vector3(0, -160);
+        if (gamestateIndex==1) {
+            resultButton.GetComponentInChildren<Text>().text = "Game Over";
+            resultButton.onClick.AddListener(delegate{EndGame(resultIndex, 0);});
+        } else if (count=20) {
+            resultButton.GetComponentInChildren<Text>().text = "Congratulations!";
+            resultButton.onClick.AddListener(delegate{EndGame(resultIndex, 0);});
+        } else {
+            resultButton.GetComponentInChildren<Text>().text = "Continue";
+            resultButton.onClick.AddListener(delegate{closeResult(result);});
+        }
+        result.transform.SetParent(canvas.transform);
+    }
     public void closeEvent(GameObject thisEvent) {
         company.GetComponent<Company>().count++;
         Destroy(thisEvent);
+    }
+    public void closeResult(GameObject result) {
         hasEvent = false;
+        Destroy(result);
     }
     public void RaiseMoney(int delta, int emp)
     {
