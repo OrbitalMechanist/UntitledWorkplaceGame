@@ -52,8 +52,11 @@ public class EmployeeGenerator : MonoBehaviour
         femNames = femNamelist.text.Split('\n');
         mNames = mNamelist.text.Split('\n');
 
+        //Rebuild everything so that the sizes get initialized before the next step.
+        Canvas.ForceUpdateCanvases();
+
         //Calculate sizes for the UI
-        float containerWidth = UiContainerInstance.GetComponent<RectTransform>().rect.width;
+        float containerWidth = UiContainerInstance.GetComponent<RectTransform>().rect.size.x; //.width;
         float itemWidth = UiDisplayItemPrefab.GetComponent<RectTransform>().rect.width;
         float itemHeight = UiDisplayItemPrefab.GetComponent<RectTransform>().rect.height;
 
@@ -62,10 +65,12 @@ public class EmployeeGenerator : MonoBehaviour
         int numElementsPerRow = (int)containerWidth / (int)itemWidth;
 
         float spacePerItem = containerWidth / numElementsPerRow;
-        float leftPaddingPerItem = (spacePerItem - containerWidth) / 2;
+        float leftPaddingPerItem = (spacePerItem * numElementsPerRow - containerWidth) / 2;
+
+        Debug.Log(numElementsPerRow + " " + containerWidth + " " + itemWidth);
 
         //Resize scrollable area to fit the necessary number of items
-        UiContainerInstance.GetComponent<RectTransform>().sizeDelta = new Vector2(containerWidth, (itemHeight + vPadding) * 
+        UiContainerInstance.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (itemHeight + vPadding) * 
             (numToGenerate / numElementsPerRow + (numToGenerate % numElementsPerRow > 0 ? 1 : 0)) + vPadding);
 
         //Generate employees and set up their UI display
@@ -85,7 +90,7 @@ public class EmployeeGenerator : MonoBehaviour
                 ui.transform.SetParent(UiContainerInstance.transform, false);
 
                 //set UI element position in its container
-                ui.transform.localPosition = new Vector3(x * spacePerItem + leftPaddingPerItem,
+                ui.transform.localPosition = new Vector3(x * spacePerItem + leftPaddingPerItem - spacePerItem/2,
                     -1 * ((itemHeight + vPadding) * y) + itemHeight/2);
 
                 i++;
