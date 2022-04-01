@@ -43,7 +43,7 @@ public class RandomEventTimer : MonoBehaviour
         eventJson = File.ReadAllText("./Assets/Data/Event Lists/Events.json");
         eventJson = eventJson.Replace("\n", "").Replace("\r", "").Replace("    ", "");
         myEvents = JsonUtility.FromJson<EventObject>(eventJson);
-        count = 0;
+        count = 19;
         delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame, Fire, generateResult};
         string buttons = File.ReadAllText("./Assets/Data/Event Lists/EventButtons.txt");
         int i = 0;
@@ -92,6 +92,7 @@ public class RandomEventTimer : MonoBehaviour
                 Event.SetActive(true);
                 GameObject test = randomizeEvents();
                 test.transform.SetParent(canvas.transform, false);
+                Time.timeScale = 0;
                 hasEvent = true;
             } else {
                 time-=Time.deltaTime;
@@ -220,6 +221,7 @@ public class RandomEventTimer : MonoBehaviour
     }
     public void closeResult(GameObject result) {
         hasEvent = false;
+        Time.timeScale = 1;
         Destroy(result);
     }
     public void RaiseMoney(int delta, int emp)
