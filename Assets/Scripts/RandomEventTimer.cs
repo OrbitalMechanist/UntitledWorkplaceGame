@@ -267,11 +267,13 @@ public class RandomEventTimer : MonoBehaviour
         company.GetComponent<Company>().happiness+=delta;
     }
     public void EndGame(int state, int ph) {
+        Time.timeScale = 1;
         company.GetComponent<Company>().endState = state;
         SceneManager.LoadScene("results");
         DontDestroyOnLoad(company);
     }
     public void EndGame(int state) {
+        Time.timeScale = 1;
         company.GetComponent<Company>().endState = state;
         SceneManager.LoadScene("results");
         DontDestroyOnLoad(company);
