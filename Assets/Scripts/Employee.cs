@@ -8,7 +8,7 @@ public class Employee : MonoBehaviour
     private static int MIN_STAT = 16;
 
     //How much money per unit of work an employee gives the company.
-    private static int REVENUE = 50;
+    private static int REVENUE = 500;
 
     public int personal;
     public int capability;

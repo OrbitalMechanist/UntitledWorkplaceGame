@@ -199,16 +199,16 @@ public class RandomEventTimer : MonoBehaviour
         resultButton.transform.localPosition = new Vector3(0, -160);
         if (gamestateIndex==1) {
             resultButton.GetComponentInChildren<Text>().text = "Game Over";
-            resultButton.onClick.AddListener(delegate{EndGame(resultIndex, 1);});
+            resultButton.onClick.AddListener(delegate{EndGame(1);});
         } else if (company.GetComponent<Company>().cash<0) {
             resultButton.GetComponentInChildren<Text>().text = "Bankrupt!";
-            resultButton.onClick.AddListener(delegate{EndGame(resultIndex, 2);});
+            resultButton.onClick.AddListener(delegate{EndGame(2);});
         } else if (company.GetComponent<Company>().happiness<0) {
             resultButton.GetComponentInChildren<Text>().text = "Depression...";
-            resultButton.onClick.AddListener(delegate{EndGame(resultIndex, 3);});
+            resultButton.onClick.AddListener(delegate{EndGame(3);});
         } else if (count>=19) {
             resultButton.GetComponentInChildren<Text>().text = "Congratulations!";
-            resultButton.onClick.AddListener(delegate{EndGame(resultIndex, 0);});
+            resultButton.onClick.AddListener(delegate{EndGame(0);});
         } else {
             resultButton.GetComponentInChildren<Text>().text = "Continue";
             resultButton.onClick.AddListener(delegate{closeResult(result);});
@@ -272,6 +272,7 @@ public class RandomEventTimer : MonoBehaviour
         DontDestroyOnLoad(company);
     }
     public void EndGame(int state) {
+        company.GetComponent<Company>().endState = state;
         SceneManager.LoadScene("results");
         DontDestroyOnLoad(company);
     }
