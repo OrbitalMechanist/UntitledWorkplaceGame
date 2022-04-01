@@ -33,10 +33,18 @@ public class DisplayResults : MonoBehaviour
         happiness.text = companyHappiness.ToString();
 
         // Determine result
-        if (company.endState > 0) {
-            resultHeader.text = "Game over!";
+        // Choice-based endings
+        if (company.endState == 1) {
+            resultHeader.text = "Wrong choice ending";
             blurb.text = "You made the wrong choice and went out of business...";
+        } else if (company.endState == 2) {
+            resultHeader.text = "Bankruptcy ending";
+            blurb.text = "Your company ran out of money and went out of business...";
+        } else if (company.endState == 3) {
+            resultHeader.text = "Depression ending";
+            blurb.text = "Your employees were so unhappy they all quit together, and your reputation has made finding new people impossible...";
         } else {
+            // Stat-based endings
             if (companyCash < CASH_T1) {
                 if (companyHappiness < HAPPINESS_T1) {
                     resultHeader.text = "Bad ending";
