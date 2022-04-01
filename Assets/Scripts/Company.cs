@@ -11,7 +11,7 @@ public class Company : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cash = 100000;
+        cash = 10000;
         happiness = 100;
     }
 
