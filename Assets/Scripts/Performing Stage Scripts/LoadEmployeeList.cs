@@ -67,6 +67,9 @@ public class LoadEmployeeList : MonoBehaviour
 
     public void loadEmployees()
     {
+        // Check and update number of employees
+        numEmployees = employeeManagerInstance.transform.childCount;
+
         // Clear pre-existing loaded employees
         foreach (Transform child in UiContainerInstance.transform) {
             GameObject.Destroy(child.gameObject);
