@@ -10,6 +10,11 @@ public class StageOrganizer : MonoBehaviour
     public GameObject[] workplacesInstances;
     //a distraction for the employees to go to when on break
     public GameObject distractionInstance;
+
+    //The thing containing the logic for messing with company finances.
+    //Used due to existing design.
+    public GameObject companyManagerInstance;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +27,7 @@ public class StageOrganizer : MonoBehaviour
             GameObject emp = eo.transform.GetChild(i).gameObject;
             emp.GetComponent<Employee>().distractionInstance = distractionInstance;
             emp.GetComponent<Employee>().workplaceInstance = workplacesInstances[i];
+            emp.GetComponent<Employee>().companyManagerInstance = companyManagerInstance;
             emp.GetComponent<TileNav>().navigableTileSystemInstance = ts;
             emp.transform.position = workplacesInstances[i].transform.position;
         }
