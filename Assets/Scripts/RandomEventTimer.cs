@@ -202,10 +202,10 @@ public class RandomEventTimer : MonoBehaviour
             resultButton.onClick.AddListener(delegate{EndGame(1);});
         } else if (company.GetComponent<Company>().cash<0) {
             resultButton.GetComponentInChildren<Text>().text = "Bankrupt!";
-            resultButton.onClick.AddListener(delegate{EndGame(1);});
+            resultButton.onClick.AddListener(delegate{EndGame(2);});
         } else if (company.GetComponent<Company>().happiness<0) {
             resultButton.GetComponentInChildren<Text>().text = "Depression...";
-            resultButton.onClick.AddListener(delegate{EndGame(1);});
+            resultButton.onClick.AddListener(delegate{EndGame(3);});
         } else if (count>=19) {
             resultButton.GetComponentInChildren<Text>().text = "Congratulations!";
             resultButton.onClick.AddListener(delegate{EndGame(0);});
