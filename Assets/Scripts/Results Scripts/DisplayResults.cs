@@ -16,8 +16,8 @@ public class DisplayResults : MonoBehaviour
     private const int CASH_T2 = 10000;
     private const int CASH_T3 = 15000;
     private const int HAPPINESS_T1 = 400;
-    private const int HAPPINESS_T2 = 650;
-    private const int HAPPINESS_T3 = 900;
+    private const int HAPPINESS_T2 = 750;
+    private const int HAPPINESS_T3 = 1000;
 
     // Start is called before the first frame update
     void Start()
