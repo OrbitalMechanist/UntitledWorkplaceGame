@@ -152,7 +152,7 @@ public class RandomEventTimer : MonoBehaviour
     public GameObject randomizeEvents() {
         randEmploy = randomEmployees();
         GameObject newEvent = Instantiate(Event);
-        string desc = myEvents.Events[0];
+        string desc = myEvents.Events[count];
         for (int i = 0; i < randEmploy.Length; i++) {
             desc = System.String.Format(desc, randEmploy[i].GetComponent<Employee>().fName, randEmploy[i].GetComponent<Employee>().lName, "{0}", "{1}", "{2}", "{3}", "{4}", "{5}", "{6}", "{7}");
         }
@@ -165,7 +165,7 @@ public class RandomEventTimer : MonoBehaviour
         for (int i = 0; i < myEvents.EventButtons[count].Count; i++) {
             int temp  = myEvents.EventButtons[count][i];
             rt.offsetMax = new Vector2(rt.offsetMax.x, rt.offsetMax.y+(float)37.5);
-            descRT.offsetMin = new Vector2(descRT.offsetMin.x, descRT.offsetMin.y+(float)40);
+            descRT.offsetMin = new Vector2(descRT.offsetMin.x, descRT.offsetMin.y+(float)45);
             Button newButton = Instantiate(button);
             newButton.transform.SetParent(newEvent.transform, false);
             newButton.transform.localPosition = new Vector3(0, -160+(i*(float)37.5));
