@@ -92,6 +92,7 @@ public class RandomEventTimer : MonoBehaviour
                 Event.SetActive(true);
                 GameObject test = randomizeEvents();
                 test.transform.SetParent(canvas.transform, false);
+                Time.timeScale = 0;
                 hasEvent = true;
             } else {
                 time-=Time.deltaTime;
@@ -220,6 +221,7 @@ public class RandomEventTimer : MonoBehaviour
     }
     public void closeResult(GameObject result) {
         hasEvent = false;
+        Time.timeScale = 1;
         Destroy(result);
     }
     public void RaiseMoney(int delta, int emp)
