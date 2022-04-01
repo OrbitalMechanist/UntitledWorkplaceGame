@@ -14757,6 +14757,7 @@ MonoBehaviour:
   - {fileID: 1659196284}
   - {fileID: 1142289506}
   distractionInstance: {fileID: 506847709}
+  companyManagerInstance: {fileID: 1364367282}
 --- !u!1 &1405533768
 GameObject:
   m_ObjectHideFlags: 0

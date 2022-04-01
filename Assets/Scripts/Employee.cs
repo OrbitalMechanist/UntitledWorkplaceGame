@@ -7,6 +7,9 @@ public class Employee : MonoBehaviour
     private static int MAX_STAT = 256;
     private static int MIN_STAT = 16;
 
+    //How much money per unit of work an employee gives the company.
+    private static int REVENUE = 50;
+
     public int personal;
     public int capability;
     public int ethic;
@@ -19,6 +22,10 @@ public class Employee : MonoBehaviour
     public GameObject workplaceInstance;
     //A marker to which the employee goes when on break.
     public GameObject distractionInstance;
+
+    //The thing containing the logic for messing with company finances.
+    //Used due to existing design.
+    public GameObject companyManagerInstance;
 
     //used to denote when this employee is on break
     private bool isWorking = true;
@@ -65,15 +72,15 @@ public class Employee : MonoBehaviour
     {
         if (distractionInstance != null && isWorking) // if the employee is working, add progress gaining money and check if it's time to go on break
         {
-            if(framesSinceIncome > MAX_STAT - capability)
+            if(framesSinceIncome / 100 > MAX_STAT - capability)
             {
-                //Code to add money to company goes here
+                companyManagerInstance.GetComponent<RandomEventTimer>().RaiseMoney(REVENUE, 0); //emp param doesn't matter here
                 framesSinceIncome = 0;
             } else
             {
                 framesSinceIncome++;
             }
-            if((framesSinceBreak - ethic) * Random.value > MAX_STAT * 10) //this math needs heavy tuning
+            if((framesSinceBreak * Random.value - ethic * 10)   > MAX_STAT * 5 + ethic * 15) //this math needs heavy tuning
             {
                 StartCoroutine(GetDistracted());
                 framesSinceBreak = 0;
