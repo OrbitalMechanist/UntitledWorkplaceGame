@@ -157,15 +157,14 @@ public class RandomEventTimer : MonoBehaviour
             desc = System.String.Format(desc, randEmploy[i].GetComponent<Employee>().fName, randEmploy[i].GetComponent<Employee>().lName, "{0}", "{1}", "{2}", "{3}", "{4}", "{5}", "{6}", "{7}");
         }
         newEvent.GetComponentInChildren<Text>().text = desc;
+        RectTransform eventWindow = newEvent.transform.GetComponent<RectTransform>();
         RectTransform descRT = newEvent.transform.GetChild(0).GetComponent<RectTransform>();
-        descRT.offsetMin = new Vector2(descRT.offsetMin.x, 0);
         RectTransform rt = newEvent.transform.GetChild(1).GetComponent<RectTransform>();
-        rt.offsetMax = new Vector2(rt.offsetMax.x, -350);
         int buttonCount = Random.Range(0, 3);
         for (int i = 0; i < myEvents.EventButtons[count].Count; i++) {
             int temp  = myEvents.EventButtons[count][i];
             rt.offsetMax = new Vector2(rt.offsetMax.x, rt.offsetMax.y+(float)37.5);
-            descRT.offsetMin = new Vector2(descRT.offsetMin.x, descRT.offsetMin.y+(float)45);
+            descRT.offsetMin = new Vector2(descRT.offsetMin.x, descRT.offsetMin.y+(float)37.5);
             Button newButton = Instantiate(button);
             newButton.transform.SetParent(newEvent.transform, false);
             newButton.transform.localPosition = new Vector3(0, -160+(i*(float)37.5));
@@ -181,6 +180,8 @@ public class RandomEventTimer : MonoBehaviour
                 closeEvent(newEvent);});
             newButton.GetComponentInChildren<Text>().text = btext;
         }
+        rt.offsetMax = new Vector2(rt.offsetMax.x, rt.offsetMax.y+(float)37.5);
+        descRT.offsetMin = new Vector2(descRT.offsetMin.x, descRT.offsetMin.y+(float)37.5);
         return newEvent;
     }
     public void generateResult(int resultIndex, int gamestateIndex) {
@@ -189,9 +190,9 @@ public class RandomEventTimer : MonoBehaviour
         string desc = myEvents.Results[resultIndex];
         result.GetComponentInChildren<Text>().text = desc;
         RectTransform descRT = result.transform.GetChild(0).GetComponent<RectTransform>();
-        descRT.offsetMin = new Vector2(descRT.offsetMin.x, 40);
         RectTransform rt = result.transform.GetChild(1).GetComponent<RectTransform>();
-        rt.offsetMax = new Vector2(rt.offsetMax.x, (float)-312.5);
+        rt.offsetMax = new Vector2(rt.offsetMax.x, rt.offsetMax.y+75);
+        descRT.offsetMin = new Vector2(descRT.offsetMin.x, descRT.offsetMin.y+75);
         Button resultButton = Instantiate(button);
         resultButton.transform.SetParent(result.transform, false);
         resultButton.transform.localPosition = new Vector3(0, -160);
