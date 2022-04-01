@@ -162,8 +162,8 @@ public class RandomEventTimer : MonoBehaviour
         RectTransform rt = newEvent.transform.GetChild(1).GetComponent<RectTransform>();
         rt.offsetMax = new Vector2(rt.offsetMax.x, -350);
         int buttonCount = Random.Range(0, 3);
-        for (int i = 0; i < myEvents.EventButtons[0].Count; i++) {
-            int temp  = myEvents.EventButtons[0][i];
+        for (int i = 0; i < myEvents.EventButtons[count].Count; i++) {
+            int temp  = myEvents.EventButtons[count][i];
             rt.offsetMax = new Vector2(rt.offsetMax.x, rt.offsetMax.y+(float)37.5);
             descRT.offsetMin = new Vector2(descRT.offsetMin.x, descRT.offsetMin.y+(float)40);
             Button newButton = Instantiate(button);
@@ -204,7 +204,7 @@ public class RandomEventTimer : MonoBehaviour
         } else if (company.GetComponent<Company>().happiness<0) {
             resultButton.GetComponentInChildren<Text>().text = "Depression...";
             resultButton.onClick.AddListener(delegate{EndGame(resultIndex, 3);});
-        } else if (count==20) {
+        } else if (count>=19) {
             resultButton.GetComponentInChildren<Text>().text = "Congratulations!";
             resultButton.onClick.AddListener(delegate{EndGame(resultIndex, 0);});
         } else {
