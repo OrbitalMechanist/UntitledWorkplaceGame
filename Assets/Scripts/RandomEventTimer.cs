@@ -184,6 +184,7 @@ public class RandomEventTimer : MonoBehaviour
         return newEvent;
     }
     public void generateResult(int resultIndex, int gamestateIndex) {
+        Debug.Log(resultIndex + ", " + gamestateIndex);
         GameObject result = Instantiate(Event);
         string desc = myEvents.Results[resultIndex];
         result.GetComponentInChildren<Text>().text = desc;
@@ -196,7 +197,13 @@ public class RandomEventTimer : MonoBehaviour
         resultButton.transform.localPosition = new Vector3(0, -160);
         if (gamestateIndex==1) {
             resultButton.GetComponentInChildren<Text>().text = "Game Over";
-            resultButton.onClick.AddListener(delegate{EndGame(resultIndex, 0);});
+            resultButton.onClick.AddListener(delegate{EndGame(resultIndex, 1);});
+        } else if (company.GetComponent<Company>().cash<0) {
+            resultButton.GetComponentInChildren<Text>().text = "Bankrupt!";
+            resultButton.onClick.AddListener(delegate{EndGame(resultIndex, 2);});
+        } else if (company.GetComponent<Company>().happiness<0) {
+            resultButton.GetComponentInChildren<Text>().text = "Depression...";
+            resultButton.onClick.AddListener(delegate{EndGame(resultIndex, 3);});
         } else if (count==20) {
             resultButton.GetComponentInChildren<Text>().text = "Congratulations!";
             resultButton.onClick.AddListener(delegate{EndGame(resultIndex, 0);});
@@ -204,7 +211,7 @@ public class RandomEventTimer : MonoBehaviour
             resultButton.GetComponentInChildren<Text>().text = "Continue";
             resultButton.onClick.AddListener(delegate{closeResult(result);});
         }
-        result.transform.SetParent(canvas.transform);
+        result.transform.SetParent(canvas.transform, false);
     }
     public void closeEvent(GameObject thisEvent) {
         count++;
