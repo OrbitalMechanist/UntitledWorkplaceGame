@@ -10,7 +10,7 @@ public class ShareLinkedIn : MonoBehaviour
 {
     [SerializeField]
     public Text result;
-    private const string appStoreLink = "http://www.PLACEHOLDER.ca"; //UPDATE WHEN HOST LINK IS AVAILABLE
+    private const string appStoreLink = "https://www.game.cultureindex.io/";
 
     private const string clientID = "";
     private const string callbackURL = "";
