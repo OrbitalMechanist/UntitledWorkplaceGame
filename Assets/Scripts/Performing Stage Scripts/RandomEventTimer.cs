@@ -92,7 +92,7 @@ public class RandomEventTimer : MonoBehaviour
                 Event.SetActive(true);
                 GameObject test = randomizeEvents();
                 test.transform.SetParent(canvas.transform, false);
-                Time.timeScale = 0;
+                //Time.timeScale = 0;
                 hasEvent = true;
             } else {
                 time-=Time.deltaTime;
