@@ -88,7 +88,5 @@ public class DisplayResults : MonoBehaviour
                 }
             }
         }
-        
-        
     }
 }
