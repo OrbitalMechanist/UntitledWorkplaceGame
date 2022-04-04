@@ -13,11 +13,11 @@ public class DisplayResults : MonoBehaviour
     private Company company;
 
     private const int CASH_T1 = 10000;
-    private const int CASH_T2 = 20000;
-    private const int CASH_T3 = 35000;
-    private const int HAPPINESS_T1 = 700;
-    private const int HAPPINESS_T2 = 1000;
-    private const int HAPPINESS_T3 = 1500;
+    private const int CASH_T2 = 17500;
+    private const int CASH_T3 = 25000;
+    private const int HAPPINESS_T1 = 275;
+    private const int HAPPINESS_T2 = 450;
+    private const int HAPPINESS_T3 = 625;
 
     // Start is called before the first frame update
     void Start()
