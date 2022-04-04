@@ -217,6 +217,9 @@ public class RandomEventTimer : MonoBehaviour
     }
     public void closeEvent(GameObject thisEvent) {
         count+=4;
+        if (count>20) {
+            count = 20;
+        }
         Destroy(thisEvent);
     }
     public void closeResult(GameObject result) {
