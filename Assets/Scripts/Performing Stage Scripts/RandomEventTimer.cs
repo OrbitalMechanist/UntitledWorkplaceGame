@@ -158,17 +158,21 @@ public class RandomEventTimer : MonoBehaviour
             desc = System.String.Format(desc, randEmploy[i].GetComponent<Employee>().fName, randEmploy[i].GetComponent<Employee>().lName, "{0}", "{1}", "{2}", "{3}", "{4}", "{5}", "{6}", "{7}");
         }
         newEvent.GetComponentInChildren<Text>().text = desc;
-        RectTransform eventWindow = newEvent.transform.GetComponent<RectTransform>();
+        RectTransform window = newEvent.transform.GetComponent<RectTransform>();
+        float height = window.sizeDelta.y * window.localScale.y;
+        float width = window.sizeDelta.x * window.localScale.x;
         RectTransform descRT = newEvent.transform.GetChild(0).GetComponent<RectTransform>();
         RectTransform rt = newEvent.transform.GetChild(1).GetComponent<RectTransform>();
         int buttonCount = Random.Range(0, 3);
         for (int i = 0; i < myEvents.EventButtons[count].Count; i++) {
             int temp  = myEvents.EventButtons[count][i];
-            rt.offsetMax = new Vector2(rt.offsetMax.x, rt.offsetMax.y+(float)37.5);
-            descRT.offsetMin = new Vector2(descRT.offsetMin.x, descRT.offsetMin.y+(float)37.5);
+            rt.offsetMax = new Vector2(rt.offsetMax.x, rt.offsetMax.y-(height/5));
+            descRT.offsetMin = new Vector2(descRT.offsetMin.x, descRT.offsetMin.y-(height/5));
             Button newButton = Instantiate(button);
             newButton.transform.SetParent(newEvent.transform, false);
-            newButton.transform.localPosition = new Vector3(0, -160+(i*(float)37.5));
+            //Debug.Log(newButton.transform.GetComponent<RectTransform>().sizeDelta.y);
+            newButton.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(newButton.transform.GetComponent<RectTransform>().sizeDelta.x - 10, (-height/6));
+            newButton.transform.localPosition = new Vector3(0, newButton.transform.localPosition.y-(height/8)-(i*height/5));
             string btext = myEvents.ButtonTexts[temp];
             for (int k = 0; k < myEvents.EmployeeIndices[temp].Count; k++) {
                 btext = System.String.Format(btext, randEmploy[myEvents.EmployeeIndices[temp][k]].GetComponent<Employee>().fName, "{0}", "{1}", "{2}", "{3}", "{4}");
