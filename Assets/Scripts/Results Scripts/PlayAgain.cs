@@ -8,7 +8,8 @@ public class PlayAgain : MonoBehaviour
 {
     public void backToTitleScreen()
     {
-        // Destroy the employee owner to get rid of lingering employees
+        // Destroy the company and employee owner to get rid of lingering employees
+        Destroy(GameObject.Find("Company"));
         Destroy(GameObject.Find("employeeOwner"));
 
         // Load to title screen
