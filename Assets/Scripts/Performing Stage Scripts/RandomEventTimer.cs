@@ -172,8 +172,8 @@ public class RandomEventTimer : MonoBehaviour
             rt.offsetMax = new Vector2(rt.offsetMax.x, rt.offsetMax.y+(float)37.5);
             descRT.offsetMin = new Vector2(descRT.offsetMin.x, descRT.offsetMin.y+(float)37.5);
             Button newButton = Instantiate(button);
-            newButton.transform.SetParent(newEvent.transform, false);
-            newButton.transform.localPosition = new Vector3(0, -160+(i*(float)37.5));
+            newButton.transform.SetParent(rt.transform, false);
+            //newButton.transform.localPosition = new Vector3(0, -160+(i*(float)37.5));
             string btext = myEvents.ButtonTexts[temp];
             for (int k = 0; k < myEvents.EmployeeIndices[temp].Count; k++) {
                 btext = System.String.Format(btext, randEmploy[myEvents.EmployeeIndices[temp][k]].GetComponent<Employee>().fName, "{0}", "{1}", "{2}", "{3}", "{4}");
@@ -200,7 +200,7 @@ public class RandomEventTimer : MonoBehaviour
         rt.offsetMax = new Vector2(rt.offsetMax.x, rt.offsetMax.y+75);
         descRT.offsetMin = new Vector2(descRT.offsetMin.x, descRT.offsetMin.y+75);
         Button resultButton = Instantiate(button);
-        resultButton.transform.SetParent(result.transform, false);
+        resultButton.transform.SetParent(rt.transform, false);
         resultButton.transform.localPosition = new Vector3(0, -160);
         if (gamestateIndex==1) {
             resultButton.GetComponentInChildren<Text>().text = "Game Over";
