@@ -17,6 +17,11 @@ public class RandomEventTimer : MonoBehaviour
     UnityAction buttonCallBack;
     GameObject[] randEmploy;
     float time;
+    public TextAsset eventJsonFile;
+    public TextAsset buttonsFile;
+    public TextAsset indicesFile;
+    public TextAsset valuesFile;
+    public TextAsset empIndicesFile;
     public int empCount;
     public GameObject employee;
     public Button button;
@@ -40,12 +45,12 @@ public class RandomEventTimer : MonoBehaviour
     void Start()
     {
         time = Random.Range(5.0f, 10.0f);
-        eventJson = File.ReadAllText("./Assets/Data/Event Lists/Events.json");
+        eventJson = eventJsonFile.text;
         eventJson = eventJson.Replace("\n", "").Replace("\r", "").Replace("    ", "");
         myEvents = JsonUtility.FromJson<EventObject>(eventJson);
         count = 3;
         delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame, Fire, generateResult};
-        string buttons = File.ReadAllText("./Assets/Data/Event Lists/EventButtons.txt");
+        string buttons = buttonsFile.text;
         int i = 0;
         foreach (var row in buttons.Split('\n')) {
             myEvents.EventButtons.Add(new List<int>());
@@ -55,7 +60,7 @@ public class RandomEventTimer : MonoBehaviour
             i++;
         }
         i = 0;
-        string indices = File.ReadAllText("./Assets/Data/Event Lists/ButtonIndices.txt");
+        string indices = indicesFile.text;
         foreach (var row in indices.Split('\n')) {
             myEvents.ButtonIndices.Add(new List<int>());
             foreach (var index in row.Split(' ')) {
@@ -64,7 +69,7 @@ public class RandomEventTimer : MonoBehaviour
             i++;
         }
         i = 0;
-        string values = File.ReadAllText("./Assets/Data/Event Lists/ButtonValues.txt");
+        string values = valuesFile.text;
         foreach (var row in values.Split('\n')) {
             myEvents.ButtonValues.Add(new List<int>());
             foreach (var index in row.Split(' ')) {
@@ -73,7 +78,7 @@ public class RandomEventTimer : MonoBehaviour
             i++;
         }
         i = 0;
-        string emp = File.ReadAllText("./Assets/Data/Event Lists/EmployeeIndices.txt");
+        string emp = empIndicesFile.text;
         foreach (var row in emp.Split('\n')) {
             myEvents.EmployeeIndices.Add(new List<int>());
             foreach (var index in row.Split(' ')) {
