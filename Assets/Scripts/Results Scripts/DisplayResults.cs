@@ -51,7 +51,7 @@ public class DisplayResults : MonoBehaviour
                     blurb.text = "You lost a lot of money and your employees were unhappy...";
                 }
 
-                if (companyHappiness >= HAPPINESS_T1 && companyHappiness <= HAPPINESS_T3) {
+                if (companyHappiness >= HAPPINESS_T1 && companyHappiness < HAPPINESS_T3) {
                     resultHeader.text = "Bittersweet ending";
                     blurb.text = "You lost a lot of money, but your employees were fairly happy";
                 }
@@ -62,13 +62,13 @@ public class DisplayResults : MonoBehaviour
                 }
             }   
 
-            if (companyCash >= CASH_T1 && companyCash <= CASH_T3) {
+            if (companyCash >= CASH_T1 && companyCash < CASH_T3) {
                 if (companyHappiness <= HAPPINESS_T1) {
                     resultHeader.text = "Middling ending";
                     blurb.text = "You made decent money, but your employees were unhappy...";
                 }
 
-                if (companyHappiness >= HAPPINESS_T1 && companyHappiness <= HAPPINESS_T1) {
+                if (companyHappiness >= HAPPINESS_T1 && companyHappiness < HAPPINESS_T3) {
                     resultHeader.text = "Neutral ending";
                     blurb.text = "You made decent money, and your employees were fairly happy";
                 }
@@ -85,7 +85,7 @@ public class DisplayResults : MonoBehaviour
                     blurb.text = "You made a lot of money, but at the expense of your employees...";
                 }
 
-                if (companyHappiness >= HAPPINESS_T1 && companyHappiness <= HAPPINESS_T1) {
+                if (companyHappiness >= HAPPINESS_T1 && companyHappiness < HAPPINESS_T3) {
                     resultHeader.text = "Success story ending";
                     blurb.text = "You made a lot of money, and your employees were fairly happy";
                 }
