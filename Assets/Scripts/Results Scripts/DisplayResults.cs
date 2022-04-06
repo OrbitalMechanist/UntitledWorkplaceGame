@@ -45,52 +45,52 @@ public class DisplayResults : MonoBehaviour
             blurb.text = "Your employees were so unhappy they all quit together, and your reputation has made finding new people impossible...";
         } else {
             // Stat-based endings
-            if (companyCash < CASH_T1) {
-                if (companyHappiness < HAPPINESS_T1) {
+            if (companyCash <= CASH_T1) {
+                if (companyHappiness <= HAPPINESS_T1) {
                     resultHeader.text = "Bad ending";
                     blurb.text = "You lost a lot of money and your employees were unhappy...";
                 }
 
-                if (companyHappiness > HAPPINESS_T1 && companyHappiness < HAPPINESS_T3) {
+                if (companyHappiness >= HAPPINESS_T1 && companyHappiness <= HAPPINESS_T3) {
                     resultHeader.text = "Bittersweet ending";
                     blurb.text = "You lost a lot of money, but your employees were fairly happy";
                 }
 
-                if (companyHappiness > HAPPINESS_T2) {
+                if (companyHappiness >= HAPPINESS_T3) {
                     resultHeader.text = "People before profits ending";
                     blurb.text = "You lost a lot of money, but your employees loved working for you";
                 }
             }   
 
-            if (companyCash > CASH_T1 && companyCash < CASH_T3) {
-                if (companyHappiness < HAPPINESS_T1) {
+            if (companyCash >= CASH_T1 && companyCash <= CASH_T3) {
+                if (companyHappiness <= HAPPINESS_T1) {
                     resultHeader.text = "Middling ending";
                     blurb.text = "You made decent money, but your employees were unhappy...";
                 }
 
-                if (companyHappiness > HAPPINESS_T1 && companyHappiness < HAPPINESS_T1) {
+                if (companyHappiness >= HAPPINESS_T1 && companyHappiness <= HAPPINESS_T1) {
                     resultHeader.text = "Neutral ending";
                     blurb.text = "You made decent money, and your employees were fairly happy";
                 }
 
-                if (companyHappiness > HAPPINESS_T2) {
+                if (companyHappiness >= HAPPINESS_T3) {
                     resultHeader.text = "Good ending";
                     blurb.text = "You made decent money and your employees loved working for you";
                 }
             }
 
-            if (companyCash > CASH_T2) {
-                if (companyHappiness < HAPPINESS_T1) {
+            if (companyCash >= CASH_T3) {
+                if (companyHappiness <= HAPPINESS_T1) {
                     resultHeader.text = "Profits before people ending";
                     blurb.text = "You made a lot of money, but at the expense of your employees...";
                 }
 
-                if (companyHappiness > HAPPINESS_T1 && companyHappiness < HAPPINESS_T1) {
+                if (companyHappiness >= HAPPINESS_T1 && companyHappiness <= HAPPINESS_T1) {
                     resultHeader.text = "Success story ending";
                     blurb.text = "You made a lot of money, and your employees were fairly happy";
                 }
 
-                if (companyHappiness > HAPPINESS_T2) {
+                if (companyHappiness >= HAPPINESS_T3) {
                     resultHeader.text = "Best ending";
                     blurb.text = "You made a lot of money and your employees loved working for you";
                 }
