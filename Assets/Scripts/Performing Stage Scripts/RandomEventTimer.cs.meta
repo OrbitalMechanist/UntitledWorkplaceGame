@@ -3,7 +3,17 @@ guid: e28580fd24b50cf4faa90a5a71bdff47
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - eventJsonFile: {fileID: 4900000, guid: 2145291edd155874eba05206a52d8faa, type: 3}
+  - buttonsFile: {fileID: 4900000, guid: 68ac37cfa51306e4e9bd60bedd96c826, type: 3}
+  - indicesFile: {fileID: 4900000, guid: 7b28532d35a5a694696ff93429feb306, type: 3}
+  - valuesFile: {fileID: 4900000, guid: a46cb2e0ef396f54fb764aa2f6f8a2ec, type: 3}
+  - empIndicesFile: {fileID: 4900000, guid: 866c43c6904b4d74bbc2497c114597cd, type: 3}
+  - employee: {instanceID: 0}
+  - button: {instanceID: 0}
+  - canvas: {instanceID: 0}
+  - Event: {instanceID: 0}
+  - company: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
