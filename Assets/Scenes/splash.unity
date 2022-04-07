@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 258099530}
   - component: {fileID: 258099529}
+  - component: {fileID: 258099531}
   m_Layer: 0
   m_Name: Video Player
   m_TagString: Untagged
@@ -158,14 +159,14 @@ VideoPlayer:
   m_TargetMaterialProperty: _MainTex
   m_RenderMode: 2
   m_AspectRatio: 0
-  m_DataSource: 0
+  m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 0
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
   - 1
-  m_Url: Assets/Sprites/CWCI Resources/CWCI splash intro.mp4
+  m_Url: 
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
@@ -189,6 +190,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &258099531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258099528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca46d48dddf2c6438a02eddee94b209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  url: Assets/Sprites/CWCI Resources/CWCI splash intro.mp4
 --- !u!1 &574298327
 GameObject:
   m_ObjectHideFlags: 0

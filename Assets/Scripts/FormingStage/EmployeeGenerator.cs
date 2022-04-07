@@ -90,8 +90,8 @@ public class EmployeeGenerator : MonoBehaviour
                 ui.transform.SetParent(UiContainerInstance.transform, false);
 
                 //set UI element position in its container
-                ui.transform.localPosition = new Vector3(x * spacePerItem + leftPaddingPerItem - spacePerItem/2,
-                    -1 * ((itemHeight + vPadding) * y) + itemHeight/2);
+                //ui.transform.localPosition = new Vector3(x * spacePerItem + leftPaddingPerItem - spacePerItem/2,
+                //    -1 * ((itemHeight + vPadding) * y) + itemHeight/2);
 
                 i++;
                 if(i == numToGenerate)
