@@ -33,9 +33,9 @@ public class ProgressBar : MonoBehaviour
     void Update()
     {
         // Update progress if another tick has passed
-        if (currentTicks != eventScript.count - 3) {
+        if (currentTicks != eventScript.count) {
             // Get new tick count
-            currentTicks = eventScript.count - 3;
+            currentTicks = eventScript.count;
 
             // Update progress on UI
             double percentProgress = (double)currentTicks / (double)MAX_TICKS;

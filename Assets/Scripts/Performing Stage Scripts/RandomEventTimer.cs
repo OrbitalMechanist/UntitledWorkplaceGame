@@ -48,7 +48,7 @@ public class RandomEventTimer : MonoBehaviour
         eventJson = eventJsonFile.text;
         eventJson = eventJson.Replace("\n", "").Replace("\r", "").Replace("    ", "");
         myEvents = JsonUtility.FromJson<EventObject>(eventJson);
-        count = 3;
+        count = 0;
         delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame, Fire, generateResult};
         string buttons = buttonsFile.text;
         int i = 0;
@@ -221,7 +221,7 @@ public class RandomEventTimer : MonoBehaviour
         result.transform.SetParent(canvas.transform, false);
     }
     public void closeEvent(GameObject thisEvent) {
-        count+=4;
+        count+=1;
         if (count>20) {
             count = 20;
         }
