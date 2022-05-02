@@ -1,22 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
-using UnityEngine.EventSystems;  
 using UnityEngine.UI;
 
-public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class Tooltip : MonoBehaviour
 {
     /** Horizontal offset of the tooltip relative to the mouse position. */
     private const float offset = 15f;
 
     /** Camera of the UI. */
     public Camera uiCamera;
-
-    /** The tooltip object. */
-    public GameObject tooltip;
-
-    /** Text to be displayed on the tooltip. */
-    public string text;
 
     /** Mina nd max boundaries of the camera. */
     private Vector3 min;
@@ -28,10 +22,10 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     /** Rect of the tooltip. */
     private RectTransform rect;
 
-    private void Start() {
+    private void Awake() {
         // Get rect and text of tooltip
-        rect = tooltip.GetComponent<RectTransform>();
-        tooltipText = tooltip.GetComponentInChildren<Text>();
+        rect =  this.gameObject.GetComponent<RectTransform>();
+        tooltipText =  this.gameObject.GetComponentInChildren<Text>();
 
         // Set min and max boundaries
         min = new Vector3(0, 0, 0);
@@ -43,29 +37,22 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Vector3 position = new Vector3(Input.mousePosition.x + offset + rect.rect.width / 2, Input.mousePosition.y - rect.rect.height, 0f);
 
         // Clamp it to the screen size so it doesn't go outside
-        tooltip.transform.position = new Vector3(Mathf.Clamp(position.x, min.x + rect.rect.width/2, max.x - rect.rect.width/2), Mathf.Clamp(position.y, min.y + rect.rect.height / 2, max.y - rect.rect.height / 2), transform.position.z);
+        this.gameObject.transform.position = new Vector3(Mathf.Clamp(position.x, min.x + rect.rect.width/2, max.x - rect.rect.width/2), Mathf.Clamp(position.y, min.y + rect.rect.height / 2, max.y - rect.rect.height / 2), transform.position.z);
     }
 
-    private void ShowTooltip(string tooltipString) {
-        // Set tooltip text
-        tooltipText.text = tooltipString;
-
+    public void ShowTooltip(string tooltipString) {
         // Show tooltip
-        tooltip.SetActive(true);
+        this.gameObject.SetActive(true);
+
+        // Set tooltip text with unescaped characters
+        tooltipText.text = Regex.Unescape(tooltipString);
     }
 
-    private void HideTooltip() {
+    public void HideTooltip() {
         // Hide tooltip
-        tooltip.SetActive(false);
-    }
+        this.gameObject.SetActive(false);
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        ShowTooltip(text);
-    }
- 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        HideTooltip();
+        // Temporarily move tooltip position out of view to avoid flashing issues
+        this.gameObject.transform.position = new Vector3(-100, -100, -100);
     }
 }

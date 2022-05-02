@@ -13614,6 +13614,7 @@ GameObject:
   - component: {fileID: 736706073}
   - component: {fileID: 736706075}
   - component: {fileID: 736706074}
+  - component: {fileID: 736706076}
   m_Layer: 5
   m_Name: HappinessHolder
   m_TagString: Untagged
@@ -13680,6 +13681,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 736706072}
   m_CullTransparentMesh: 1
+--- !u!114 &736706076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736706072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Happiness
+  tooltipObject: {fileID: 1584117588}
 --- !u!1 &768321379
 GameObject:
   m_ObjectHideFlags: 0
@@ -13925,12 +13940,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 811840558}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a08db5526a06494199475c1cbf50669, type: 3}
+  m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiCamera: {fileID: 768321381}
-  tooltip: {fileID: 1584117588}
-  text: test
+  text: Money\\ntest
+  tooltipObject: {fileID: 1584117588}
 --- !u!1 &833587443
 GameObject:
   m_ObjectHideFlags: 0
@@ -13973,6 +13987,7 @@ GameObject:
   - component: {fileID: 843139192}
   - component: {fileID: 843139194}
   - component: {fileID: 843139193}
+  - component: {fileID: 843139195}
   m_Layer: 5
   m_Name: ProgressText
   m_TagString: Untagged
@@ -13996,8 +14011,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -222.22318, y: 13.850466}
-  m_SizeDelta: {x: 240.13, y: 33.6214}
+  m_AnchoredPosition: {x: -222.3, y: 13.851}
+  m_SizeDelta: {x: 173.0502, y: 33.6214}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &843139193
 MonoBehaviour:
@@ -14021,7 +14036,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -14041,6 +14056,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 843139191}
   m_CullTransparentMesh: 1
+--- !u!114 &843139195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843139191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Progress until game end
+  tooltipObject: {fileID: 1584117588}
 --- !u!1 &915236566
 GameObject:
   m_ObjectHideFlags: 0
@@ -14912,6 +14941,7 @@ GameObject:
   - component: {fileID: 1584117591}
   - component: {fileID: 1584117590}
   - component: {fileID: 1584117589}
+  - component: {fileID: 1584117594}
   m_Layer: 5
   m_Name: Tooltip
   m_TagString: Untagged
@@ -14928,20 +14958,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1584117588}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 5
-    m_Right: 5
-    m_Top: 5
-    m_Bottom: 5
+    m_Left: 10
+    m_Right: 10
+    m_Top: 10
+    m_Bottom: 10
   m_ChildAlignment: 0
-  m_Spacing: 5
+  m_Spacing: 10
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
@@ -15014,9 +15044,22 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -196, y: 132}
+  m_AnchoredPosition: {x: -315, y: 344}
   m_SizeDelta: {x: 170, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1584117594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584117588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a08db5526a06494199475c1cbf50669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiCamera: {fileID: 768321381}
 --- !u!1001 &1618231905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15329,8 +15372,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 85, y: -20}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 87.50004, y: -20}
+  m_SizeDelta: {x: 165, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1771791340
 MonoBehaviour:
@@ -15354,10 +15397,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
+    m_BestFit: 1
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0
@@ -15365,7 +15408,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Placeholder
 --- !u!222 &1771791341
 CanvasRenderer:
   m_ObjectHideFlags: 0
