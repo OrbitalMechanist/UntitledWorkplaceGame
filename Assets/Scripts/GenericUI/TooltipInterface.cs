@@ -21,16 +21,6 @@ public class TooltipInterface : MonoBehaviour, IPointerEnterHandler, IPointerExi
         tooltipScript = tooltipObject.GetComponent<Tooltip>();
     }
 
-    public void SetInterfaceTooltipText(string newText) {
-        // Set this interface's text
-        text = newText;
-    }
-
-    public string GetInterfaceTooltipText() {
-        // Return this interface's text
-        return text;
-    }
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         // Show the tooltip with this interface's text when the cursor enters this interface's area
