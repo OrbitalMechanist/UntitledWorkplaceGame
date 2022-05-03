@@ -13693,7 +13693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Happiness
+  text: Overall Happiness\n--------------------\nHow happy your employees are overall
   tooltipObject: {fileID: 1584117588}
 --- !u!1 &768321379
 GameObject:
@@ -13943,7 +13943,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Money\\ntest
+  text: 'Money: <color=green>+100</color>\n--------------------\nThe amount of money
+    your company has'
   tooltipObject: {fileID: 1584117588}
 --- !u!1 &833587443
 GameObject:
@@ -14068,7 +14069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Progress until game end
+  text: Progress\n--------------------\nCurrent progress until game end
   tooltipObject: {fileID: 1584117588}
 --- !u!1 &915236566
 GameObject:
