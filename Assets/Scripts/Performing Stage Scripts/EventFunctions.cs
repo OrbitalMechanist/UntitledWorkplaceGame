@@ -1,21 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EventFunctions : MonoBehaviour
 {
     private static int MAX_STAT = 256;
     private static int MIN_STAT = 0;
-    public GameObject company;
-    public GameObject employee;
     public GameObject[] randEmploy;
+    public GameObject company;
     public delegate void MethodDelegate (int delta, int emp);
-    List<MethodDelegate> delList;
+    public List<MethodDelegate> delList;
     // Start is called before the first frame update
     void Start()
     {
-        delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame, Fire, generateResult};
+        delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame, Fire};
     }
 
     // Update is called once per frame
@@ -77,34 +78,54 @@ public class EventFunctions : MonoBehaviour
         SceneManager.LoadScene("results");
         DontDestroyOnLoad(company);
     }
-    public void generateResult(int resultIndex, int gamestateIndex) {
-        Debug.Log(resultIndex + ", " + gamestateIndex);
-        GameObject result = Instantiate(Event);
-        string desc = myEvents.Results[resultIndex];
-        result.GetComponentInChildren<Text>().text = desc;
-        RectTransform descRT = result.transform.GetChild(0).GetComponent<RectTransform>();
-        RectTransform rt = result.transform.GetChild(1).GetComponent<RectTransform>();
-        rt.offsetMax = new Vector2(rt.offsetMax.x, rt.offsetMax.y+75);
-        descRT.offsetMin = new Vector2(descRT.offsetMin.x, descRT.offsetMin.y+75);
-        Button resultButton = Instantiate(button);
-        resultButton.transform.SetParent(rt.transform, false);
-        resultButton.transform.localPosition = new Vector3(0, -160);
-        if (gamestateIndex==1) {
-            resultButton.GetComponentInChildren<Text>().text = "Game Over";
-            resultButton.onClick.AddListener(delegate{EndGame(1);});
-        } else if (company.GetComponent<Company>().cash<0) {
-            resultButton.GetComponentInChildren<Text>().text = "Bankrupt!";
-            resultButton.onClick.AddListener(delegate{EndGame(2);});
-        } else if (company.GetComponent<Company>().happiness<0) {
-            resultButton.GetComponentInChildren<Text>().text = "Depression...";
-            resultButton.onClick.AddListener(delegate{EndGame(3);});
-        } else if (count>=19) {
-            resultButton.GetComponentInChildren<Text>().text = "Congratulations!";
-            resultButton.onClick.AddListener(delegate{EndGame(0);});
-        } else {
-            resultButton.GetComponentInChildren<Text>().text = "Continue";
-            resultButton.onClick.AddListener(delegate{closeResult(result);});
+    // public void generateResult(int resultIndex, int gamestateIndex) {
+    //     Debug.Log(resultIndex + ", " + gamestateIndex);
+    //     GameObject result = Instantiate(Event);
+    //     string desc = myEvents.Results[resultIndex];
+    //     result.GetComponentInChildren<Text>().text = desc;
+    //     RectTransform descRT = result.transform.GetChild(0).GetComponent<RectTransform>();
+    //     RectTransform rt = result.transform.GetChild(1).GetComponent<RectTransform>();
+    //     rt.offsetMax = new Vector2(rt.offsetMax.x, rt.offsetMax.y+75);
+    //     descRT.offsetMin = new Vector2(descRT.offsetMin.x, descRT.offsetMin.y+75);
+    //     Button resultButton = Instantiate(button);
+    //     resultButton.transform.SetParent(rt.transform, false);
+    //     resultButton.transform.localPosition = new Vector3(0, -160);
+    //     if (gamestateIndex==1) {
+    //         resultButton.GetComponentInChildren<Text>().text = "Game Over";
+    //         resultButton.onClick.AddListener(delegate{EndGame(1);});
+    //     } else if (company.GetComponent<Company>().cash<0) {
+    //         resultButton.GetComponentInChildren<Text>().text = "Bankrupt!";
+    //         resultButton.onClick.AddListener(delegate{EndGame(2);});
+    //     } else if (company.GetComponent<Company>().happiness<0) {
+    //         resultButton.GetComponentInChildren<Text>().text = "Depression...";
+    //         resultButton.onClick.AddListener(delegate{EndGame(3);});
+    //     } else if (count>=19) {
+    //         resultButton.GetComponentInChildren<Text>().text = "Congratulations!";
+    //         resultButton.onClick.AddListener(delegate{EndGame(0);});
+    //     } else {
+    //         resultButton.GetComponentInChildren<Text>().text = "Continue";
+    //         resultButton.onClick.AddListener(delegate{closeResult(result);});
+    //     }
+    //     result.transform.SetParent(canvas.transform, false);
+    // }
+
+    public void randomEmployees() {
+        GameObject employees = company.transform.GetChild(0).gameObject;
+        int empCount = company.transform.GetChild(0).childCount;
+        GameObject[] empList = new GameObject[empCount];
+        int[] empInd = new int[empCount];
+        int[] delta = new int[empCount];
+        for (int i = 0; i < empCount; i++) {
+            empInd[i] = (int)Random.Range(i, empCount);
+            delta[i] = 0;
+            for (int j = 0; j < i; j++) {
+                if (empInd[i]<=(empInd[j]+delta[j])) {
+                    delta[i]++;
+                }
+            }
+            empInd[i]-=delta[i];
+            empList[i] = employees.transform.GetChild(empInd[i]).gameObject;
         }
-        result.transform.SetParent(canvas.transform, false);
+        randEmploy = empList;
     }
 }

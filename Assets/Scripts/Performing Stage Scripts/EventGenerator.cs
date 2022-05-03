@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EventGenerator : MonoBehaviour
 {
-    public int count;
     public TextAsset eventJsonFile;
     public TextAsset buttonsFile;
     public TextAsset indicesFile;
     public TextAsset valuesFile;
     public TextAsset empIndicesFile;
-    EventObject myEvents;
+    public int count;
+    public GameObject Event;
+    public Button button;
+    public GameObject canvas;
     string eventJson;
     public class EventObject {
         public string[] Events;
@@ -21,6 +26,7 @@ public class EventGenerator : MonoBehaviour
         public List<List<int>> ButtonIndices = new List<List<int>>();
         public List<List<int>> ButtonValues = new List<List<int>>();
     }
+    EventObject myEvents;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,13 +77,12 @@ public class EventGenerator : MonoBehaviour
     {
         
     }
-
     public void randomizeEvents() {
-        randEmploy = randomEmployees();
+        this.GetComponentInParent<EventFunctions>().randomEmployees();
         GameObject newEvent = Instantiate(Event);
         string desc = myEvents.Events[count];
-        for (int i = 0; i < randEmploy.Length; i++) {
-            desc = System.String.Format(desc, randEmploy[i].GetComponent<Employee>().fName, randEmploy[i].GetComponent<Employee>().lName, "{0}", "{1}", "{2}", "{3}", "{4}", "{5}", "{6}", "{7}");
+        for (int i = 0; i < this.GetComponentInParent<EventFunctions>().randEmploy.Length; i++) {
+            desc = System.String.Format(desc, this.GetComponentInParent<EventFunctions>().randEmploy[i].GetComponent<Employee>().fName, this.GetComponentInParent<EventFunctions>().randEmploy[i].GetComponent<Employee>().lName, "{0}", "{1}", "{2}", "{3}", "{4}", "{5}", "{6}", "{7}");
         }
         newEvent.GetComponentInChildren<Text>().text = desc;
         RectTransform eventWindow = newEvent.transform.GetComponent<RectTransform>();
@@ -93,13 +98,14 @@ public class EventGenerator : MonoBehaviour
             //newButton.transform.localPosition = new Vector3(0, -160+(i*(float)37.5));
             string btext = myEvents.ButtonTexts[temp];
             for (int k = 0; k < myEvents.EmployeeIndices[temp].Count; k++) {
-                btext = System.String.Format(btext, randEmploy[myEvents.EmployeeIndices[temp][k]].GetComponent<Employee>().fName, "{0}", "{1}", "{2}", "{3}", "{4}");
+                btext = System.String.Format(btext, this.GetComponentInParent<EventFunctions>().randEmploy[myEvents.EmployeeIndices[temp][k]].GetComponent<Employee>().fName, "{0}", "{1}", "{2}", "{3}", "{4}");
             }
             newButton.onClick.AddListener(delegate{
-                for (int k = 0; k < myEvents.ButtonIndices[temp].Count; k++) {
+                for (int k = 0; k < myEvents.ButtonIndices[temp].Count-1; k++) {
                     int bTemp = k;
-                    delList[myEvents.ButtonIndices[temp][bTemp]](myEvents.ButtonValues[temp][bTemp], myEvents.EmployeeIndices[temp][bTemp]);
+                    this.GetComponentInParent<EventFunctions>().delList[myEvents.ButtonIndices[temp][bTemp]](myEvents.ButtonValues[temp][bTemp], myEvents.EmployeeIndices[temp][bTemp]);
                 }
+                generateResult(myEvents.ButtonValues[temp][myEvents.ButtonValues[temp].Count-1], myEvents.EmployeeIndices[temp][myEvents.EmployeeIndices[temp].Count-1]);
                 closeEvent(newEvent);});
             newButton.GetComponentInChildren<Text>().text = btext;
         }
@@ -122,10 +128,10 @@ public class EventGenerator : MonoBehaviour
         if (gamestateIndex==1) {
             resultButton.GetComponentInChildren<Text>().text = "Game Over";
             resultButton.onClick.AddListener(delegate{EndGame(1);});
-        } else if (company.GetComponent<Company>().cash<0) {
+        } else if (this.GetComponentInParent<EventFunctions>().company.GetComponent<Company>().cash<0) {
             resultButton.GetComponentInChildren<Text>().text = "Bankrupt!";
             resultButton.onClick.AddListener(delegate{EndGame(2);});
-        } else if (company.GetComponent<Company>().happiness<0) {
+        } else if (this.GetComponentInParent<EventFunctions>().company.GetComponent<Company>().happiness<0) {
             resultButton.GetComponentInChildren<Text>().text = "Depression...";
             resultButton.onClick.AddListener(delegate{EndGame(3);});
         } else if (count>=19) {
@@ -145,8 +151,14 @@ public class EventGenerator : MonoBehaviour
         Destroy(thisEvent);
     }
     public void closeResult(GameObject result) {
-        hasEvent = false;
+        this.GetComponentInParent<EventHandler>().hasEvent = false;
         Time.timeScale = 1;
         Destroy(result);
+    }
+    public void EndGame(int state) {
+        Time.timeScale = 1;
+        this.GetComponentInParent<EventFunctions>().company.GetComponent<Company>().endState = state;
+        SceneManager.LoadScene("results");
+        DontDestroyOnLoad(this.GetComponentInParent<EventFunctions>().company);
     }
 }
