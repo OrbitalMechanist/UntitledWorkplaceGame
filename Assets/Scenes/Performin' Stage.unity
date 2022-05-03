@@ -14779,8 +14779,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1364367284}
-  - component: {fileID: 1364367283}
   - component: {fileID: 1364367285}
+  - component: {fileID: 1364367287}
+  - component: {fileID: 1364367286}
+  - component: {fileID: 1364367283}
   m_Layer: 0
   m_Name: Organizer
   m_TagString: Untagged
@@ -14800,18 +14802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e28580fd24b50cf4faa90a5a71bdff47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  count: 0
-  eventJsonFile: {fileID: 4900000, guid: 2145291edd155874eba05206a52d8faa, type: 3}
-  buttonsFile: {fileID: 4900000, guid: 68ac37cfa51306e4e9bd60bedd96c826, type: 3}
-  indicesFile: {fileID: 4900000, guid: 7b28532d35a5a694696ff93429feb306, type: 3}
-  valuesFile: {fileID: 4900000, guid: a46cb2e0ef396f54fb764aa2f6f8a2ec, type: 3}
-  empIndicesFile: {fileID: 4900000, guid: 866c43c6904b4d74bbc2497c114597cd, type: 3}
-  empCount: 0
-  employee: {fileID: 0}
-  button: {fileID: 6902521487753483856, guid: 8a4f00a60dddf964eb0691e7fce61cce, type: 3}
-  canvas: {fileID: 2053617917}
-  Event: {fileID: 1093100239277753127, guid: 57082038c653f094cb2829b45351614e, type: 3}
-  company: {fileID: 213383239}
+  hasEvent: 0
 --- !u!4 &1364367284
 Transform:
   m_ObjectHideFlags: 0
@@ -14847,6 +14838,41 @@ MonoBehaviour:
   - {fileID: 1142289506}
   distractionInstance: {fileID: 506847709}
   companyManagerInstance: {fileID: 1364367282}
+--- !u!114 &1364367286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364367282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d414d80bb249914da69c0a9fd3678f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventJsonFile: {fileID: 4900000, guid: 2145291edd155874eba05206a52d8faa, type: 3}
+  buttonsFile: {fileID: 4900000, guid: 68ac37cfa51306e4e9bd60bedd96c826, type: 3}
+  indicesFile: {fileID: 4900000, guid: 7b28532d35a5a694696ff93429feb306, type: 3}
+  valuesFile: {fileID: 4900000, guid: a46cb2e0ef396f54fb764aa2f6f8a2ec, type: 3}
+  empIndicesFile: {fileID: 4900000, guid: 866c43c6904b4d74bbc2497c114597cd, type: 3}
+  count: 0
+  Event: {fileID: 1093100239277753127, guid: 57082038c653f094cb2829b45351614e, type: 3}
+  button: {fileID: 6902521487753483856, guid: 8a4f00a60dddf964eb0691e7fce61cce, type: 3}
+  canvas: {fileID: 1293527234}
+--- !u!114 &1364367287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364367282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 381df3d343940ee48b9ca20d030cb2ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randEmploy: []
+  company: {fileID: 213383239}
 --- !u!1 &1405533768
 GameObject:
   m_ObjectHideFlags: 0

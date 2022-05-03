@@ -8,7 +8,7 @@ public class ProgressBar : MonoBehaviour
     public Text progressText;
     public RectTransform currentProgress;
     private GameObject eventOrganizer;
-    private RandomEventTimer eventScript;
+    private EventGenerator eventScript;
 
     private int currentTicks;
     private float progressLength;
@@ -26,7 +26,7 @@ public class ProgressBar : MonoBehaviour
 
         // Get event timer script so event ticks can be accessed
         eventOrganizer = GameObject.Find("Organizer");
-        eventScript = eventOrganizer.GetComponent<RandomEventTimer>();
+        eventScript = eventOrganizer.GetComponent<EventGenerator>();
     }
 
     // Update is called once per frame

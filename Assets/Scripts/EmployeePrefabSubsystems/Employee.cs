@@ -74,7 +74,7 @@ public class Employee : MonoBehaviour
         {
             if(framesSinceIncome / 100 > MAX_STAT - capability)
             {
-                companyManagerInstance.GetComponent<RandomEventTimer>().RaiseMoney(REVENUE, 0); //emp param doesn't matter here
+                companyManagerInstance.GetComponent<EventFunctions>().RaiseMoney(REVENUE, 0); //emp param doesn't matter here
                 framesSinceIncome = 0;
             } else
             {
