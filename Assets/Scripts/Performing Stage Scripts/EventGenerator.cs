@@ -101,7 +101,7 @@ public class EventGenerator : MonoBehaviour
             for (int k = 0; k < myEvents.EmployeeIndices[temp].Count; k++) {
                 btext = System.String.Format(btext, this.GetComponentInParent<EventFunctions>().randEmploy[myEvents.EmployeeIndices[temp][k]].GetComponent<Employee>().fName, "{0}", "{1}", "{2}", "{3}", "{4}");
             }
-            AudioSource click = soundObject.GetComponent<AudioSource>();
+            AudioSource click = soundObject.transform.Find("Click").gameObject.GetComponent<AudioSource>();
             newButton.onClick.AddListener(delegate{
                 for (int k = 0; k < myEvents.ButtonIndices[temp].Count-1; k++) {
                     int bTemp = k;
@@ -118,7 +118,9 @@ public class EventGenerator : MonoBehaviour
         newEvent.transform.SetParent(canvas.transform, false);;
     }
     public void generateResult(int resultIndex, int gamestateIndex) {
-        AudioSource click = soundObject.GetComponent<AudioSource>();
+        AudioSource click = soundObject.transform.Find("Click").gameObject.GetComponent<AudioSource>();
+        AudioSource cheer = soundObject.transform.Find("Cheer").gameObject.GetComponent<AudioSource>();
+        AudioSource jeer = soundObject.transform.Find("Jeer").gameObject.GetComponent<AudioSource>();
         Debug.Log(resultIndex + ", " + gamestateIndex);
         GameObject result = Instantiate(Event);
         string desc = myEvents.Results[resultIndex];
@@ -131,15 +133,19 @@ public class EventGenerator : MonoBehaviour
         resultButton.transform.SetParent(rt.transform, false);
         resultButton.transform.localPosition = new Vector3(0, -160);
         if (gamestateIndex==1) {
+            jeer.Play();
             resultButton.GetComponentInChildren<Text>().text = "Game Over";
             resultButton.onClick.AddListener(delegate{click.Play();EndGame(1);});
         } else if (this.GetComponentInParent<EventFunctions>().company.GetComponent<Company>().cash<0) {
+            jeer.Play();
             resultButton.GetComponentInChildren<Text>().text = "Bankrupt!";
             resultButton.onClick.AddListener(delegate{click.Play();EndGame(2);});
         } else if (this.GetComponentInParent<EventFunctions>().company.GetComponent<Company>().happiness<0) {
+            jeer.Play();
             resultButton.GetComponentInChildren<Text>().text = "Depression...";
             resultButton.onClick.AddListener(delegate{click.Play();EndGame(3);});
         } else if (count>=19) {
+            cheer.Play();
             resultButton.GetComponentInChildren<Text>().text = "Congratulations!";
             resultButton.onClick.AddListener(delegate{click.Play();EndGame(0);});
         } else {
