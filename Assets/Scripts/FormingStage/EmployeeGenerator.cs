@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -14,9 +14,27 @@ public class EmployeeGenerator : MonoBehaviour
     string[] lNames;
     string[] fNames;
 
-    string[] femNames;
-    string[] mNames;
+//    string[] femNames;
+//    string[] mNames;
 
+
+    [Header("Attribute Generation")]
+    //This is a stupid way to go about things, but it's the only one I can come up with.
+    //These are the names of the valid attributes that may be added to an employee.
+    [SerializeField] string[] attributeNames;
+    //These are the relative likelihoods that an attribute at the same index will be selected.
+    //1 is the least likely, 0 will never happen, highest number is the most likely.
+    [SerializeField] int[] attributeRelativeProbabilities;
+
+    //This will be initialized at the start using an expensive process to hold all the attribute classes
+    List<System.Type> attributeTypes = new List<System.Type>();
+
+    public int minAttributes = 0;
+    public int maxAttributes = 4;
+    public int avgAttributes = 1;
+
+
+    [Header("Appearance")]
     public Color[] skinColors; 
     //= {new Color(0.956f, 0.909f, 0.824f), new Color(0.878f, 0.780f, 0.616f), new Color(0.368f, 0.270f, 0.102f) };
     public Color[] hatColors; 
@@ -26,16 +44,14 @@ public class EmployeeGenerator : MonoBehaviour
     public Sprite[] heads;
     public Sprite[] hats;
 
+    [Header("Namelists")]
     public TextAsset lNamelist;
     public TextAsset fNamelist;
-    public TextAsset femNamelist;
-    public TextAsset mNamelist;
+//    public TextAsset femNamelist;
+//    public TextAsset mNamelist;
 
+    [Header("Required Assignable Systems")]
     public GameObject employeePrefab;
-
-    public Sprite shirtSprite;
-    public Sprite faceSprite;
-    public Sprite hatSprite;
 
     public GameObject employeeManagerInstance;
 
@@ -46,11 +62,28 @@ public class EmployeeGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //find all EmployeeAttribute-derived types.
+        foreach (var da in System.AppDomain.CurrentDomain.GetAssemblies())
+        {
+            System.Type[] allTypes = da.GetTypes();
+            foreach (var t in allTypes)
+            {
+                if (t.IsSubclassOf(typeof(EmployeeAttribute)))
+                {
+                    attributeTypes.Add(t);
+                }
+            }
+            if(attributeTypes.Count > 0)
+            {
+                break; //I'm guessing all of my types will be contained in the same assembly.
+            }
+        }
+
         //Load namelists from files
         lNames = lNamelist.text.Split('\n');
         fNames = fNamelist.text.Split('\n');
-        femNames = femNamelist.text.Split('\n');
-        mNames = mNamelist.text.Split('\n');
+//        femNames = femNamelist.text.Split('\n');
+//        mNames = mNamelist.text.Split('\n');
 
         //Rebuild everything so that the sizes get initialized before the next step.
         Canvas.ForceUpdateCanvases();
@@ -103,6 +136,63 @@ public class EmployeeGenerator : MonoBehaviour
         }
     }
 
+    //I don't know why there's no such function by default.
+    static int SumOfIntArray(int[] arr)
+    {
+        int result = 0;
+        foreach (int i in arr)
+        {
+            result += i;
+        }
+        return result;
+    }
+
+    EmployeeAttribute generateAttribute(Employee empToAttachTo)
+    {
+        if(attributeTypes.Count == 0)
+        {
+            return null;
+        }
+
+        EmployeeAttribute result = null;
+
+        int attrIndex = 0;
+        if (attributeRelativeProbabilities.Length != attributeNames.Length)
+        {
+            attrIndex = Random.Range(0, attributeNames.Length);
+        }
+        else
+        {
+            int selection = Random.Range(0, SumOfIntArray(attributeRelativeProbabilities));
+            int totalSoFar = 0;
+            for (int i = 0; i < attributeRelativeProbabilities.Length; i++)
+            {
+                totalSoFar += attributeRelativeProbabilities[i];
+                if(totalSoFar > selection)
+                {
+                    attrIndex = i;
+                    break;
+                }
+            }
+        }
+
+        string name = attributeNames[attrIndex];
+        
+        foreach(var t in attributeTypes)
+        {
+            if((string)t.GetField("attributeTitle").GetRawConstantValue() == name)
+            {
+                ConstructorInfo con = t.GetConstructor(new[] { typeof(Employee) });
+                result = (EmployeeAttribute)con.Invoke(new[] { empToAttachTo });
+                //result = (EmployeeAttribute)System.Activator.CreateInstance(t, empToAttachTo);
+                break;
+            }
+        }
+
+
+        return result;
+    }
+
     GameObject generateEmployee()
     {
 
@@ -129,8 +219,17 @@ public class EmployeeGenerator : MonoBehaviour
         emp.transform.GetChild(2).GetComponent<SpriteRenderer>().color = hatColors[Random.Range(0, hatColors.Length)];
         //Random.ColorHSV(0, 1, 0f, 1f, 0.2f, 1f);
 
-        //Give name and ability parameters to the actual employee object
-        emp.GetComponent<Employee>().Create(fName, lName, personal, capability, ethic);
+        Employee empBehaviour = emp.GetComponent<Employee>();
+
+        //Give name and ability parameters to the actual employee MonoBehaviour
+        empBehaviour.Create(fName, lName, personal, capability, ethic);
+
+        //Generate and add attributes.
+        int attrNum = Random.Range(minAttributes, maxAttributes);
+        for(int i = 0; i < attrNum; i++)
+        {
+            empBehaviour.attributes.Add(generateAttribute(empBehaviour));
+        }
 
         return emp;
     }

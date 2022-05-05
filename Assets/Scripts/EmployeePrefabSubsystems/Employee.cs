@@ -18,10 +18,13 @@ public class Employee : MonoBehaviour
     public string fName;
     public string lName;
 
+    public List<EmployeeAttribute> attributes = new List<EmployeeAttribute>();
+
     //A marker to which the employee goes to work.
     public GameObject workplaceInstance;
     //A marker to which the employee goes when on break.
     public GameObject distractionInstance;
+
 
     //The thing containing the logic for messing with company finances.
     //Used due to existing design.
