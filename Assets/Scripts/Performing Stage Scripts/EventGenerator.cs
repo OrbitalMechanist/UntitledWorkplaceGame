@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class EventGenerator : MonoBehaviour
 {
+    public GameObject soundObject;
     public TextAsset eventJsonFile;
     public TextAsset buttonsFile;
     public TextAsset indicesFile;
@@ -100,13 +101,16 @@ public class EventGenerator : MonoBehaviour
             for (int k = 0; k < myEvents.EmployeeIndices[temp].Count; k++) {
                 btext = System.String.Format(btext, this.GetComponentInParent<EventFunctions>().randEmploy[myEvents.EmployeeIndices[temp][k]].GetComponent<Employee>().fName, "{0}", "{1}", "{2}", "{3}", "{4}");
             }
+            AudioSource click = soundObject.GetComponent<AudioSource>();
             newButton.onClick.AddListener(delegate{
                 for (int k = 0; k < myEvents.ButtonIndices[temp].Count-1; k++) {
                     int bTemp = k;
                     this.GetComponentInParent<EventFunctions>().delList[myEvents.ButtonIndices[temp][bTemp]](myEvents.ButtonValues[temp][bTemp], myEvents.EmployeeIndices[temp][bTemp]);
                 }
                 generateResult(myEvents.ButtonValues[temp][myEvents.ButtonValues[temp].Count-1], myEvents.EmployeeIndices[temp][myEvents.EmployeeIndices[temp].Count-1]);
-                closeEvent(newEvent);});
+                click.Play();
+                closeEvent(newEvent);
+            });
             newButton.GetComponentInChildren<Text>().text = btext;
         }
         rt.offsetMax = new Vector2(rt.offsetMax.x, rt.offsetMax.y+(float)37.5);
@@ -114,6 +118,7 @@ public class EventGenerator : MonoBehaviour
         newEvent.transform.SetParent(canvas.transform, false);;
     }
     public void generateResult(int resultIndex, int gamestateIndex) {
+        AudioSource click = soundObject.GetComponent<AudioSource>();
         Debug.Log(resultIndex + ", " + gamestateIndex);
         GameObject result = Instantiate(Event);
         string desc = myEvents.Results[resultIndex];
@@ -127,19 +132,19 @@ public class EventGenerator : MonoBehaviour
         resultButton.transform.localPosition = new Vector3(0, -160);
         if (gamestateIndex==1) {
             resultButton.GetComponentInChildren<Text>().text = "Game Over";
-            resultButton.onClick.AddListener(delegate{EndGame(1);});
+            resultButton.onClick.AddListener(delegate{click.Play();EndGame(1);});
         } else if (this.GetComponentInParent<EventFunctions>().company.GetComponent<Company>().cash<0) {
             resultButton.GetComponentInChildren<Text>().text = "Bankrupt!";
-            resultButton.onClick.AddListener(delegate{EndGame(2);});
+            resultButton.onClick.AddListener(delegate{click.Play();EndGame(2);});
         } else if (this.GetComponentInParent<EventFunctions>().company.GetComponent<Company>().happiness<0) {
             resultButton.GetComponentInChildren<Text>().text = "Depression...";
-            resultButton.onClick.AddListener(delegate{EndGame(3);});
+            resultButton.onClick.AddListener(delegate{click.Play();EndGame(3);});
         } else if (count>=19) {
             resultButton.GetComponentInChildren<Text>().text = "Congratulations!";
-            resultButton.onClick.AddListener(delegate{EndGame(0);});
+            resultButton.onClick.AddListener(delegate{click.Play();EndGame(0);});
         } else {
             resultButton.GetComponentInChildren<Text>().text = "Continue";
-            resultButton.onClick.AddListener(delegate{closeResult(result);});
+            resultButton.onClick.AddListener(delegate{click.Play();closeResult(result);});
         }
         result.transform.SetParent(canvas.transform, false);
     }
