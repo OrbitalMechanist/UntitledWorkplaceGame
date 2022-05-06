@@ -13,18 +13,12 @@ public abstract class EmployeeAttribute
 
     protected Employee owner;
 
-    public EmployeeAttribute()
-    {
-        Debug.Log("defaulted");
-    }
-
     public EmployeeAttribute(Employee empToAttachTo)
     {
         owner = empToAttachTo;
-        owner.capability += capabilityDelta;
-        owner.ethic += ethicDelta;
-        owner.personal += personalDelta;
-        Debug.Log("got here");
+        owner.ChangeCapability(capabilityDelta);
+        owner.ChangeWorkEthic(ethicDelta);
+        owner.ChangePersonal(personalDelta);
     }
 
     public virtual void Affect()

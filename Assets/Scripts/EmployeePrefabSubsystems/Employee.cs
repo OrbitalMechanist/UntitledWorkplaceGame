@@ -10,15 +10,16 @@ public class Employee : MonoBehaviour
     //How much money per unit of work an employee gives the company.
     private static int REVENUE = 500;
 
-    public int personal;
-    public int capability;
-    public int ethic;
+    public int personal { get; set; }
+    public int capability { get; set; }
+    public int ethic { get; set; }
     public int happiness = 125;
 
     public string fName;
     public string lName;
 
     public List<EmployeeAttribute> attributes = new List<EmployeeAttribute>();
+    public List<string> attributeNames = new List<string>();
 
     //A marker to which the employee goes to work.
     public GameObject workplaceInstance;
@@ -40,9 +41,11 @@ public class Employee : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //        personal = (int)(Random.value * (MAX_STAT - MIN_STAT)) + MIN_STAT;
-        //        capability = (int)(Random.value * (MAX_STAT - MIN_STAT)) + MIN_STAT;
-        //        ethic = (int)(Random.value * (MAX_STAT - MIN_STAT)) + MIN_STAT;
+        //I ended up doing this in the generation instead.
+        //foreach(EmployeeAttribute attr in attributes)
+        //{
+        //    attributeNames.Add((string)attr.GetType().GetField("attributeTitle").GetRawConstantValue());
+        //}
     }
 
     public void Create(string first, string last, int p, int c, int e)
@@ -92,5 +95,20 @@ public class Employee : MonoBehaviour
                 framesSinceBreak++;
             }
         }
+    }
+
+    public void ChangeCapability(int delta)
+    {
+        capability = Mathf.Clamp(capability + delta, MIN_STAT, MAX_STAT);
+    }
+
+    public void ChangeWorkEthic(int delta)
+    {
+        ethic = Mathf.Clamp(ethic + delta, MIN_STAT, MAX_STAT);
+    }
+
+    public void ChangePersonal(int delta)
+    {
+        personal = Mathf.Clamp(personal + delta, MIN_STAT, MAX_STAT);
     }
 }

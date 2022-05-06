@@ -19,13 +19,15 @@ public class EmployeeGenerator : MonoBehaviour
 
 
     [Header("Attribute Generation")]
+    //These last two can't be a single dict/map because Unity doesn't let you edit these in the
+    //editor and I want to be able to edit them in the editor.
     //This is a stupid way to go about things, but it's the only one I can come up with.
     //These are the names of the valid attributes that may be added to an employee.
     [SerializeField] string[] attributeNames;
     //These are the relative likelihoods that an attribute at the same index will be selected.
     //1 is the least likely, 0 will never happen, highest number is the most likely.
     [SerializeField] int[] attributeRelativeProbabilities;
-
+    
     //This will be initialized at the start using an expensive process to hold all the attribute classes
     List<System.Type> attributeTypes = new List<System.Type>();
 
@@ -147,11 +149,39 @@ public class EmployeeGenerator : MonoBehaviour
         return result;
     }
 
-    EmployeeAttribute generateAttribute(Employee empToAttachTo)
+    //Now that's a mouthfull.
+    static int SumOfIntArrayExceptIndicesInList(int[] arr, List<int> exclude)
+    {
+        int result = 0;
+        for(int i = 0; i < arr.Length; i++)
+        {
+            if (!exclude.Contains(i))
+            {
+                result += arr[i];
+            }
+        }
+        return result;
+    }
+
+    //This is dreadfully slow but I can't figure out how to make it better right now.
+    EmployeeAttribute generateAttribute(Employee empToAttachTo, List<string> namesToExclude = null)
     {
         if(attributeTypes.Count == 0)
         {
             return null;
+        }
+
+        List<int> indicesToExclude = new List<int>();
+
+        if(namesToExclude != null && attributeRelativeProbabilities.Length == attributeNames.Length)
+        {
+            for(int i = 0; i < attributeRelativeProbabilities.Length; i++)
+            {
+                if (namesToExclude.Contains(attributeNames[i]))
+                {
+                    indicesToExclude.Add(i);
+                }
+            }
         }
 
         EmployeeAttribute result = null;
@@ -163,10 +193,19 @@ public class EmployeeGenerator : MonoBehaviour
         }
         else
         {
-            int selection = Random.Range(0, SumOfIntArray(attributeRelativeProbabilities));
+            int selection = Random.Range(0, SumOfIntArrayExceptIndicesInList(attributeRelativeProbabilities,
+                indicesToExclude));
             int totalSoFar = 0;
             for (int i = 0; i < attributeRelativeProbabilities.Length; i++)
             {
+                if (indicesToExclude.Contains(i))
+                {
+                    i++;
+                    if(i >= attributeRelativeProbabilities.Length)
+                    {
+                        break;
+                    }
+                }
                 totalSoFar += attributeRelativeProbabilities[i];
                 if(totalSoFar > selection)
                 {
@@ -184,7 +223,6 @@ public class EmployeeGenerator : MonoBehaviour
             {
                 ConstructorInfo con = t.GetConstructor(new[] { typeof(Employee) });
                 result = (EmployeeAttribute)con.Invoke(new[] { empToAttachTo });
-                //result = (EmployeeAttribute)System.Activator.CreateInstance(t, empToAttachTo);
                 break;
             }
         }
@@ -225,10 +263,16 @@ public class EmployeeGenerator : MonoBehaviour
         empBehaviour.Create(fName, lName, personal, capability, ethic);
 
         //Generate and add attributes.
-        int attrNum = Random.Range(minAttributes, maxAttributes);
+        int attrNum = Random.Range(minAttributes, maxAttributes + 1);
+        List<string> namesToExclude = new List<string>();
         for(int i = 0; i < attrNum; i++)
         {
-            empBehaviour.attributes.Add(generateAttribute(empBehaviour));
+            //All of these are incredibly slow and I hate myself for it but I see no better way.
+            EmployeeAttribute freshAttr = generateAttribute(empBehaviour, namesToExclude);
+            string freshName = (string)freshAttr.GetType().GetField("attributeTitle").GetRawConstantValue();
+            namesToExclude.Add(freshName);
+            empBehaviour.attributeNames.Add(freshName);
+            empBehaviour.attributes.Add(freshAttr);
         }
 
         return emp;
