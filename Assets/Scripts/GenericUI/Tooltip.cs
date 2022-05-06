@@ -34,7 +34,7 @@ public class Tooltip : MonoBehaviour
 
     private void Update() {
         // Get the tooltip position with offset
-        Vector3 position = new Vector3(Input.mousePosition.x + offset + rect.rect.width, Input.mousePosition.y - rect.rect.height, 0f);
+        Vector3 position = new Vector3(Input.mousePosition.x + offset + rect.rect.width/2, Input.mousePosition.y - rect.rect.height, 0f);
 
         // Clamp it to the screen size so it doesn't go outside
         this.gameObject.transform.position = new Vector3(Mathf.Clamp(position.x, min.x + rect.rect.width/2, max.x - rect.rect.width/2), Mathf.Clamp(position.y, min.y + rect.rect.height / 2, max.y - rect.rect.height / 2), transform.position.z);
