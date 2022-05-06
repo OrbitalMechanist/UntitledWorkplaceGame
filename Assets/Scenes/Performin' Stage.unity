@@ -13079,8 +13079,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1743502954}
-  m_Father: {fileID: 1293527238}
-  m_RootOrder: 1
+  m_Father: {fileID: 1750792919}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -14670,7 +14670,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 232148222}
-  - {fileID: 510012818}
   - {fileID: 1364367284}
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -14815,7 +14814,7 @@ Transform:
   m_LocalScale: {x: 1.2820513, y: 1.2820513, z: 1.2820513}
   m_Children: []
   m_Father: {fileID: 1293527238}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1364367285
 MonoBehaviour:
@@ -15067,7 +15066,7 @@ RectTransform:
   m_Children:
   - {fileID: 1771791339}
   m_Father: {fileID: 1750792919}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15296,7 +15295,7 @@ GameObject:
   - component: {fileID: 1750792917}
   - component: {fileID: 1750792916}
   m_Layer: 5
-  m_Name: TooltipCanvas
+  m_Name: OverlayCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15374,6 +15373,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 510012818}
   - {fileID: 1584117593}
   m_Father: {fileID: 0}
   m_RootOrder: 4
