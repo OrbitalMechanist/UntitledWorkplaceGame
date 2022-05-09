@@ -102,7 +102,7 @@ public class EmployeeGenerator : MonoBehaviour
         float spacePerItem = containerWidth / numElementsPerRow;
         float leftPaddingPerItem = (spacePerItem * numElementsPerRow - containerWidth) / 2;
 
-        Debug.Log(numElementsPerRow + " " + containerWidth + " " + itemWidth);
+//        Debug.Log(numElementsPerRow + " " + containerWidth + " " + itemWidth);
 
         //Resize scrollable area to fit the necessary number of items
         UiContainerInstance.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (itemHeight + vPadding) * 
@@ -271,8 +271,7 @@ public class EmployeeGenerator : MonoBehaviour
             EmployeeAttribute freshAttr = generateAttribute(empBehaviour, namesToExclude);
             string freshName = (string)freshAttr.GetType().GetField("attributeTitle").GetRawConstantValue();
             namesToExclude.Add(freshName);
-            empBehaviour.attributeNames.Add(freshName);
-            empBehaviour.attributes.Add(freshAttr);
+            empBehaviour.AddAttribute(freshAttr);
         }
 
         return emp;
@@ -282,10 +281,11 @@ public class EmployeeGenerator : MonoBehaviour
     {
         //Create the UI element representing this employee
         GameObject UIElement = Instantiate(UiPrefab);
-        //Set First Name display field
-        UIElement.transform.GetChild(0).GetComponent<Text>().text = employeeObject.GetComponent<Employee>().fName;
-        //Set Last Name display field
-        UIElement.transform.GetChild(1).GetComponent<Text>().text = employeeObject.GetComponent<Employee>().lName;
+        //Set Name display field
+        UIElement.transform.GetChild(0).GetComponent<Text>().text = employeeObject.GetComponent<Employee>().fName 
+            + " " + employeeObject.GetComponent<Employee>().lName;
+        //Set Last Name display field, back when they were two separate lines
+        //UIElement.transform.GetChild(1).GetComponent<Text>().text = employeeObject.GetComponent<Employee>().lName;
         //Set Capability display bar
         UIElement.transform.GetChild(2).GetComponent<UnityEngine.UI.Slider>().value 
             = employeeObject.GetComponent<Employee>().capability;
@@ -311,6 +311,10 @@ public class EmployeeGenerator : MonoBehaviour
         UIElement.transform.GetChild(7).GetComponent<UnityEngine.UI.Image>().color
             = employeeObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
 
+        for(int i = 0; i < employeeObject.GetComponent<Employee>().attributeNames.Count; i++)
+        {
+            UIElement.transform.GetChild(12 + i).GetComponent<Text>().text = employeeObject.GetComponent<Employee>().attributeNames[i];
+        }
         return UIElement;
     }
 

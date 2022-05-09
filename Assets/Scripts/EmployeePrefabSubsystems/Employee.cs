@@ -10,9 +10,9 @@ public class Employee : MonoBehaviour
     //How much money per unit of work an employee gives the company.
     private static int REVENUE = 500;
 
-    public int personal { get; set; }
-    public int capability { get; set; }
-    public int ethic { get; set; }
+    public int personal;
+    public int capability;
+    public int ethic;
     public int happiness = 125;
 
     public string fName;
@@ -46,6 +46,29 @@ public class Employee : MonoBehaviour
         //{
         //    attributeNames.Add((string)attr.GetType().GetField("attributeTitle").GetRawConstantValue());
         //}
+    }
+
+    public bool AddAttribute(EmployeeAttribute attr)
+    {
+        if (HasAttributeOfType(attr.GetType()))
+        {
+            return false;
+        }
+        attributes.Add(attr);
+        attributeNames.Add((string)attr.GetType().GetField("attributeTitle").GetRawConstantValue());
+        return true;
+    }
+
+    public bool HasAttributeOfType(System.Type attrType)
+    {
+        foreach (var existing in attributes)
+        {
+            if (existing.GetType() == attrType)
+            {
+                return false;
+            }
+        }
+        return false;
     }
 
     public void Create(string first, string last, int p, int c, int e)
