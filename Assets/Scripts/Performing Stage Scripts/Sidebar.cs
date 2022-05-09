@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Sidebar : MonoBehaviour
-
 {
     public GameObject Panel;
     public Button panelButton;
