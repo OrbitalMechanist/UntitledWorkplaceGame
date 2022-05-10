@@ -79,14 +79,14 @@ public class EventFunctions : MonoBehaviour
         SceneManager.LoadScene("results");
         DontDestroyOnLoad(company);
     }
-    public void AddInvestor(int invInd, int plan) {
+    public void addInvestor(int invInd, int plan) {
 
     }
     public void futureEvent(int ind, int count) {
 
     }
     public void statCheck(int emp, string stat, int sucInd, int failInd) {
-        
+
     }
     // public void generateResult(int resultIndex, int gamestateIndex) {
     //     Debug.Log(resultIndex + ", " + gamestateIndex);
