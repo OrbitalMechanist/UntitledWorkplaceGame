@@ -16,6 +16,7 @@ public class EventFunctions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Assigns each function to a list to be called by the event generator
         delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame, Fire};
     }
 
@@ -78,6 +79,15 @@ public class EventFunctions : MonoBehaviour
         SceneManager.LoadScene("results");
         DontDestroyOnLoad(company);
     }
+    public void AddInvestor(int invInd, int plan) {
+
+    }
+    public void futureEvent(int ind, int count) {
+
+    }
+    public void statCheck(int emp, string stat, int sucInd, int failInd) {
+        
+    }
     // public void generateResult(int resultIndex, int gamestateIndex) {
     //     Debug.Log(resultIndex + ", " + gamestateIndex);
     //     GameObject result = Instantiate(Event);
@@ -112,20 +122,23 @@ public class EventFunctions : MonoBehaviour
     public void randomEmployees() {
         GameObject employees = company.transform.GetChild(0).gameObject;
         int empCount = company.transform.GetChild(0).childCount;
-        GameObject[] empList = new GameObject[empCount];
+        randEmploy = new GameObject[empCount];
         int[] empInd = new int[empCount];
         int[] delta = new int[empCount];
+        //Assigns each employee to a random index
         for (int i = 0; i < empCount; i++) {
+            //In order to ensure we don't get duplicates, we need to always go from i, which is the value of the current index of the employee
             empInd[i] = (int)Random.Range(i, empCount);
             delta[i] = 0;
+            //Compares our number against every other generated number, and lowers it by 1 for every number that's greater than or equal to itself
             for (int j = 0; j < i; j++) {
                 if (empInd[i]<=(empInd[j]+delta[j])) {
                     delta[i]++;
                 }
             }
             empInd[i]-=delta[i];
-            empList[i] = employees.transform.GetChild(empInd[i]).gameObject;
+            //Assigns the employee at that index to an index in the random employee list
+            randEmploy[i] = employees.transform.GetChild(empInd[i]).gameObject;
         }
-        randEmploy = empList;
     }
 }
