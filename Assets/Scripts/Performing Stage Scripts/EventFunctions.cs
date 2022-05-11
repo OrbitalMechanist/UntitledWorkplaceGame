@@ -89,36 +89,34 @@ public class EventFunctions : MonoBehaviour
 
     }
     public bool ethicCheck(int emp, int prob, int sucInd, int failInd) {
-        int check = random.Next(0, 256);
+        int check = Random.Range(0, 256);
         int modProb = (int)(randEmploy[emp].GetComponent<Employee>().ethic-128-prob);
         bool pass = check<=modProb;
         return (check<=modProb);
     }
     public bool happinessCheck(int emp, int prob, int sucInd, int failInd) {
-        int check = random.Next(0, 256);
+        int check = Random.Range(0, 256);
         int modProb = (int)(randEmploy[emp].GetComponent<Employee>().happiness-128+prob);
         return (check<=modProb);
     }
     public bool capabilityCheck(int emp, int prob, int sucInd, int failInd) {
-        int check = random.Next(0, 256);
+        int check = Random.Range(0, 256);
         int modProb = (int)(randEmploy[emp].GetComponent<Employee>().capability-128+prob);
         return (check<=modProb);
     }
     public bool personalityCheck(int emp, int prob, int sucInd, int failInd) {
-        int check = random.Next(0, 256);
+        int check = Random.Range(0, 256);
         int modProb = (int)(randEmploy[emp].GetComponent<Employee>().personal-128+prob);
         return (check<=modProb);
     }
     public bool moneyCheck(int emp, int prob, int sucInd, int failInd) {
-        int check = random.Next(0, 256);
-        int modProb = (int)(randEmploy[emp].GetComponent<Employee>().personal-128+prob);
-        return (check<=modProb);
+        return (company.GetComponent<Company>().cash>prob);
     }
     public bool masshappinessCheck(int emp, int prob, int sucInd, int failInd) {
-
+        return (company.GetComponent<Company>().happiness>prob);
     }
     public bool randomCheck(int emp, int prob, int sucInd, int failInd) {
-        int check = random.Next(0, 256);
+        int check = Random.Range(0, 256);
         return (check<=prob);
     }
     public bool alwaysTrue(int emp, int prob, int sucInd, int failInd) {
