@@ -14236,8 +14236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Overall Happiness\n--------------------\nHow happy your employees are overall
-  tooltipObject: {fileID: 1584117588}
+  text: Overall Happiness \n -------------------- \n How happy your employees are
+    overall
 --- !u!1 &768321379
 GameObject:
   m_ObjectHideFlags: 0
@@ -14486,9 +14486,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: 'Money: <color=green>+0</color>\n--------------------\nThe amount of money
-    your company has'
-  tooltipObject: {fileID: 1584117588}
+  text: 'Money: <color=green>+0</color> \n -------------------- \n The amount of
+    money your company has'
 --- !u!1 &833587443
 GameObject:
   m_ObjectHideFlags: 0
@@ -14612,8 +14611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Progress\n--------------------\nCurrent progress until game end
-  tooltipObject: {fileID: 1584117588}
+  text: Progress \n -------------------- \n Current progress until game end
 --- !u!1 &915236566
 GameObject:
   m_ObjectHideFlags: 0
@@ -15614,7 +15612,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -315, y: 344}
-  m_SizeDelta: {x: 170, y: 40}
+  m_SizeDelta: {x: 125, y: 42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1584117594
 MonoBehaviour:
@@ -15918,6 +15916,7 @@ RectTransform:
   m_Children:
   - {fileID: 510012818}
   - {fileID: 1584117593}
+  - {fileID: 2000798864}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16042,8 +16041,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 87.50004, y: -20}
-  m_SizeDelta: {x: 165, y: 30}
+  m_AnchoredPosition: {x: 62.5, y: -21}
+  m_SizeDelta: {x: 105, y: 22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1771791340
 MonoBehaviour:
@@ -16205,6 +16204,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2000798863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2000798864}
+  - component: {fileID: 2000798865}
+  m_Layer: 5
+  m_Name: TooltipLocator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2000798864
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000798863}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -190, y: 398, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1750792919}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2000798865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000798863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a70b9f9c10f22445990822c1da72077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipObject: {fileID: 1584117588}
 --- !u!1 &2053617917
 GameObject:
   m_ObjectHideFlags: 0

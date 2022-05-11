@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Tooltip : MonoBehaviour
 {
     /** Horizontal offset of the tooltip relative to the mouse position. */
-    private const float horizontalOffset = 15f;
+    private const float HORIZONTAL_OFFSET = 15f;
 
     /** Camera of the UI. */
     public Camera uiCamera;
@@ -23,10 +22,10 @@ public class Tooltip : MonoBehaviour
     private RectTransform rect;
 
     /** The default width that the game was initially developed with. */
-    private const int defaultWidth = 800;
+    private const int DEFAULT_WIDTH = 800;
 
     /** The default height that the game was initially developed with. */
-    private const int defaultHeight = 600;
+    private const int DEFAULT_HEIGHT = 600;
 
     /** The scale factor for the width of the tooltip. Needed to fix scaling issues on other resolutions due to manual position calculation. */
     private float scaleWidth;
@@ -41,8 +40,8 @@ public class Tooltip : MonoBehaviour
 
         // Calculate the scaling required for the width and height values of the tooltip based on the current resolution
         // i.e. 1600 x 1200 screen = 2x scaling required
-        scaleWidth = (float)uiCamera.pixelWidth / (float)defaultWidth;
-        scaleHeight = (float)uiCamera.pixelHeight / (float)defaultHeight;
+        scaleWidth = (float)uiCamera.pixelWidth / (float)DEFAULT_WIDTH;
+        scaleHeight = (float)uiCamera.pixelHeight / (float)DEFAULT_HEIGHT;
 
         // Set min and max boundaries
         min = new Vector3(0, 0, 0);
@@ -55,7 +54,7 @@ public class Tooltip : MonoBehaviour
         int scaledTooltipHeight = (int)(scaleHeight * rect.rect.height);
 
         // Get the tooltip position with offset
-        Vector3 position = new Vector3(Input.mousePosition.x + horizontalOffset + (scaledTooltipWidth / 2), 
+        Vector3 position = new Vector3(Input.mousePosition.x + HORIZONTAL_OFFSET + (scaledTooltipWidth / 2), 
                                        Input.mousePosition.y - scaledTooltipHeight, 0f);
 
         // Clamp it to the screen size so it doesn't go outside
@@ -69,7 +68,7 @@ public class Tooltip : MonoBehaviour
         this.gameObject.SetActive(true);
 
         // Set tooltip text with unescaped characters
-        tooltipText.text = Regex.Unescape(tooltipString);
+        tooltipText.text = tooltipString;
     }
 
     public void HideTooltip() {
@@ -77,6 +76,6 @@ public class Tooltip : MonoBehaviour
         this.gameObject.SetActive(false);
 
         // Temporarily move tooltip position out of view to avoid flashing issues
-        this.gameObject.transform.position = new Vector3(-100, -100, -100);
+        this.gameObject.transform.position = new Vector3(-1000, -1000, -1000);
     }
 }
