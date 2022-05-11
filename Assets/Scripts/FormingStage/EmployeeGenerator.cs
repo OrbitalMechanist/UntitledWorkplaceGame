@@ -329,7 +329,6 @@ public class EmployeeGenerator : MonoBehaviour
             newAttributeText.font = ArialFont;
             newAttributeText.fontSize = 16;
             newAttributeText.color = new Color32(41, 41, 41, 255);
-            //newAttributeText.material = ArialFont.material;
             newAttributeText.alignment = TextAnchor.MiddleCenter;
             
             // Add attribute to employee card
