@@ -257,8 +257,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Company Size \n -------------------- \n Represents how large your company
-    is
+  headerText: Company Size
+  descriptionText: Represents how large your company is
 --- !u!114 &68945398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14526,8 +14526,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Overall Happiness \n -------------------- \n How happy your employees are
-    overall
+  headerText: Happiness
+  descriptionText: The overall happiness of your employees
 --- !u!1 &745044546
 GameObject:
   m_ObjectHideFlags: 0
@@ -14855,8 +14855,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: 'Money: <color=green>+0</color> \n -------------------- \n The amount of
-    money your company has'
+  headerText: 'Money: <color=green>+0</color>'
+  descriptionText: The amount of money your company has
 --- !u!1 &833587443
 GameObject:
   m_ObjectHideFlags: 0
@@ -14980,7 +14980,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Progress \n -------------------- \n Current progress until game end
+  headerText: Game Progress
+  descriptionText: The current progress towards the game's end
 --- !u!1 &915236566
 GameObject:
   m_ObjectHideFlags: 0

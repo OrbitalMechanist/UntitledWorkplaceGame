@@ -53,7 +53,8 @@ public class Money : MonoBehaviour
         }
 
         // Set tooltip text
-        tooltipInterfaceScript.setTooltipText("Money: <color=" + colour + ">" + income + "</color> \n -------------------- \n The amount of money your company has");
+        tooltipInterfaceScript.setTooltipHeaderText("Money: <color=" + colour + ">" + income + "</color>");
+        tooltipInterfaceScript.setTooltipDescriptionText("The amount of money your company has");
     }
 
     string parseCash(int cash) {
