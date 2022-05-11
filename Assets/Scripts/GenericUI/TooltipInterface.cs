@@ -29,12 +29,13 @@ public class TooltipInterface : MonoBehaviour, IPointerEnterHandler, IPointerExi
         // Get tooltip script from the locator
         tooltipScript = tooltipLocator.GetToolTipScript();
 
-        // Break tooltip text into lines
+        // Reformat text
         setTooltipHeaderText(headerText);
         setTooltipDescriptionText(descriptionText);
     }
 
     public void setTooltipHeaderText(string newText) {
+        // Regex required for newline characters inserted in the Unity editor
         headerText = Regex.Unescape(newText);
     }
 
@@ -43,6 +44,7 @@ public class TooltipInterface : MonoBehaviour, IPointerEnterHandler, IPointerExi
     }
 
     public void setTooltipDescriptionText(string newText) {
+        // Regex required for newline characters inserted in the Unity editor
         descriptionText = Regex.Unescape(newText);
     }
 
