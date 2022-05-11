@@ -12,12 +12,15 @@ public class EventFunctions : MonoBehaviour
     public GameObject[] randEmploy;
     public GameObject company;
     public delegate void MethodDelegate (int delta, int emp);
+    public delegate bool CheckDelegate (int emp, int prob, int sucInd, int failInd);
     public List<MethodDelegate> delList;
+    public List<CheckDelegate> checkList;
     // Start is called before the first frame update
     void Start()
     {
         //Assigns each function to a list to be called by the event generator
         delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame, Fire};
+        checkList = new List<CheckDelegate> {alwaysFalse, alwaysTrue, randomCheck, ethicCheck, happinessCheck, capabilityCheck, personalityCheck, moneyCheck, masshappinessCheck};
     }
 
     // Update is called once per frame
@@ -85,8 +88,44 @@ public class EventFunctions : MonoBehaviour
     public void futureEvent(int ind, int count) {
 
     }
-    public void statCheck(int emp, string stat, int sucInd, int failInd) {
+    public bool ethicCheck(int emp, int prob, int sucInd, int failInd) {
+        int check = random.Next(0, 256);
+        int modProb = (int)(randEmploy[emp].GetComponent<Employee>().ethic-128-prob);
+        bool pass = check<=modProb;
+        return (check<=modProb);
+    }
+    public bool happinessCheck(int emp, int prob, int sucInd, int failInd) {
+        int check = random.Next(0, 256);
+        int modProb = (int)(randEmploy[emp].GetComponent<Employee>().happiness-128+prob);
+        return (check<=modProb);
+    }
+    public bool capabilityCheck(int emp, int prob, int sucInd, int failInd) {
+        int check = random.Next(0, 256);
+        int modProb = (int)(randEmploy[emp].GetComponent<Employee>().capability-128+prob);
+        return (check<=modProb);
+    }
+    public bool personalityCheck(int emp, int prob, int sucInd, int failInd) {
+        int check = random.Next(0, 256);
+        int modProb = (int)(randEmploy[emp].GetComponent<Employee>().personal-128+prob);
+        return (check<=modProb);
+    }
+    public bool moneyCheck(int emp, int prob, int sucInd, int failInd) {
+        int check = random.Next(0, 256);
+        int modProb = (int)(randEmploy[emp].GetComponent<Employee>().personal-128+prob);
+        return (check<=modProb);
+    }
+    public bool masshappinessCheck(int emp, int prob, int sucInd, int failInd) {
 
+    }
+    public bool randomCheck(int emp, int prob, int sucInd, int failInd) {
+        int check = random.Next(0, 256);
+        return (check<=prob);
+    }
+    public bool alwaysTrue(int emp, int prob, int sucInd, int failInd) {
+        return true;
+    }
+    public bool alwaysFalse(int emp, int prob, int sucInd, int failInd) {
+        return false;
     }
     // public void generateResult(int resultIndex, int gamestateIndex) {
     //     Debug.Log(resultIndex + ", " + gamestateIndex);

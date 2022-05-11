@@ -8,6 +8,9 @@ public class Company : MonoBehaviour
     public int count;
     public int endState;
     public int happiness;
+    public string [] investors;
+    public int [] investorDebts;
+    public int [] investorPayBack;
     // Start is called before the first frame update
     void Start()
     {
