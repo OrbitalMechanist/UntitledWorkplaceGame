@@ -21,10 +21,6 @@ public class TooltipInterface : MonoBehaviour, IPointerEnterHandler, IPointerExi
     /** The Tooltip script. */
     private Tooltip tooltipScript;
 
-    /** The threshold of characters that can be on a line in the tooltip. If a word is added and the characters surpass this limit, 
-        the tooltip will make a new line. Note that this is not a hard cap. */
-    private const int MAX_LINE_CHAR_LENGTH = 30;
-
     private void Start()
     {
         // Get the tooltip locator
@@ -34,13 +30,12 @@ public class TooltipInterface : MonoBehaviour, IPointerEnterHandler, IPointerExi
         tooltipScript = tooltipLocator.GetToolTipScript();
 
         // Break tooltip text into lines
-        headerText = BreakStringIntoLines(headerText, MAX_LINE_CHAR_LENGTH);
-        descriptionText = BreakStringIntoLines(descriptionText, MAX_LINE_CHAR_LENGTH);
+        setTooltipHeaderText(headerText);
+        setTooltipDescriptionText(descriptionText);
     }
 
     public void setTooltipHeaderText(string newText) {
-        // Break header text into lines
-        headerText = BreakStringIntoLines(newText, MAX_LINE_CHAR_LENGTH);
+        headerText = Regex.Unescape(newText);
     }
 
     public string getTooltipHeaderText() {
@@ -48,8 +43,7 @@ public class TooltipInterface : MonoBehaviour, IPointerEnterHandler, IPointerExi
     }
 
     public void setTooltipDescriptionText(string newText) {
-        // Break description text into lines
-        descriptionText = BreakStringIntoLines(descriptionText, MAX_LINE_CHAR_LENGTH);
+        descriptionText = Regex.Unescape(newText);
     }
 
     public string getTooltipDescriptionText() {
@@ -79,29 +73,5 @@ public class TooltipInterface : MonoBehaviour, IPointerEnterHandler, IPointerExi
         if (tooltipScript == null) {
             tooltipScript = tooltipLocator.GetToolTipScript();
         }
-    }
-
-    private string BreakStringIntoLines(string text, int maxLineCharLength) {
-        // Split text into words
-        string[] words = text.Split(' ');
-        string finalString = "";
-
-        // Track characters on the current line
-        int charCounter = 0;
-        for (int i = 0; i < words.Length; i++) {
-            // Add word to the string
-            finalString += words[i] + ' ';
-
-            // Add number of chars to the char counter
-            charCounter += words[i].Length;
-
-            // Add a new line to the string if the number of chars has exceeded the specified max length
-            if (charCounter > maxLineCharLength) {
-                finalString += "\n";
-                charCounter = 0;
-            } 
-        }
-        
-        return finalString;
     }
 }

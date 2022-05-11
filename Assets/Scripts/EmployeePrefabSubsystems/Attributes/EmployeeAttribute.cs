@@ -10,6 +10,8 @@ public abstract class EmployeeAttribute
     abstract public int capabilityDelta { get; set; }
     abstract public int ethicDelta { get; set; }
     abstract public int personalDelta { get; set; }
+    abstract public string tooltipHeaderText { get; set; }
+    abstract public string tooltipDescriptionText { get; set; }
 
     protected Employee owner;
 

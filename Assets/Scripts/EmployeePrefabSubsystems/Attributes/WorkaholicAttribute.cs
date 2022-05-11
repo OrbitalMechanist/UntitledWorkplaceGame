@@ -10,6 +10,8 @@ public class WorkaholicAttribute : EmployeeAttribute
     public override int ethicDelta { get; set; } = 50;
     public override int personalDelta { get; set; } = -25;
     public override int capabilityDelta { get; set; } = 0;
+    public override string tooltipHeaderText { get; set; } = "<color=green>Workaholic</color>\nWork Ethic: <color=green>+50</color>\nPersonal Skill: <color=red>-25</color>";
+    public override string tooltipDescriptionText { get; set; } = "This employee has an incredible work ethic, but perhaps gets absorbed by their work a bit too much";
 
     public WorkaholicAttribute(Employee empToAttachTo) : base(empToAttachTo) {
     }
