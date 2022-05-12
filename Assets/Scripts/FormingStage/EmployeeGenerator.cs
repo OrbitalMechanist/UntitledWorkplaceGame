@@ -19,7 +19,7 @@ public class EmployeeGenerator : MonoBehaviour
 
 
     [Header("Attribute Generation")]
-    //These last two can't be a single dict/map because Unity doesn't let you edit these in the
+    //These next two can't be a single dict/map because Unity doesn't let you edit these in the
     //editor and I want to be able to edit them in the editor.
     //This is a stupid way to go about things, but it's the only one I can come up with.
     //These are the names of the valid attributes that may be added to an employee.
@@ -97,7 +97,8 @@ public class EmployeeGenerator : MonoBehaviour
 
         float vPadding = 20; //could be calculated somehow if necessary but it can be a constant
 
-        int numElementsPerRow = (int)containerWidth / (int)itemWidth;
+        //int numElementsPerRow = (int)containerWidth / (int)itemWidth;
+        int numElementsPerRow = 1;
 
         float spacePerItem = containerWidth / numElementsPerRow;
         float leftPaddingPerItem = (spacePerItem * numElementsPerRow - containerWidth) / 2;
