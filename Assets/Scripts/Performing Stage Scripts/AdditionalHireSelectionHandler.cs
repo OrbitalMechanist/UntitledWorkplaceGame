@@ -41,7 +41,7 @@ public class AdditionalHireSelectionHandler : MonoBehaviour
             return;
         }
         
-        //this ought to reduce the number of calls. I think.
+        //this ought to reduce the number of calls.
         Transform targetTransform = owner.transform;
         Transform originTransform = generatedOwnerInstance.transform;
 
@@ -50,6 +50,11 @@ public class AdditionalHireSelectionHandler : MonoBehaviour
         while(originTransform.childCount > 0) {
             originTransform.GetChild(0).SetParent(targetTransform, false);            
         }
+
+        //this is clunky but once again it's an instance variable for a prefab asset
+        GameObject.Find("Organizer").GetComponent<StageOrganizer>().AssignTargetsToEmployees();
+
+        Time.timeScale = 1;
     }
 
     //This function serves to strip out unselected employees before
@@ -129,6 +134,7 @@ public class AdditionalHireSelectionHandler : MonoBehaviour
             );
         }
 
+        updateSelectionStatus();
 
     }
 

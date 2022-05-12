@@ -10,6 +10,7 @@ public class HireButtonFunc : MonoBehaviour
     public void CreateHireScreen()
     {
         Instantiate(hireScreenPrefab).transform.SetParent(canvasInstance.transform, false);
+        Time.timeScale = 0;
     }
 
     // Start is called before the first frame update
