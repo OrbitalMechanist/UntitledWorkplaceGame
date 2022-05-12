@@ -98,7 +98,7 @@ public class EmployeeGenerator : MonoBehaviour
         float vPadding = 20; //could be calculated somehow if necessary but it can be a constant
 
         //int numElementsPerRow = (int)containerWidth / (int)itemWidth;
-        int numElementsPerRow = (int)containerWidth / (int)itemWidth;
+        int numElementsPerRow = 1;
 
         float spacePerItem = containerWidth / numElementsPerRow;
         float leftPaddingPerItem = (spacePerItem * numElementsPerRow - containerWidth) / 2;
