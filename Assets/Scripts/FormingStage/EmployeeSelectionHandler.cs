@@ -26,6 +26,10 @@ public class EmployeeSelectionHandler : MonoBehaviour
     //How many employees are allowed to be selected.
     public int selectionLimit = 5;
 
+    private Color disabledTextColour = new Color(101f/255f, 101f/255f, 101f/255f);
+
+    private Color enabledTextColour = Color.black;
+
     //This function serves to strip out unselected employees before
     //their container is handed over to SwitchToScenePreservingItem.
     public void cleanEmployeeObjectsBySelection()
@@ -60,7 +64,17 @@ public class EmployeeSelectionHandler : MonoBehaviour
         int selected = countSelectedEmployees();
         statusTextInstance.GetComponent<Text>().text = "Selected: " + selected + "/" + selectionLimit;
 
-        blockableButtonInstance.GetComponent<Button>().interactable = selectionLimit == selected;
+        if (selectionLimit == selected) {
+            blockableButtonInstance.GetComponent<Button>().interactable = true;
+            blockableButtonInstance.GetComponent<Button>().GetComponentInChildren<Text>().color = enabledTextColour;
+            blockableButtonInstance.GetComponent<TooltipInterface>().setTooltipHeaderText("Good to go!");
+            blockableButtonInstance.GetComponent<TooltipInterface>().setTooltipDescriptionText("");
+        } else {
+            blockableButtonInstance.GetComponent<Button>().interactable = false;
+            blockableButtonInstance.GetComponent<Button>().GetComponentInChildren<Text>().color = disabledTextColour;
+            blockableButtonInstance.GetComponent<TooltipInterface>().setTooltipHeaderText("Hold up!");
+            blockableButtonInstance.GetComponent<TooltipInterface>().setTooltipDescriptionText("You must have exactly 5 employees to continue!");
+        }
     }
 
     public int countSelectedEmployees()
