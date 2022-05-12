@@ -34,7 +34,7 @@ public class EmployeeSelectionHandler : MonoBehaviour
         int numEmployees = employeeItemContainerInstance.transform.childCount;
         for(int i = 0; i < numEmployees; i++)
         {
-            if(employeeItemContainerInstance.transform.GetChild(i).GetChild(8).gameObject.GetComponent<Toggle>().isOn)
+            if(employeeItemContainerInstance.transform.GetChild(i).GetChild(11).gameObject.GetComponent<Toggle>().isOn)
             {
                 selectedIndeces.AddFirst(i);
             }
@@ -69,7 +69,7 @@ public class EmployeeSelectionHandler : MonoBehaviour
         int numEmployees = employeeItemContainerInstance.transform.childCount;
         for (int i = 0; i < numEmployees; i++)
         {
-            if (employeeItemContainerInstance.transform.GetChild(i).GetChild(8).gameObject.GetComponent<Toggle>().isOn)
+            if (employeeItemContainerInstance.transform.GetChild(i).GetChild(11).gameObject.GetComponent<Toggle>().isOn)
             {
                 result++;
             }
@@ -84,7 +84,7 @@ public class EmployeeSelectionHandler : MonoBehaviour
         int numEmployees = employeeItemContainerInstance.transform.childCount;
         for (int i = 0; i < numEmployees; i++)
         {
-            employeeItemContainerInstance.transform.GetChild(i).GetChild(8).gameObject.GetComponent<Toggle>().onValueChanged.AddListener(
+            employeeItemContainerInstance.transform.GetChild(i).GetChild(11).gameObject.GetComponent<Toggle>().onValueChanged.AddListener(
                 delegate { updateSelectionStatus(); }
             );
         }
