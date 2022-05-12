@@ -28,7 +28,7 @@ public class EventGenerator : MonoBehaviour
         public List<List<int>> ButtonIndices = new List<List<int>>();
         public List<List<int>> ButtonValues = new List<List<int>>();
     }
-    EventObject myEvents;
+    public EventObject myEvents;
     // Start is called before the first frame update
     void Start()
     {
@@ -123,11 +123,12 @@ public class EventGenerator : MonoBehaviour
             AudioSource click = soundObject.transform.Find("Click").gameObject.GetComponent<AudioSource>();
             //Places function calls into button on click, along with playing a click sound effect
             newButton.onClick.AddListener(delegate{
-                for (int k = 0; k < myEvents.ButtonIndices[temp].Count-1; k++) {
-                    int bTemp = k;
-                    this.GetComponentInParent<EventFunctions>().delList[myEvents.ButtonIndices[temp][bTemp]](myEvents.ButtonValues[temp][bTemp], myEvents.EmployeeIndices[temp][bTemp]);
+                bool state = this.GetComponentInParent<EventFunctions>().checkList[1](0, 0, temp, temp);
+                if (state) {
+                    generateResult(myEvents.ButtonValues[temp][myEvents.ButtonValues[temp].Count-1], myEvents.EmployeeIndices[temp][myEvents.EmployeeIndices[temp].Count-1]);
+                } else {
+                    generateResult(myEvents.ButtonValues[temp][myEvents.ButtonValues[temp].Count-1], myEvents.EmployeeIndices[temp][myEvents.EmployeeIndices[temp].Count-1]);
                 }
-                generateResult(myEvents.ButtonValues[temp][myEvents.ButtonValues[temp].Count-1], myEvents.EmployeeIndices[temp][myEvents.EmployeeIndices[temp].Count-1]);
                 click.Play();
                 closeEvent(newEvent);
             });

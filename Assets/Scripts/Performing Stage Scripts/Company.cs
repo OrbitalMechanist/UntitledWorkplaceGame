@@ -8,6 +8,7 @@ public class Company : MonoBehaviour
     public int count;
     public int endState;
     public int happiness;
+    public int companySize;
     public string [] investors;
     public int [] investorDebts;
     public int [] investorPayBack;
@@ -16,6 +17,7 @@ public class Company : MonoBehaviour
     {
         cash = 10000;
         happiness = 100;
+        companySize = 5;
     }
 
     // Update is called once per frame

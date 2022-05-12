@@ -120,6 +120,9 @@ public class EventFunctions : MonoBehaviour
         return (check<=prob);
     }
     public bool alwaysTrue(int emp, int prob, int sucInd, int failInd) {
+        for (int i = 0; i < this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[sucInd].Count-1; i++) {
+            delList[this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[sucInd][i]](this.GetComponentInParent<EventGenerator>().myEvents.ButtonValues[sucInd][i], this.GetComponentInParent<EventGenerator>().myEvents.EmployeeIndices[sucInd][i]);
+        }
         return true;
     }
     public bool alwaysFalse(int emp, int prob, int sucInd, int failInd) {
