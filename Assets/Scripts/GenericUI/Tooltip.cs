@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// This is the general use tooltip class meant to control the behaviour of the tooltip itself.
+// To add tooltips to more scenes, make a copy of the Tooltip prefab and place it anywhere in the scene.
+// Note: only one tooltip object is required per scene
 public class Tooltip : MonoBehaviour
 {
     /** Horizontal offset of the tooltip relative to the mouse position. */
@@ -26,6 +29,9 @@ public class Tooltip : MonoBehaviour
 
     /** The default height that the game was initially developed with. */
     private const int DEFAULT_HEIGHT = 600;
+
+    /** The width of the tooltip, if fixed size is enabled. */
+    private const int TOOLTIP_WIDTH = 350;
 
     /** The scale factor for the width of the tooltip. Needed to fix scaling issues on other resolutions due to manual position calculation. */
     private float scaleWidth;
@@ -77,5 +83,13 @@ public class Tooltip : MonoBehaviour
 
         // Temporarily move tooltip position out of view to avoid flashing issues
         this.gameObject.transform.position = new Vector3(-1000, -1000, -1000);
+    }
+
+    public void disableFixedSize() {
+        this.gameObject.GetComponentInChildren<LayoutElement>().preferredWidth = 0;
+    }
+
+    public void enableFixedSize() {
+        this.gameObject.GetComponentInChildren<LayoutElement>().preferredWidth = TOOLTIP_WIDTH;
     }
 }

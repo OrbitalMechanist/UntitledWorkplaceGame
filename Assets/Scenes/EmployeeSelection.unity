@@ -1396,6 +1396,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableDescription: 1
+  enableTooltip: 1
   headerText: Hold up!
   descriptionText: You must have exactly 5 employees to continue!
 --- !u!114 &855520807

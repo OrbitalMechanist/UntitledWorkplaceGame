@@ -257,6 +257,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableDescription: 1
+  controlTooltipSize: 1
   headerText: Company Size
   descriptionText: Represents how large your company is
 --- !u!114 &68945398
@@ -14611,6 +14613,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableDescription: 1
+  controlTooltipSize: 1
   headerText: Happiness
   descriptionText: The overall happiness of your employees
 --- !u!1 &745044546
@@ -14940,6 +14944,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableDescription: 1
+  controlTooltipSize: 1
   headerText: 'Money: <color=green>+0</color>'
   descriptionText: The amount of money your company has
 --- !u!1 &833587443
@@ -15065,6 +15071,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableDescription: 1
+  controlTooltipSize: 1
   headerText: Game Progress
   descriptionText: The current progress towards the game's end
 --- !u!1 &915236566

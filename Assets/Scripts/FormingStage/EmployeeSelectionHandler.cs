@@ -65,15 +65,19 @@ public class EmployeeSelectionHandler : MonoBehaviour
         statusTextInstance.GetComponent<Text>().text = "Selected: " + selected + "/" + selectionLimit;
 
         if (selectionLimit == selected) {
+            // Enable button and change text colour
             blockableButtonInstance.GetComponent<Button>().interactable = true;
             blockableButtonInstance.GetComponent<Button>().GetComponentInChildren<Text>().color = enabledTextColour;
-            blockableButtonInstance.GetComponent<TooltipInterface>().setTooltipHeaderText("Good to go!");
-            blockableButtonInstance.GetComponent<TooltipInterface>().setTooltipDescriptionText("");
+
+            // disable warning tooltip
+            blockableButtonInstance.GetComponent<TooltipInterface>().enableTooltip = false;
         } else {
+            // Disabled button and change text colour
             blockableButtonInstance.GetComponent<Button>().interactable = false;
             blockableButtonInstance.GetComponent<Button>().GetComponentInChildren<Text>().color = disabledTextColour;
-            blockableButtonInstance.GetComponent<TooltipInterface>().setTooltipHeaderText("Hold up!");
-            blockableButtonInstance.GetComponent<TooltipInterface>().setTooltipDescriptionText("You must have exactly 5 employees to continue!");
+
+            // Enable warning tooltip
+            blockableButtonInstance.GetComponent<TooltipInterface>().enableTooltip = true;
         }
     }
 

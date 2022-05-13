@@ -5,8 +5,17 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 
+// This is a ganeral purpose interface for interacting with the tooltip object in scenes. 
+// Attach to objects that you wish tooltips to appear under when hovered over.
+// Note: requires a tooltip object in the scene to use.
 public class TooltipInterface : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    /** Controls displaying the tooltip description text, enabled by default. */
+    public bool enableDescription = true;
+
+    /** Controls whether the tooltip will be displayed, enabled by default. */
+    public bool enableTooltip = true;
+
     /** The header text to display, appears above the --------- line in the tooltip. */
     [SerializeField]
     private string headerText;
@@ -24,6 +33,7 @@ public class TooltipInterface : MonoBehaviour, IPointerEnterHandler, IPointerExi
     private void Start()
     {
         // Get the tooltip locator
+        // Note that the name of the tooltip locator is hard coded in order to have tooltips function on UI elements generated mid-game
         tooltipLocator = GameObject.Find("TooltipLocator").GetComponent<TooltipLocator>();
 
         // Get tooltip script from the locator
@@ -54,11 +64,23 @@ public class TooltipInterface : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        // If tooltip is disabled, don't proceed to display tooltip
+        if (!enableTooltip) {
+            return;
+        } 
+
         // Verify tooltip script was found
         verifyTooltip();
 
-        // Combine header and description text
-        string text = headerText + "\n--------------------\n" + descriptionText;
+        string text;
+
+        if (enableDescription) {
+            // Combine header and description text
+            text = headerText + "\n--------------------\n" + descriptionText;
+        } else {
+            // Only display header
+            text = headerText;
+        }
         
         // Show the tooltip with this interface's text when the cursor enters this interface's area
         tooltipScript.ShowTooltip(text);
