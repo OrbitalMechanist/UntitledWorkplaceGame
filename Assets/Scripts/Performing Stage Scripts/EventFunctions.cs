@@ -126,6 +126,9 @@ public class EventFunctions : MonoBehaviour
         return true;
     }
     public bool alwaysFalse(int emp, int prob, int sucInd, int failInd) {
+        for (int i = 0; i < this.GetComponentInParent<EventGenerator>().myEvents.FailureInd[sucInd].Count-1; i++) {
+            delList[this.GetComponentInParent<EventGenerator>().myEvents.FailureInd[sucInd][i]](this.GetComponentInParent<EventGenerator>().myEvents.FailureValues[sucInd][i], this.GetComponentInParent<EventGenerator>().myEvents.FailedEmpInd[sucInd][i]);
+        }
         return false;
     }
     // public void generateResult(int resultIndex, int gamestateIndex) {

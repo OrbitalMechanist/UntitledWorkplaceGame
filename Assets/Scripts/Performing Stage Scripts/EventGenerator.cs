@@ -13,6 +13,10 @@ public class EventGenerator : MonoBehaviour
     public TextAsset indicesFile;
     public TextAsset valuesFile;
     public TextAsset empIndicesFile;
+    public TextAsset probChecksFile;
+    public TextAsset failValFile;
+    public TextAsset failEmpFile;
+    public TextAsset failIndFile;
     public int count;
     public GameObject Event;
     public Button button;
@@ -22,8 +26,13 @@ public class EventGenerator : MonoBehaviour
         //Contains all of our events, as well as details for said events
         public string[] Events;
         public string[] Results;
+        public string[] Failures;
+        public List<List<int>> FailureValues = new List<List<int>>();
+        public List<List<int>> FailedEmpInd = new List<List<int>>();
+        public List<List<int>> FailureInd = new List<List<int>>();
         public List<List<int>> EventButtons = new List<List<int>>();
         public string[] ButtonTexts;
+        public List<List<int>> ProbChecks = new List<List<int>>();
         public List<List<int>> EmployeeIndices = new List<List<int>>();
         public List<List<int>> ButtonIndices = new List<List<int>>();
         public List<List<int>> ButtonValues = new List<List<int>>();
@@ -82,6 +91,50 @@ public class EventGenerator : MonoBehaviour
             }
             i++;
         }
+        i = 0;
+        //Read probability checks file, containing an index that points to a probability check function, as well as contains the values for each function, as a string
+        string prob = probChecksFile.text;
+        //Append probability checks to a list in the EventObject
+        foreach (var row in prob.Split('\n')) {
+            myEvents.ProbChecks.Add(new List<int>());
+            foreach (var index in row.Split(' ')) {
+                myEvents.ProbChecks[i].Add(int.Parse(index));
+            }
+            i++;
+        }
+        i = 0;
+        //Read failed employee index file, containing each employee's index number referring to the random employee list, as a string
+        string femp = failEmpFile.text;
+        //Append failed employee indices to a list in the EventObject
+        foreach (var row in femp.Split('\n')) {
+            myEvents.FailedEmpInd.Add(new List<int>());
+            foreach (var index in row.Split(' ')) {
+                myEvents.FailedEmpInd[i].Add(int.Parse(index));
+            }
+            i++;
+        }
+        i = 0;
+        //Read failed indices file, containing indices to the failed functions, as string
+        string find = failIndFile.text;
+        //Append failed indices to a list in the EventObject
+        foreach (var row in find.Split('\n')) {
+            myEvents.FailureInd.Add(new List<int>());
+            foreach (var index in row.Split(' ')) {
+                myEvents.FailureInd[i].Add(int.Parse(index));
+            }
+            i++;
+        }
+        i = 0;
+        //Read failed value file, containing each value to be passed to a failed function, as a string
+        string fail = failValFile.text;
+        //Append failed values to a list in the EventObject
+        foreach (var row in fail.Split('\n')) {
+            myEvents.FailureValues.Add(new List<int>());
+            foreach (var index in row.Split(' ')) {
+                myEvents.FailureValues[i].Add(int.Parse(index));
+            }
+            i++;
+        }
     }
 
     // Update is called once per frame
@@ -123,11 +176,11 @@ public class EventGenerator : MonoBehaviour
             AudioSource click = soundObject.transform.Find("Click").gameObject.GetComponent<AudioSource>();
             //Places function calls into button on click, along with playing a click sound effect
             newButton.onClick.AddListener(delegate{
-                bool state = this.GetComponentInParent<EventFunctions>().checkList[1](0, 0, temp, temp);
+                bool state = this.GetComponentInParent<EventFunctions>().checkList[myEvents.ProbChecks[temp][0]](myEvents.ProbChecks[temp][1], myEvents.ProbChecks[temp][2], myEvents.ProbChecks[temp][3], myEvents.ProbChecks[temp][4]);
                 if (state) {
                     generateResult(myEvents.ButtonValues[temp][myEvents.ButtonValues[temp].Count-1], myEvents.EmployeeIndices[temp][myEvents.EmployeeIndices[temp].Count-1]);
                 } else {
-                    generateResult(myEvents.ButtonValues[temp][myEvents.ButtonValues[temp].Count-1], myEvents.EmployeeIndices[temp][myEvents.EmployeeIndices[temp].Count-1]);
+                    generateResult(myEvents.FailureValues[temp][myEvents.FailureValues[temp].Count-1], myEvents.FailedEmpInd[temp][myEvents.FailedEmpInd[temp].Count-1]);
                 }
                 click.Play();
                 closeEvent(newEvent);
