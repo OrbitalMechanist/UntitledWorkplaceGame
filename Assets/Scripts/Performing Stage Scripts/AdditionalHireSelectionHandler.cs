@@ -48,7 +48,7 @@ public class AdditionalHireSelectionHandler : MonoBehaviour
         cleanEmployeeObjectsBySelection();
 
         while(originTransform.childCount > 0) {
-            originTransform.GetChild(0).SetParent(targetTransform, false);            
+            originTransform.GetChild(0).SetParent(targetTransform, false);
         }
 
         //this is clunky but once again it's instance variables for a prefab asset
@@ -77,7 +77,11 @@ public class AdditionalHireSelectionHandler : MonoBehaviour
         {
             if (selectedIndeces.Count == 0 || selectedIndeces.First.Value != i)
             {
-                Destroy(generatedOwnerInstance.transform.GetChild(i).gameObject);
+                //this has to be done by unparenting first and only then deleting. I don't know why
+                //but the destroyed gameobject is still apparently a child.
+                GameObject victim = generatedOwnerInstance.transform.GetChild(i).gameObject;
+                victim.transform.SetParent(null);
+                Destroy(victim);
             }
             else
             {
