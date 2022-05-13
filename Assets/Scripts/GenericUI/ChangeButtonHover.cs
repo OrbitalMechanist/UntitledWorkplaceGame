@@ -8,9 +8,9 @@ public class ChangeButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerEx
 {
     public Button buttonUI;
     public Image buttonImage;
+    public Color highlightColour = new Color(242f/255f, 182f/255f, 4f/255f);
     private GameObject myEventSystem;
     private Image button;
-    private Color highlightColour = new Color(242f/255f, 182f/255f, 4f/255f);
 
     void Start (){
         myEventSystem = GameObject.Find("EventSystem");
@@ -21,13 +21,11 @@ public class ChangeButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        //button.color = Color.white;
         buttonImage.color = highlightColour;
     }
  
     public void OnPointerExit(PointerEventData eventData)
     {
-        //button.color = highlightColour;
         buttonImage.color = Color.white;
         myEventSystem .GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
     }
