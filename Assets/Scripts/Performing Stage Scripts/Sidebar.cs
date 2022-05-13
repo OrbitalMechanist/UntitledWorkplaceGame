@@ -9,20 +9,11 @@ public class Sidebar : MonoBehaviour
     public Button panelButton;
     
     public void Start() {
-        panelButton.onClick.AddListener(OpenPanel);
+        panelButton.onClick.AddListener(TogglePanel);
     }
 
-    public void OpenPanel()
+    public void TogglePanel()
     {
-        Panel.SetActive(true);
-        panelButton.onClick.AddListener(ClosePanel);
-        panelButton.onClick.RemoveListener(OpenPanel);
-    }
-
-    public void ClosePanel()
-    {
-        Panel.SetActive(false);
-        panelButton.onClick.AddListener(OpenPanel);
-        panelButton.onClick.RemoveListener(ClosePanel);
+        Panel.SetActive(!Panel.activeSelf);
     }
 }

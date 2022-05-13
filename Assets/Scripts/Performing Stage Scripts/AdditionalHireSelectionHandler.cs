@@ -51,7 +51,7 @@ public class AdditionalHireSelectionHandler : MonoBehaviour
             originTransform.GetChild(0).SetParent(targetTransform, false);            
         }
 
-        //this is clunky but once again it's an instance variable for a prefab asset
+        //this is clunky but once again it's instance variables for a prefab asset
         GameObject.Find("Organizer").GetComponent<StageOrganizer>().AssignTargetsToEmployees();
 
         Time.timeScale = 1;
@@ -65,7 +65,7 @@ public class AdditionalHireSelectionHandler : MonoBehaviour
         int numEmployees = employeeItemContainerInstance.transform.childCount;
         for (int i = 0; i < numEmployees; i++)
         {
-            if (employeeItemContainerInstance.transform.GetChild(i).GetChild(8).gameObject.GetComponent<Toggle>().isOn)
+            if (employeeItemContainerInstance.transform.GetChild(i).GetChild(11).gameObject.GetComponent<Toggle>().isOn)
             {
                 selectedIndeces.AddFirst(i);
             }
@@ -101,7 +101,7 @@ public class AdditionalHireSelectionHandler : MonoBehaviour
         int numEmployees = employeeItemContainerInstance.transform.childCount;
         for (int i = 0; i < numEmployees; i++)
         {
-            if (employeeItemContainerInstance.transform.GetChild(i).GetChild(8).gameObject.GetComponent<Toggle>().isOn)
+            if (employeeItemContainerInstance.transform.GetChild(i).GetChild(11).gameObject.GetComponent<Toggle>().isOn)
             {
                 result++;
             }
@@ -129,7 +129,7 @@ public class AdditionalHireSelectionHandler : MonoBehaviour
 
         for (int i = 0; i < numEmployees; i++)
         {
-            employeeItemContainerInstance.transform.GetChild(i).GetChild(8).gameObject.GetComponent<Toggle>().onValueChanged.AddListener(
+            employeeItemContainerInstance.transform.GetChild(i).GetChild(11).gameObject.GetComponent<Toggle>().onValueChanged.AddListener(
                 delegate { updateSelectionStatus(); }
             );
         }
