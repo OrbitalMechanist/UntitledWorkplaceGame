@@ -242,6 +242,8 @@ public class EmployeeGenerator : MonoBehaviour
         int capability = Random.Range(MIN_STAT, MAX_STAT + 1);
         int ethic = Random.Range(MIN_STAT, MAX_STAT + 1);
 
+        int salary = 1050;
+
         GameObject emp = Instantiate(employeePrefab);
 
         //Body image + color
@@ -261,7 +263,7 @@ public class EmployeeGenerator : MonoBehaviour
         Employee empBehaviour = emp.GetComponent<Employee>();
 
         //Give name and ability parameters to the actual employee MonoBehaviour
-        empBehaviour.Create(fName, lName, personal, capability, ethic);
+        empBehaviour.Create(fName, lName, personal, capability, ethic, salary);
 
         //Generate and add attributes.
         int attrNum = Random.Range(minAttributes, maxAttributes + 1);
@@ -285,8 +287,8 @@ public class EmployeeGenerator : MonoBehaviour
         //Set Name display field
         UIElement.transform.GetChild(0).GetComponent<Text>().text = employeeObject.GetComponent<Employee>().fName 
             + " " + employeeObject.GetComponent<Employee>().lName;
-        //Set Last Name display field, back when they were two separate lines
-        //UIElement.transform.GetChild(1).GetComponent<Text>().text = employeeObject.GetComponent<Employee>().lName;
+        //Set Salary display field
+        UIElement.transform.GetChild(1).GetComponent<Text>().text = "$" + employeeObject.GetComponent<Employee>().salary;
         //Set Capability display bar and number
         UIElement.transform.GetChild(2).GetComponent<UnityEngine.UI.Slider>().value 
             = employeeObject.GetComponent<Employee>().capability;

@@ -10,6 +10,8 @@ public class Employee : MonoBehaviour
     //How much money per unit of work an employee gives the company.
     private static int REVENUE = 500;
 
+    public int salary = 1000;
+
     public int personal;
     public int capability;
     public int ethic;
@@ -71,13 +73,14 @@ public class Employee : MonoBehaviour
         return false;
     }
 
-    public void Create(string first, string last, int p, int c, int e)
+    public void Create(string first, string last, int p, int c, int e, int sal)
     {
         fName = first;
         lName = last;
         personal = p;
         capability = c;
         ethic = e;
+        salary = sal;
         Debug.Log("Created Employee: " + first +" "+last +", P: " +personal+" C:"+capability+" E:"+ethic);
     }
 
