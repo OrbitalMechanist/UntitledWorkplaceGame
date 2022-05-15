@@ -16,6 +16,7 @@ public class EventFunctions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        company = GameObject.FindGameObjectWithTag("Company");
         delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame, Fire};
     }
 

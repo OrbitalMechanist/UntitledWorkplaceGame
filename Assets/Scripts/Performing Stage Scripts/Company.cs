@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class Company : MonoBehaviour
 {
-    public int cash;
+    public int cash = 10000;
     public int count;
     public int endState;
-    public int happiness;
+    public int happiness = 100;
     // Start is called before the first frame update
     void Start()
     {
-        cash = 10000;
-        happiness = 100;
+        //Does this count as a singleton?
+        foreach(var i in GameObject.FindGameObjectsWithTag(this.gameObject.tag))
+        {
+            if(i != this.gameObject)
+            {
+                Debug.Log("destroying new company"); //this will be a useful warning and rare enough not to cause performance issues
+                Destroy(gameObject); //we are destroying the *new* Company object being created.
+            }
+        }
     }
 
     // Update is called once per frame

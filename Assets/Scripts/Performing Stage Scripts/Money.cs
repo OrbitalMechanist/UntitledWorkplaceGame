@@ -20,6 +20,8 @@ public class Money : MonoBehaviour
     void Start() {
         // Get tooltip interface script
         tooltipInterfaceScript = tooltipObject.GetComponent<TooltipInterface>();
+
+        company = GameObject.FindGameObjectWithTag("Company");
     }
 
     // Update is called once per frame

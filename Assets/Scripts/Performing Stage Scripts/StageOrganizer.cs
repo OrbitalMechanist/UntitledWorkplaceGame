@@ -35,6 +35,7 @@ public class StageOrganizer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        company = GameObject.FindGameObjectWithTag("Company");
         //this is incredibly useful for testing.
         if(GameObject.Find("employeeOwner") == null)
         {

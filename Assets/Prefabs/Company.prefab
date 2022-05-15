@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -5879824292451530060}
   m_Layer: 0
   m_Name: Company
-  m_TagString: Untagged
+  m_TagString: Company
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,4 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d8192ddb07a864aabcd65d234c1d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cash: 0
+  cash: 10000
+  count: 0
+  endState: 0
+  happiness: 100
