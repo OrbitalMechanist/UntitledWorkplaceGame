@@ -12,11 +12,15 @@ public class EventFunctions : MonoBehaviour
     public GameObject[] randEmploy;
     public GameObject company;
     public delegate void MethodDelegate (int delta, int emp);
+    public delegate bool CheckDelegate (int emp, int prob, int sucInd, int failInd);
     public List<MethodDelegate> delList;
+    public List<CheckDelegate> checkList;
     // Start is called before the first frame update
     void Start()
     {
+        //Assigns each function to a list to be called by the event generator
         delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame, Fire};
+        checkList = new List<CheckDelegate> {alwaysFalse, alwaysTrue, randomCheck, ethicCheck, happinessCheck, capabilityCheck, personalityCheck, moneyCheck, masshappinessCheck};
     }
 
     // Update is called once per frame
@@ -78,6 +82,56 @@ public class EventFunctions : MonoBehaviour
         SceneManager.LoadScene("results");
         DontDestroyOnLoad(company);
     }
+    public void addInvestor(int invInd, int plan) {
+
+    }
+    public void futureEvent(int ind, int count) {
+        this.GetComponentInParent<EventHandler>().followUpStack.Add(ind);
+        this.GetComponentInParent<EventHandler>().followUpTimer.Add(count);
+    }
+    public bool ethicCheck(int emp, int prob, int sucInd, int failInd) {
+        int check = Random.Range(0, 256);
+        int modProb = (int)(randEmploy[emp].GetComponent<Employee>().ethic-128-prob);
+        bool pass = check<=modProb;
+        return (check<=modProb);
+    }
+    public bool happinessCheck(int emp, int prob, int sucInd, int failInd) {
+        int check = Random.Range(0, 256);
+        int modProb = (int)(randEmploy[emp].GetComponent<Employee>().happiness-128+prob);
+        return (check<=modProb);
+    }
+    public bool capabilityCheck(int emp, int prob, int sucInd, int failInd) {
+        int check = Random.Range(0, 256);
+        int modProb = (int)(randEmploy[emp].GetComponent<Employee>().capability-128+prob);
+        return (check<=modProb);
+    }
+    public bool personalityCheck(int emp, int prob, int sucInd, int failInd) {
+        int check = Random.Range(0, 256);
+        int modProb = (int)(randEmploy[emp].GetComponent<Employee>().personal-128+prob);
+        return (check<=modProb);
+    }
+    public bool moneyCheck(int emp, int prob, int sucInd, int failInd) {
+        return (company.GetComponent<Company>().cash>prob);
+    }
+    public bool masshappinessCheck(int emp, int prob, int sucInd, int failInd) {
+        return (company.GetComponent<Company>().happiness>prob);
+    }
+    public bool randomCheck(int emp, int prob, int sucInd, int failInd) {
+        int check = Random.Range(0, 256);
+        return (check<=prob);
+    }
+    public bool alwaysTrue(int emp, int prob, int sucInd, int failInd) {
+        for (int i = 0; i < this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[sucInd].Count-1; i++) {
+            delList[this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[sucInd][i]](this.GetComponentInParent<EventGenerator>().myEvents.ButtonValues[sucInd][i], this.GetComponentInParent<EventGenerator>().myEvents.EmployeeIndices[sucInd][i]);
+        }
+        return true;
+    }
+    public bool alwaysFalse(int emp, int prob, int sucInd, int failInd) {
+        for (int i = 0; i < this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[failInd].Count-1; i++) {
+            delList[this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[failInd][i]](this.GetComponentInParent<EventGenerator>().myEvents.ButtonValues[failInd][i], this.GetComponentInParent<EventGenerator>().myEvents.EmployeeIndices[failInd][i]);
+        }
+        return false;
+    }
     // public void generateResult(int resultIndex, int gamestateIndex) {
     //     Debug.Log(resultIndex + ", " + gamestateIndex);
     //     GameObject result = Instantiate(Event);
@@ -112,20 +166,23 @@ public class EventFunctions : MonoBehaviour
     public void randomEmployees() {
         GameObject employees = company.transform.GetChild(0).gameObject;
         int empCount = company.transform.GetChild(0).childCount;
-        GameObject[] empList = new GameObject[empCount];
+        randEmploy = new GameObject[empCount];
         int[] empInd = new int[empCount];
         int[] delta = new int[empCount];
+        //Assigns each employee to a random index
         for (int i = 0; i < empCount; i++) {
+            //In order to ensure we don't get duplicates, we need to always go from i, which is the value of the current index of the employee
             empInd[i] = (int)Random.Range(i, empCount);
             delta[i] = 0;
+            //Compares our number against every other generated number, and lowers it by 1 for every number that's greater than or equal to itself
             for (int j = 0; j < i; j++) {
                 if (empInd[i]<=(empInd[j]+delta[j])) {
                     delta[i]++;
                 }
             }
             empInd[i]-=delta[i];
-            empList[i] = employees.transform.GetChild(empInd[i]).gameObject;
+            //Assigns the employee at that index to an index in the random employee list
+            randEmploy[i] = employees.transform.GetChild(empInd[i]).gameObject;
         }
-        randEmploy = empList;
     }
 }
