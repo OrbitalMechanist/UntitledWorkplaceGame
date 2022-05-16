@@ -10,17 +10,25 @@ public class AdditionalHireSelectionHandler : MonoBehaviour
     //Intended to be used exclusively in the Performing Stage scene.
 
     //The generatedOwnerInstance must contain the freshly-generated employees up for selection as its first children.
-    //THIS IS NOT THE OBJECT CALLED employeeOwner!!! That one contains the employees already at the company.
+    //THIS IS NOT THE OBJECT CALLED "employeeOwner"!!! That one contains the employees already at the company.
     public GameObject generatedOwnerInstance;
 
     //The employeeItemContainer contains nothing but EmployeePanel items,
     //in the order that they are stored in the employeeOwner.
-    //The EmployeePanel must have a Toggle as its child with the index 8.
+    //The EmployeePanel must have a Toggle as its child with the index 11.
     public GameObject employeeItemContainerInstance;
+
+    //The Company object that contains the Company script to use for money.
+    //This script will have to find it at runtime.
+    public GameObject companyInstance;
 
     //A Text UI element that says how many characters were selected.
     //Modified with extra text and colors!!!
     public GameObject statusTextInstance;
+
+    //A Text UI element that says how much money will be left after the selected employees are hired.
+    //Modified with more text.
+    public GameObject budgetTextInstance;
 
     //The Button to block while the wrong number of employees is selected.
     public GameObject blockableButtonInstance;
@@ -91,12 +99,21 @@ public class AdditionalHireSelectionHandler : MonoBehaviour
 
     }
 
+    public void applyHiringCosts()
+    {
+        companyInstance.GetComponent<Company>().cash -= totalSelectedSalaries();
+    }
+
     public void updateSelectionStatus()
     {
         int selected = countSelectedEmployees();
-        statusTextInstance.GetComponent<Text>().text = "Selected: " + (selectionStart + selected) + "/" + selectionLimit;
+        statusTextInstance.GetComponent<Text>().text = "Selected: " + selected + "/" + selectionLimit;
+        int compCash = companyInstance.GetComponent<Company>().cash;
+        int selCash = totalSelectedSalaries();
+        budgetTextInstance.GetComponent<Text>().text = "Budget Left: $" + (compCash - selCash);
 
-        blockableButtonInstance.GetComponent<Button>().interactable = selectionLimit >= selected + selectionStart;
+        blockableButtonInstance.GetComponent<Button>().interactable = selectionLimit == selected
+            && compCash > selCash;
     }
 
     public int countSelectedEmployees()
@@ -113,13 +130,29 @@ public class AdditionalHireSelectionHandler : MonoBehaviour
         return result;
     }
 
+    public int totalSelectedSalaries()
+    {
+        int result = 0;
+        int numEmployees = employeeItemContainerInstance.transform.childCount;
+        for (int i = 0; i < numEmployees; i++)
+        {
+            if (employeeItemContainerInstance.transform.GetChild(i).GetChild(11).gameObject.GetComponent<Toggle>().isOn)
+            {
+                result += generatedOwnerInstance.transform.GetChild(i).gameObject.GetComponent<Employee>().salary;
+            }
+        }
+        return result;
+    }
+
+
     // Have to add the function to update selection to the toggle's onValueChange here because
     //this script depends on instance variables from the general scene, which can't be set for the prefab.
     void Start()
     {
         selectionStart = GameObject.Find("employeeOwner").transform.childCount;
+        companyInstance = GameObject.FindGameObjectWithTag("Company");
 
-        StartCoroutine(AddTriggers());
+        StartCoroutine(AddTriggers()); //need to wait for the triggers to get spawned
     }
 
     IEnumerator AddTriggers()

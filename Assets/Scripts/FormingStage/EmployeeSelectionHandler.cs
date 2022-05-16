@@ -13,7 +13,7 @@ public class EmployeeSelectionHandler : MonoBehaviour
 
     //The employeeItemContainer contains nothing but EmployeePanel items,
     //in the order that they are stored in the employeeOwner.
-    //The EmployeePanel must have a Toggle as its child with the index 8.
+    //The EmployeePanel must have a Toggle as its child with the index 11.
     public GameObject employeeItemContainerInstance;
 
     //The Company object that contains the Company script to use for money.
