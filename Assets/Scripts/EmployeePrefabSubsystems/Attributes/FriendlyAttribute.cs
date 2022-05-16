@@ -10,6 +10,8 @@ public class FriendlyAttribute : EmployeeAttribute
     public override int ethicDelta { get; set; } = 0;
     public override int personalDelta { get; set; } = +20;
     public override int capabilityDelta { get; set; } = 0;
+    public override string tooltipHeaderText { get; set; } = "<color=green>Friendly</color>\nPersonal Skill: <color=green>+20</color>";
+    public override string tooltipDescriptionText { get; set; } = "This employee has a friendly attitude";
 
     public FriendlyAttribute(Employee empToAttachTo) : base(empToAttachTo)
     {
