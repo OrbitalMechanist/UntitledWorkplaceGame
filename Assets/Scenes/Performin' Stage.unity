@@ -19384,6 +19384,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasEvent: 0
+  followUpStack: 
+  followUpTimer: 
 --- !u!4 &1364367284
 Transform:
   m_ObjectHideFlags: 0
@@ -19438,9 +19440,7 @@ MonoBehaviour:
   valuesFile: {fileID: 4900000, guid: a46cb2e0ef396f54fb764aa2f6f8a2ec, type: 3}
   empIndicesFile: {fileID: 4900000, guid: 866c43c6904b4d74bbc2497c114597cd, type: 3}
   probChecksFile: {fileID: 4900000, guid: abefe6806a16e9142af59e6ab8ad1eed, type: 3}
-  failValFile: {fileID: 4900000, guid: cc182eb49cdbcae4cab89142548beac4, type: 3}
-  failEmpFile: {fileID: 4900000, guid: cc7117fd2dbb91f458644f59ecc5f6d2, type: 3}
-  failIndFile: {fileID: 4900000, guid: 5b59d773b9276754c8fb9bbea9e64d6e, type: 3}
+  followUpsFile: {fileID: 4900000, guid: 55a1742174cd5a04db21a54993d1483a, type: 3}
   count: 0
   Event: {fileID: 1093100239277753127, guid: 57082038c653f094cb2829b45351614e, type: 3}
   button: {fileID: 6902521487753483856, guid: 8a4f00a60dddf964eb0691e7fce61cce, type: 3}
