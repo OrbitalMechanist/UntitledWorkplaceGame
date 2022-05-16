@@ -86,7 +86,8 @@ public class EventFunctions : MonoBehaviour
 
     }
     public void futureEvent(int ind, int count) {
-
+        this.GetComponentInParent<EventHandler>().followUpStack.Add(ind);
+        this.GetComponentInParent<EventHandler>().followUpTimer.Add(count);
     }
     public bool ethicCheck(int emp, int prob, int sucInd, int failInd) {
         int check = Random.Range(0, 256);
@@ -126,8 +127,8 @@ public class EventFunctions : MonoBehaviour
         return true;
     }
     public bool alwaysFalse(int emp, int prob, int sucInd, int failInd) {
-        for (int i = 0; i < this.GetComponentInParent<EventGenerator>().myEvents.FailureInd[sucInd].Count-1; i++) {
-            delList[this.GetComponentInParent<EventGenerator>().myEvents.FailureInd[sucInd][i]](this.GetComponentInParent<EventGenerator>().myEvents.FailureValues[sucInd][i], this.GetComponentInParent<EventGenerator>().myEvents.FailedEmpInd[sucInd][i]);
+        for (int i = 0; i < this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[failInd].Count-1; i++) {
+            delList[this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[failInd][i]](this.GetComponentInParent<EventGenerator>().myEvents.ButtonValues[failInd][i], this.GetComponentInParent<EventGenerator>().myEvents.EmployeeIndices[failInd][i]);
         }
         return false;
     }

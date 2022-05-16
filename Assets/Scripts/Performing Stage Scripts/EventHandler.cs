@@ -11,6 +11,8 @@ public class EventHandler : MonoBehaviour
     // private static int MAX_STAT = 256;
     // private static int MIN_STAT = 0;
     public bool hasEvent = false;
+    public List<int> followUpStack = new List<int>();
+    public List<int> followUpTimer = new List<int>();
     // public int count;
     // int randEvent;
     // UnityAction buttonCallBack;
@@ -92,9 +94,22 @@ public class EventHandler : MonoBehaviour
     {
         if (!hasEvent) {
             if (time<=0.0f) {
+                bool followUp = false;
+                for (int i = 0; i < followUpTimer.Count; i++) {
+                    followUpTimer[i] -= 1;
+                    if (followUpTimer[i] <= 0) {
+                        //Call specified function
+                        followUp = true;
+                        followUpTimer.RemoveAt(i);
+                        followUpStack.RemoveAt(i);
+                        break;
+                    }
+                }
                 time = Random.Range(5.0f, 10.0f);
                 //Event.SetActive(true);
-                this.GetComponentInParent<EventGenerator>().randomizeEvents();
+                if (!followUp) {
+                    this.GetComponentInParent<EventGenerator>().randomizeEvents();
+                }
                 //test.transform.SetParent(canvas.transform, false);
                 //Time.timeScale = 0;
                 hasEvent = true;
