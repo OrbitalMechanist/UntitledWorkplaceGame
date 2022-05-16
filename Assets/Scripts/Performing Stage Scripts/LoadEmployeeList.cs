@@ -18,15 +18,7 @@ public class LoadEmployeeList : MonoBehaviour
     private const float V_PADDING = 25;
 
     public void Start() {
-        // Find the employee owner to use later
-        employeeManagerInstance = GameObject.Find("employeeOwner");
-        numEmployees = employeeManagerInstance.transform.childCount;
-
-        //Calculate sizes for the UI
-        containerWidth = UiContainerInstance.GetComponent<RectTransform>().rect.width;
-        containerHeight = UiContainerInstance.GetComponent<RectTransform>().rect.height;
-        itemWidth = UiDisplayItemPrefab.GetComponent<RectTransform>().rect.width;
-        itemHeight = UiDisplayItemPrefab.GetComponent<RectTransform>().rect.height;
+        
     }
 
     GameObject createEmployeeUi(GameObject UiPrefab, GameObject employeeObject)
@@ -91,6 +83,16 @@ public class LoadEmployeeList : MonoBehaviour
 
     public void loadEmployees()
     {
+        // Find the employee owner to use later
+        employeeManagerInstance = GameObject.Find("employeeOwner");
+        numEmployees = employeeManagerInstance.transform.childCount;
+
+        //Calculate sizes for the UI
+        containerWidth = UiContainerInstance.GetComponent<RectTransform>().rect.width;
+        containerHeight = UiContainerInstance.GetComponent<RectTransform>().rect.height;
+        itemWidth = UiDisplayItemPrefab.GetComponent<RectTransform>().rect.width;
+        itemHeight = UiDisplayItemPrefab.GetComponent<RectTransform>().rect.height;
+
         // Check and update number of employees
         numEmployees = employeeManagerInstance.transform.childCount;
 

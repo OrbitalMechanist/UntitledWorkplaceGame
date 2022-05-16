@@ -15,14 +15,13 @@ public class StageOrganizer : MonoBehaviour
     //Used due to existing design.
     public GameObject companyManagerInstance;
 
-    // Start is called before the first frame update
-    void Start()
+    public void AssignTargetsToEmployees()
     {
         GameObject eo = GameObject.Find("employeeOwner");
         eo.transform.SetParent(company.transform, false);
         GameObject ts = GameObject.FindGameObjectWithTag("Nav Tile System");
         //not exactly error handling but it won't crash at least
-        for(int i = 0; i < eo.transform.childCount && i < workplacesInstances.Length; i++)
+        for (int i = 0; i < eo.transform.childCount && i < workplacesInstances.Length; i++)
         {
             GameObject emp = eo.transform.GetChild(i).gameObject;
             emp.GetComponent<Employee>().distractionInstance = distractionInstance;
@@ -31,6 +30,18 @@ public class StageOrganizer : MonoBehaviour
             emp.GetComponent<TileNav>().navigableTileSystemInstance = ts;
             emp.transform.position = workplacesInstances[i].transform.position;
         }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        //this is incredibly useful for testing.
+        if(GameObject.Find("employeeOwner") == null)
+        {
+            new GameObject("employeeOwner");
+        }
+        
+        AssignTargetsToEmployees();
     }
 
     // Update is called once per frame
