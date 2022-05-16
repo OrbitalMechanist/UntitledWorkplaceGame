@@ -5,8 +5,17 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 
+// This is a ganeral purpose interface for interacting with the tooltip object in scenes. 
+// Attach to objects that you wish tooltips to appear under when hovered over.
+// Note: requires a tooltip object in the scene to use.
 public class TooltipInterface : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    /** Controls displaying the tooltip description text, enabled by default. */
+    public bool enableDescription = true;
+
+    /** Controls whether the tooltip will be displayed, enabled by default. */
+    public bool enableTooltip = true;
+
     /** The header text to display, appears above the --------- line in the tooltip. */
     [SerializeField]
     private string headerText;
@@ -21,26 +30,23 @@ public class TooltipInterface : MonoBehaviour, IPointerEnterHandler, IPointerExi
     /** The Tooltip script. */
     private Tooltip tooltipScript;
 
-    /** The threshold of characters that can be on a line in the tooltip. If a word is added and the characters surpass this limit, 
-        the tooltip will make a new line. Note that this is not a hard cap. */
-    private const int MAX_LINE_CHAR_LENGTH = 30;
-
     private void Start()
     {
         // Get the tooltip locator
+        // Note that the name of the tooltip locator is hard coded in order to have tooltips function on UI elements generated mid-game
         tooltipLocator = GameObject.Find("TooltipLocator").GetComponent<TooltipLocator>();
 
         // Get tooltip script from the locator
         tooltipScript = tooltipLocator.GetToolTipScript();
 
-        // Break tooltip text into lines
-        headerText = BreakStringIntoLines(headerText, MAX_LINE_CHAR_LENGTH);
-        descriptionText = BreakStringIntoLines(descriptionText, MAX_LINE_CHAR_LENGTH);
+        // Reformat text
+        setTooltipHeaderText(headerText);
+        setTooltipDescriptionText(descriptionText);
     }
 
     public void setTooltipHeaderText(string newText) {
-        // Break header text into lines
-        headerText = BreakStringIntoLines(newText, MAX_LINE_CHAR_LENGTH);
+        // Regex required for newline characters inserted in the Unity editor
+        headerText = Regex.Unescape(newText);
     }
 
     public string getTooltipHeaderText() {
@@ -48,8 +54,8 @@ public class TooltipInterface : MonoBehaviour, IPointerEnterHandler, IPointerExi
     }
 
     public void setTooltipDescriptionText(string newText) {
-        // Break description text into lines
-        descriptionText = BreakStringIntoLines(descriptionText, MAX_LINE_CHAR_LENGTH);
+        // Regex required for newline characters inserted in the Unity editor
+        descriptionText = Regex.Unescape(newText);
     }
 
     public string getTooltipDescriptionText() {
@@ -58,11 +64,23 @@ public class TooltipInterface : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        // If tooltip is disabled, don't proceed to display tooltip
+        if (!enableTooltip) {
+            return;
+        } 
+
         // Verify tooltip script was found
         verifyTooltip();
 
-        // Combine header and description text
-        string text = headerText + "\n--------------------\n" + descriptionText;
+        string text;
+
+        if (enableDescription) {
+            // Combine header and description text
+            text = headerText + "\n--------------------\n" + descriptionText;
+        } else {
+            // Only display header
+            text = headerText;
+        }
         
         // Show the tooltip with this interface's text when the cursor enters this interface's area
         tooltipScript.ShowTooltip(text);
@@ -79,29 +97,5 @@ public class TooltipInterface : MonoBehaviour, IPointerEnterHandler, IPointerExi
         if (tooltipScript == null) {
             tooltipScript = tooltipLocator.GetToolTipScript();
         }
-    }
-
-    private string BreakStringIntoLines(string text, int maxLineCharLength) {
-        // Split text into words
-        string[] words = text.Split(' ');
-        string finalString = "";
-
-        // Track characters on the current line
-        int charCounter = 0;
-        for (int i = 0; i < words.Length; i++) {
-            // Add word to the string
-            finalString += words[i] + ' ';
-
-            // Add number of chars to the char counter
-            charCounter += words[i].Length;
-
-            // Add a new line to the string if the number of chars has exceeded the specified max length
-            if (charCounter > maxLineCharLength) {
-                finalString += "\n";
-                charCounter = 0;
-            } 
-        }
-        
-        return finalString;
     }
 }
