@@ -10,8 +10,6 @@ public class AlcoholicAttribute : EmployeeAttribute
     public override int ethicDelta { get; set; } = -10;
     public override int personalDelta { get; set; } = -25;
     public override int capabilityDelta { get; set; } = -50;
-    public override string tooltipHeaderText { get; set; } = "<color=red>Alcoholic</color>\nWork Ethic: <color=red>-10</color>\nPersonal Skill: <color=red>-25</color>";
-    public override string tooltipDescriptionText { get; set; } = "We should probably remove this from the game...";
 
     public AlcoholicAttribute(Employee empToAttachTo) : base(empToAttachTo)
     {

@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 9056463514775488239}
   - component: {fileID: 1259957719701167065}
   - component: {fileID: 6902521487753483856}
+  - component: {fileID: 2767305596006742369}
   - component: {fileID: 6180668568424366943}
   - component: {fileID: 3944478592375791987}
   m_Layer: 5
@@ -228,11 +229,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.73333335, g: 0.76862746, b: 0.7882353, a: 0.9607843}
-    m_PressedColor: {r: 0.73333335, g: 0.76862746, b: 0.7882353, a: 0.9607843}
-    m_SelectedColor: {r: 0.73333335, g: 0.76862746, b: 0.7882353, a: 0.9607843}
-    m_DisabledColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 0.9607843}
+    m_NormalColor: {r: 0.9490196, g: 0.7137255, b: 0.015686275, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.59607846, g: 0.44705883, b: 0.011764706, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -263,6 +264,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2767305596006742369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6666054568556546852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b965f0fa2f554834bb03a9f50aad3567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6180668568424366943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,7 +374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
