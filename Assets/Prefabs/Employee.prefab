@@ -105,8 +105,10 @@ MonoBehaviour:
   happiness: 125
   fName: 
   lName: 
+  attributeNames: []
   workplaceInstance: {fileID: 0}
   distractionInstance: {fileID: 0}
+  companyManagerInstance: {fileID: 0}
 --- !u!114 &6445562597056753468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,7 +224,7 @@ PrefabInstance:
     - target: {fileID: 6495733043326546305, guid: 8590d24f63a6f0e448c7974bfea957a7, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 9d9b8571ecbe9964e9bf7a4139d1e270, type: 3}
+      objectReference: {fileID: 21300000, guid: 99e442a7110965d4c9870c43781a9f7e, type: 3}
     - target: {fileID: 6495733043326546305, guid: 8590d24f63a6f0e448c7974bfea957a7, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -232,12 +234,24 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8373097103527677267, guid: 8590d24f63a6f0e448c7974bfea957a7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5.6400003
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373097103527677267, guid: 8590d24f63a6f0e448c7974bfea957a7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5.6400003
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373097103527677267, guid: 8590d24f63a6f0e448c7974bfea957a7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1590823
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373097103527677267, guid: 8590d24f63a6f0e448c7974bfea957a7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8373097103527677267, guid: 8590d24f63a6f0e448c7974bfea957a7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.17
+      value: 10.06
       objectReference: {fileID: 0}
     - target: {fileID: 8373097103527677267, guid: 8590d24f63a6f0e448c7974bfea957a7, type: 3}
       propertyPath: m_LocalPosition.z

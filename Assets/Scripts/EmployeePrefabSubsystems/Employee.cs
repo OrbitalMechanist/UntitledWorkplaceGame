@@ -18,10 +18,14 @@ public class Employee : MonoBehaviour
     public string fName;
     public string lName;
 
+    public List<EmployeeAttribute> attributes = new List<EmployeeAttribute>();
+    public List<string> attributeNames = new List<string>();
+
     //A marker to which the employee goes to work.
     public GameObject workplaceInstance;
     //A marker to which the employee goes when on break.
     public GameObject distractionInstance;
+
 
     //The thing containing the logic for messing with company finances.
     //Used due to existing design.
@@ -37,9 +41,34 @@ public class Employee : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //        personal = (int)(Random.value * (MAX_STAT - MIN_STAT)) + MIN_STAT;
-        //        capability = (int)(Random.value * (MAX_STAT - MIN_STAT)) + MIN_STAT;
-        //        ethic = (int)(Random.value * (MAX_STAT - MIN_STAT)) + MIN_STAT;
+        //I ended up doing this in the generation instead.
+        //foreach(EmployeeAttribute attr in attributes)
+        //{
+        //    attributeNames.Add((string)attr.GetType().GetField("attributeTitle").GetRawConstantValue());
+        //}
+    }
+
+    public bool AddAttribute(EmployeeAttribute attr)
+    {
+        if (HasAttributeOfType(attr.GetType()))
+        {
+            return false;
+        }
+        attributes.Add(attr);
+        attributeNames.Add((string)attr.GetType().GetField("attributeTitle").GetRawConstantValue());
+        return true;
+    }
+
+    public bool HasAttributeOfType(System.Type attrType)
+    {
+        foreach (var existing in attributes)
+        {
+            if (existing.GetType() == attrType)
+            {
+                return false;
+            }
+        }
+        return false;
     }
 
     public void Create(string first, string last, int p, int c, int e)
@@ -89,5 +118,20 @@ public class Employee : MonoBehaviour
                 framesSinceBreak++;
             }
         }
+    }
+
+    public void ChangeCapability(int delta)
+    {
+        capability = Mathf.Clamp(capability + delta, MIN_STAT, MAX_STAT);
+    }
+
+    public void ChangeWorkEthic(int delta)
+    {
+        ethic = Mathf.Clamp(ethic + delta, MIN_STAT, MAX_STAT);
+    }
+
+    public void ChangePersonal(int delta)
+    {
+        personal = Mathf.Clamp(personal + delta, MIN_STAT, MAX_STAT);
     }
 }
