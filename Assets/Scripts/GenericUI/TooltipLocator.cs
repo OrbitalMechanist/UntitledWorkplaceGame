@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // The purpose of this middleman for the tooltip is to allow mid-game generated UI elements (i.e. the employee cards) to use the same tooltip object
-// in the scene, preventing the need for generating tooltip objects for every UI element.
+// in the scene, preventing the generation of tooltip objects for every UI element.
 public class TooltipLocator : MonoBehaviour
 {
     /** The Tooltip game object. */

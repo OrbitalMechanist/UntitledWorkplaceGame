@@ -322,15 +322,10 @@ public class EmployeeGenerator : MonoBehaviour
         {
             // Create text object to display attribute
             GameObject newAttribute = new GameObject("Attr" + (i + 1));
-
-            // Add tooltip to attribute
-            TooltipInterface newAttributeTooltip = newAttribute.AddComponent<TooltipInterface>();
-            newAttributeTooltip.setTooltipHeaderText(employeeObject.GetComponent<Employee>().attributes[i].tooltipHeaderText);
-            newAttributeTooltip.setTooltipDescriptionText(employeeObject.GetComponent<Employee>().attributes[i].tooltipDescriptionText);
+            Text newAttributeText = newAttribute.AddComponent<Text>();
 
             // set text properties of attribute display
-            Text newAttributeText = newAttribute.AddComponent<Text>();
-            newAttributeText.text = employeeObject.GetComponent<Employee>().attributeNames[i];
+            newAttributeText.text = attributeNames[i];
             Font ArialFont = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
             newAttributeText.font = ArialFont;
             newAttributeText.fontSize = 16;
