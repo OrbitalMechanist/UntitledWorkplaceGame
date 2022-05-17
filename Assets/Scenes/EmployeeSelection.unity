@@ -1318,6 +1318,9 @@ MonoBehaviour:
   numToGenerate: 25
   baseSalary: 1000
   salaryVariance: 100
+  randomizeSalary: 1
+  minSalary: 200
+  maxSalary: 2500
   attributeNames:
   - Workaholic
   - Alcoholic

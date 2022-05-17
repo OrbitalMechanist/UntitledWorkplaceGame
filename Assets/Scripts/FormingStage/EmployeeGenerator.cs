@@ -22,6 +22,12 @@ public class EmployeeGenerator : MonoBehaviour
     public int baseSalary = 1000;
     //Represents the employee's particular negotiated salary.
     public int salaryVariance = 100;
+    //Decides whether to completely randomize the salary every time a new employee is generated.
+    public bool randomizeSalary = false;
+    //Random salary minimum.
+    public int minSalary = 200;
+    //Random salary maximum
+    public int maxSalary = 2500;
 
     [Header("Attribute Generation")]
     //These next two can't be a single dict/map because Unity doesn't let you edit these in the
@@ -257,6 +263,10 @@ public class EmployeeGenerator : MonoBehaviour
 
     GameObject generateEmployee()
     {
+        if (randomizeSalary)
+        {
+            baseSalary = Random.Range(minSalary, maxSalary + 1);
+        }
 
         string lName = lNames[Random.Range(0, lNames.Length)];
         string fName = fNames[Random.Range(0, fNames.Length)];
