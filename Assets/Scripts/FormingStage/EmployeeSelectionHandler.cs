@@ -13,12 +13,19 @@ public class EmployeeSelectionHandler : MonoBehaviour
 
     //The employeeItemContainer contains nothing but EmployeePanel items,
     //in the order that they are stored in the employeeOwner.
-    //The EmployeePanel must have a Toggle as its child with the index 8.
+    //The EmployeePanel must have a Toggle as its child with the index 11.
     public GameObject employeeItemContainerInstance;
+
+    //The Company object that contains the Company script to use for money.
+    public GameObject companyInstance;
 
     //A Text UI element that says how many characters were selected.
     //Modified with extra text and colors!!!
     public GameObject statusTextInstance;
+
+    //A Text UI element that says how much money will be left after the selected employees are hired.
+    //Modified with more text.
+    public GameObject budgetTextInstance;
 
     //The Button to block while the wrong number of employees is selected.
     public GameObject blockableButtonInstance;
@@ -55,12 +62,21 @@ public class EmployeeSelectionHandler : MonoBehaviour
 
     }
 
+    public void applyHiringCosts()
+    {
+        companyInstance.GetComponent<Company>().cash -= totalSelectedSalaries();
+    }
+
     public void updateSelectionStatus()
     {
         int selected = countSelectedEmployees();
         statusTextInstance.GetComponent<Text>().text = "Selected: " + selected + "/" + selectionLimit;
+        int compCash = companyInstance.GetComponent<Company>().cash;
+        int selCash = totalSelectedSalaries();
+        budgetTextInstance.GetComponent<Text>().text = "Budget Left: $" + (compCash - selCash);
 
-        blockableButtonInstance.GetComponent<Button>().interactable = selectionLimit == selected;
+        blockableButtonInstance.GetComponent<Button>().interactable = selectionLimit == selected 
+            &&  compCash > selCash;
     }
 
     public int countSelectedEmployees()
@@ -72,6 +88,20 @@ public class EmployeeSelectionHandler : MonoBehaviour
             if (employeeItemContainerInstance.transform.GetChild(i).GetChild(11).gameObject.GetComponent<Toggle>().isOn)
             {
                 result++;
+            }
+        }
+        return result;
+    }
+
+    public int totalSelectedSalaries()
+    {
+        int result = 0;
+        int numEmployees = employeeItemContainerInstance.transform.childCount;
+        for (int i = 0; i < numEmployees; i++)
+        {
+            if (employeeItemContainerInstance.transform.GetChild(i).GetChild(11).gameObject.GetComponent<Toggle>().isOn)
+            {
+                result += employeeOwnerInstance.transform.GetChild(i).gameObject.GetComponent<Employee>().salary;
             }
         }
         return result;

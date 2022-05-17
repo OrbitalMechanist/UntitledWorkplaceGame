@@ -14,9 +14,20 @@ public class EmployeeGenerator : MonoBehaviour
     string[] lNames;
     string[] fNames;
 
-//    string[] femNames;
-//    string[] mNames;
+    //    string[] femNames;
+    //    string[] mNames;
 
+    [Header("Salaries")]
+    //The base salary used for stat generation
+    public int baseSalary = 1000;
+    //Represents the employee's particular negotiated salary.
+    public int salaryVariance = 100;
+    //Decides whether to completely randomize the salary every time a new employee is generated.
+    public bool randomizeSalary = false;
+    //Random salary minimum.
+    public int minSalary = 200;
+    //Random salary maximum
+    public int maxSalary = 2500;
 
     [Header("Attribute Generation")]
     //These next two can't be a single dict/map because Unity doesn't let you edit these in the
@@ -139,6 +150,24 @@ public class EmployeeGenerator : MonoBehaviour
         }
     }
 
+    static int randomIntRangeWithWeight(int min, int max, int avg)
+    {
+        //once again a very stupid way to go about things but the least nasty one I could come up with.
+        List<int> list = new List<int>();
+
+        for(int i = min; i <= max; i++)
+        {
+            int stepCount = (int)(100 * (((i < avg ? (float)i - min : (float)max - i) + 1) / (i < avg ? avg - min + 1 : max - avg + 1)));
+            for(int j = 0; j < stepCount; j++)
+            {
+                list.Add(i);
+//                Debug.Log(i);
+            }
+        }
+
+        return list[Random.Range(0, list.Count)];
+    }
+
     //I don't know why there's no such function by default.
     static int SumOfIntArray(int[] arr)
     {
@@ -150,7 +179,7 @@ public class EmployeeGenerator : MonoBehaviour
         return result;
     }
 
-    //Now that's a mouthfull.
+    //Now that's a mouthful.
     static int SumOfIntArrayExceptIndicesInList(int[] arr, List<int> exclude)
     {
         int result = 0;
@@ -234,13 +263,39 @@ public class EmployeeGenerator : MonoBehaviour
 
     GameObject generateEmployee()
     {
+        if (randomizeSalary)
+        {
+            baseSalary = Random.Range(minSalary, maxSalary + 1);
+        }
 
         string lName = lNames[Random.Range(0, lNames.Length)];
         string fName = fNames[Random.Range(0, fNames.Length)];
 
-        int personal = Random.Range(MIN_STAT, MAX_STAT + 1);
-        int capability = Random.Range(MIN_STAT, MAX_STAT + 1);
-        int ethic = Random.Range(MIN_STAT, MAX_STAT + 1);
+        int personal = randomIntRangeWithWeight(MIN_STAT, MAX_STAT, (int)(((float)MAX_STAT / 5) * ((float)baseSalary / 2000)));
+        int capability = randomIntRangeWithWeight(MIN_STAT, MAX_STAT, (int)((MAX_STAT / 5) * ((float)baseSalary / 2000)));
+        int ethic = randomIntRangeWithWeight(MIN_STAT, MAX_STAT, (int)((MAX_STAT /5) * ((float)baseSalary / 2000)));
+
+        //used for massive boosts to a specific stat
+        int specialization = Random.Range(0, 7);
+        switch (specialization)
+        {
+            case 0: // Capability
+                capability = randomIntRangeWithWeight(MIN_STAT, MAX_STAT, (int)((MAX_STAT / 5) * ((float)baseSalary / 500)));
+                break;
+            case 1: //Ethic
+                ethic = randomIntRangeWithWeight(MIN_STAT, MAX_STAT, (int)((MAX_STAT / 5) * ((float)baseSalary / 500)));
+                break;
+            case 2: //Personality
+                personal = randomIntRangeWithWeight(MIN_STAT, MAX_STAT, (int)((MAX_STAT / 5) * ((float)baseSalary / 500)));
+                break;
+            default:
+                personal = randomIntRangeWithWeight(MIN_STAT, MAX_STAT, (int)(((float)MAX_STAT / 5) * ((float)baseSalary / 1000)));
+                capability = randomIntRangeWithWeight(MIN_STAT, MAX_STAT, (int)((MAX_STAT / 5) * ((float)baseSalary / 1000)));
+                ethic = randomIntRangeWithWeight(MIN_STAT, MAX_STAT, (int)((MAX_STAT / 5) * ((float)baseSalary / 1000)));
+                break;
+        }
+
+        int salary = baseSalary + Random.Range(-salaryVariance, salaryVariance + 1);
 
         GameObject emp = Instantiate(employeePrefab);
 
@@ -261,10 +316,10 @@ public class EmployeeGenerator : MonoBehaviour
         Employee empBehaviour = emp.GetComponent<Employee>();
 
         //Give name and ability parameters to the actual employee MonoBehaviour
-        empBehaviour.Create(fName, lName, personal, capability, ethic);
+        empBehaviour.Create(fName, lName, personal, capability, ethic, salary);
 
         //Generate and add attributes.
-        int attrNum = Random.Range(minAttributes, maxAttributes + 1);
+        int attrNum = randomIntRangeWithWeight(minAttributes, maxAttributes, avgAttributes);//Random.Range(minAttributes, maxAttributes + 1);
         List<string> namesToExclude = new List<string>();
         for(int i = 0; i < attrNum; i++)
         {
@@ -285,8 +340,8 @@ public class EmployeeGenerator : MonoBehaviour
         //Set Name display field
         UIElement.transform.GetChild(0).GetComponent<Text>().text = employeeObject.GetComponent<Employee>().fName 
             + " " + employeeObject.GetComponent<Employee>().lName;
-        //Set Last Name display field, back when they were two separate lines
-        //UIElement.transform.GetChild(1).GetComponent<Text>().text = employeeObject.GetComponent<Employee>().lName;
+        //Set Salary display field
+        UIElement.transform.GetChild(1).GetComponent<Text>().text = "$" + employeeObject.GetComponent<Employee>().salary;
         //Set Capability display bar and number
         UIElement.transform.GetChild(2).GetComponent<UnityEngine.UI.Slider>().value 
             = employeeObject.GetComponent<Employee>().capability;

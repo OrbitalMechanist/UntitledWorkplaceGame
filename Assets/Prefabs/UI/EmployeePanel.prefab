@@ -1438,8 +1438,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 291.2, y: -26.708}
-  m_SizeDelta: {x: 327.55, y: 31.42}
+  m_AnchoredPosition: {x: 249.74, y: -26.708}
+  m_SizeDelta: {x: 244.62, y: 31.42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4458187717556544341
 CanvasRenderer:
@@ -1482,7 +1482,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Firstname Lastname
+  m_Text: First Last
 --- !u!1 &3945988453941018241
 GameObject:
   m_ObjectHideFlags: 0
@@ -2443,7 +2443,7 @@ GameObject:
   - component: {fileID: 3138898478776663258}
   - component: {fileID: 4663683016450620122}
   m_Layer: 5
-  m_Name: DeprecatedLNameDisplay
+  m_Name: SalaryDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2463,10 +2463,10 @@ RectTransform:
   m_Father: {fileID: 2993631591654952257}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10.6, y: -99.002}
-  m_SizeDelta: {x: 0.66507, y: 18.0036}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -53.723846, y: -26.708}
+  m_SizeDelta: {x: 82.44769, y: 31.42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3138898478776663258
 CanvasRenderer:
@@ -2498,15 +2498,15 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Last
+  m_Text: $1000

@@ -1,5 +1,84 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1406701604194447674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 707496232276753942}
+  - component: {fileID: 1994955594735833445}
+  - component: {fileID: 3169643240330835484}
+  m_Layer: 5
+  m_Name: budgetText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &707496232276753942
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406701604194447674}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5038409173450235262}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 301.77942, y: -70.7572}
+  m_SizeDelta: {x: 215.3988, y: 31.8825}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1994955594735833445
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406701604194447674}
+  m_CullTransparentMesh: 1
+--- !u!114 &3169643240330835484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406701604194447674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0.071330555, b: 0.412, a: 0.9607843}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 24
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Budget Left: $10000'
 --- !u!1 &5038409171976038096
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,7 +632,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 5038409173436436133}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999884
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -670,7 +749,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00018395818}
+  m_AnchoredPosition: {x: 0, y: -0.0000038646976}
   m_SizeDelta: {x: 0, y: 130}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5038409173303155693
@@ -811,6 +890,7 @@ RectTransform:
   - {fileID: 5038409173864735990}
   - {fileID: 5038409174071129524}
   - {fileID: 7026835690247268363}
+  - {fileID: 707496232276753942}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1059,7 +1139,8 @@ GameObject:
   - component: {fileID: 5038409173864735989}
   - component: {fileID: 5038409173864735988}
   - component: {fileID: 5038409173864735991}
-  - component: {fileID: 5038409173864735986}
+  - component: {fileID: 5038409173864735985}
+  - component: {fileID: 5038409173864735984}
   - component: {fileID: 6008710177063168889}
   m_Layer: 5
   m_Name: continueButton
@@ -1172,6 +1253,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6008710177063168889}
         m_TargetAssemblyTypeName: AdditionalHireSelectionHandler, Assembly-CSharp
+        m_MethodName: applyHiringCosts
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6008710177063168889}
+        m_TargetAssemblyTypeName: AdditionalHireSelectionHandler, Assembly-CSharp
         m_MethodName: transferSelectedToEmployeeOwner
         m_Mode: 1
         m_Arguments:
@@ -1194,7 +1287,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5038409173864735986
+--- !u!114 &5038409173864735985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5038409173864735945}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 3, y: -3}
+  m_UseGraphicAlpha: 1
+--- !u!114 &5038409173864735984
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1203,11 +1311,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5038409173864735945}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2754e8dfa1ef3104085371f501d8afad, type: 3}
+  m_Script: {fileID: 11500000, guid: ceb7c1d678b3d3f46bee194043eebf99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemToPreserve: {fileID: 0}
-  sceneName: Performin' Stage
 --- !u!114 &6008710177063168889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1222,7 +1328,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generatedOwnerInstance: {fileID: 7977175694433520318}
   employeeItemContainerInstance: {fileID: 5038409173303155695}
+  companyInstance: {fileID: 0}
   statusTextInstance: {fileID: 5038409173103723695}
+  budgetTextInstance: {fileID: 1406701604194447674}
   blockableButtonInstance: {fileID: 5038409173864735945}
   selectionStart: 0
   selectionLimit: 5
@@ -1420,6 +1528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7026835690247268363}
   - component: {fileID: 2987099022975826388}
+  - component: {fileID: 8690960535251174727}
   m_Layer: 5
   m_Name: generatedOwner
   m_TagString: Untagged
@@ -1454,6 +1563,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numToGenerate: 10
+  baseSalary: 1000
+  salaryVariance: 100
+  randomizeSalary: 0
+  minSalary: 200
+  maxSalary: 2500
   attributeNames:
   - Workaholic
   - Alcoholic
@@ -1507,3 +1621,15 @@ MonoBehaviour:
   employeeManagerInstance: {fileID: 7977175694433520318}
   UiContainerInstance: {fileID: 5038409173303155695}
   UiDisplayItemPrefab: {fileID: 2993631591654952256, guid: 67ec49d22139a2043b73a31c18dc8439, type: 3}
+--- !u!114 &8690960535251174727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7977175694433520318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765ac8d9b99dc364daee2cc9faa8d572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
