@@ -1316,6 +1316,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numToGenerate: 25
+  baseSalary: 1000
+  salaryVariance: 100
   attributeNames:
   - Workaholic
   - Alcoholic
