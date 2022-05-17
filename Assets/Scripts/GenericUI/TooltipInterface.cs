@@ -88,6 +88,9 @@ public class TooltipInterface : MonoBehaviour, IPointerEnterHandler, IPointerExi
  
     public void OnPointerExit(PointerEventData eventData)
     {
+        // Verify tooltip script was found
+        verifyTooltip();
+        
         // Hide the tooltip when the mouse cursor leaves this interface area
         tooltipScript.HideTooltip();
     }
