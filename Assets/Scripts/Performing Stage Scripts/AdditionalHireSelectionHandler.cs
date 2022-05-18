@@ -107,12 +107,12 @@ public class AdditionalHireSelectionHandler : MonoBehaviour
     public void updateSelectionStatus()
     {
         int selected = countSelectedEmployees();
-        statusTextInstance.GetComponent<Text>().text = "Selected: " + selected + "/" + selectionLimit;
+        statusTextInstance.GetComponent<Text>().text = "Selected: " + (selectionStart + selected) + "/" + selectionLimit;
         int compCash = companyInstance.GetComponent<Company>().cash;
         int selCash = totalSelectedSalaries();
         budgetTextInstance.GetComponent<Text>().text = "Budget Left: $" + (compCash - selCash);
 
-        blockableButtonInstance.GetComponent<Button>().interactable = selectionLimit == selected
+        blockableButtonInstance.GetComponent<Button>().interactable = selectionLimit >= selected + selectionStart
             && compCash > selCash;
     }
 
