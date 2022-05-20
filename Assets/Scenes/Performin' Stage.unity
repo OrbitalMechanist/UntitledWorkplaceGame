@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -287,7 +287,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 20
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 20
     m_Alignment: 3
@@ -319,6 +319,7 @@ GameObject:
   - component: {fileID: 47026166}
   - component: {fileID: 47026165}
   - component: {fileID: 47026164}
+  - component: {fileID: 47026170}
   m_Layer: 5
   m_Name: Tooltip
   m_TagString: Untagged
@@ -392,7 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -400,7 +401,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -408,7 +409,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 7
 --- !u!222 &47026168
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -437,6 +438,21 @@ RectTransform:
   m_AnchoredPosition: {x: 61, y: 49.5}
   m_SizeDelta: {x: 125, y: 42}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &47026170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47026163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &65335324
 GameObject:
   m_ObjectHideFlags: 0
@@ -17259,7 +17275,7 @@ GameObject:
   - component: {fileID: 310774767}
   - component: {fileID: 310774766}
   m_Layer: 5
-  m_Name: Title
+  m_Name: Header
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17317,7 +17333,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Notification
+  m_Text: Header
 --- !u!222 &310774767
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17338,7 +17354,7 @@ GameObject:
   - component: {fileID: 315304458}
   - component: {fileID: 315304457}
   m_Layer: 5
-  m_Name: Content
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17396,7 +17412,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Meetings are available to schedule!
+  m_Text: Text
 --- !u!222 &315304458
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17493,7 +17509,7 @@ MonoBehaviour:
   enableDescription: 1
   enableTooltip: 1
   headerText: How do I play?
-  descriptionText: To schedule meetings, drag and drop the <color=yellow>yellow</color>
+  descriptionText: To schedule meetings, drag and drop the <color=orange>yellow</color>
     meeting blocks into the open white cells. <color=grey>Grey</color> cells are
     unavailable and meetings cannot be scheduled there
 --- !u!114 &364414310
@@ -17568,8 +17584,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -42.9, y: 0.000009059906}
-  m_SizeDelta: {x: 33.4846, y: 33.4846}
+  m_AnchoredPosition: {x: -43, y: -0.000002861}
+  m_SizeDelta: {x: 43.1319, y: 31.6183}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &400333522
 MonoBehaviour:
@@ -17584,14 +17600,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.015686275, b: 0.23921569, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5f03d08d350cd6e41b9bad277586929d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 34f49d251d29438489d0ff222cbd9796, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -19415,7 +19431,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100
+  m_Text: 5
 --- !u!222 &745044549
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20503,6 +20519,7 @@ GameObject:
   - component: {fileID: 992800320}
   - component: {fileID: 992800319}
   - component: {fileID: 992800318}
+  - component: {fileID: 992800328}
   m_Layer: 5
   m_Name: SchedulerButton
   m_TagString: Untagged
@@ -20522,10 +20539,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a77075c75bbeff64385ffa8d6f4e8394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rowPrefab: {fileID: 7363513678367256881, guid: 77bfd3d2319377d4ab387bde0ecfd5f8, type: 3}
   width: 5
   height: 9
   tilePrefab: {fileID: 5844976898180272107, guid: 3763aafbbd3cb3d4d8e2819c0bb1817e, type: 3}
   grid: {fileID: 67081659}
+  meetingBlockHolder: {fileID: 1558685481}
 --- !u!114 &992800319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20758,6 +20777,24 @@ RectTransform:
   m_AnchoredPosition: {x: -357, y: 0}
   m_SizeDelta: {x: 53.8434, y: 51.5708}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &992800328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992800317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0abe96e572011fd42b7c37e4fe701d4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  organizer: {fileID: 1364367282}
+  gameButton: {fileID: 992800317}
+  notificationIcon: {fileID: 1596258412}
+  notification: {fileID: 1191125073}
+  notificationHeaderText: Notification
+  notificationText: Meetings are available to schedule!
 --- !u!1 &1029684700
 GameObject:
   m_ObjectHideFlags: 0
@@ -21622,6 +21659,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcb4bd52fc4bcb042bab5b74aa89199e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notificationHeader: {fileID: 310774766}
+  notificationText: {fileID: 315304457}
   notificationTimer: 2
   fadeInTimer: 1
   fadeOutTimer: 2
@@ -22043,6 +22082,7 @@ MonoBehaviour:
   hasEvent: 0
   followUpStack: 
   followUpTimer: 
+  eventCount: 0
 --- !u!4 &1364367284
 Transform:
   m_ObjectHideFlags: 0
@@ -22330,6 +22370,7 @@ GameObject:
   - component: {fileID: 1558685482}
   - component: {fileID: 1558685484}
   - component: {fileID: 1558685483}
+  - component: {fileID: 1558685485}
   m_Layer: 5
   m_Name: MeetingHolder
   m_TagString: Untagged
@@ -22353,8 +22394,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -267.5937, y: -50.025}
-  m_SizeDelta: {x: 264.8126, y: 499.95}
+  m_AnchoredPosition: {x: -267.59, y: -50.025}
+  m_SizeDelta: {x: 264.81, y: 499.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1558685483
 MonoBehaviour:
@@ -22394,6 +22435,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1558685481}
   m_CullTransparentMesh: 1
+--- !u!114 &1558685485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558685481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 10
+    m_Right: 10
+    m_Top: 10
+    m_Bottom: 10
+  m_ChildAlignment: 1
+  m_Spacing: 15
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &1596258412
 GameObject:
   m_ObjectHideFlags: 0
@@ -22406,7 +22473,7 @@ GameObject:
   - component: {fileID: 1596258414}
   - component: {fileID: 1596258413}
   m_Layer: 5
-  m_Name: Notification
+  m_Name: NotificationIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23038,7 +23105,6 @@ GameObject:
   - component: {fileID: 1720054736}
   - component: {fileID: 1720054735}
   - component: {fileID: 1720054734}
-  - component: {fileID: 1720054733}
   - component: {fileID: 1720054732}
   m_Layer: 5
   m_Name: BackButton
@@ -23080,20 +23146,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIElement: {fileID: 1666747760}
---- !u!114 &1720054733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1720054730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e9747b97712963488ca56e189b4690c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonUI: {fileID: 1720054734}
-  buttonImage: {fileID: 1622981628}
 --- !u!114 &1720054734
 MonoBehaviour:
   m_ObjectHideFlags: 0
