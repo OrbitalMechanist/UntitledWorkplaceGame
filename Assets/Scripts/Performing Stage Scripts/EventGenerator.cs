@@ -22,6 +22,7 @@ public class EventGenerator : MonoBehaviour
     string eventJson;
     public class EventObject {
         //Contains all of our events, as well as details for said events
+        public string[] Investors;
         public string[] Events;
         public string[] Results;
         public string[] FollowUps;

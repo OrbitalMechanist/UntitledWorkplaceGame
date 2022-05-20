@@ -9,9 +9,9 @@ public class Company : MonoBehaviour
     public int endState;
     public int happiness = 100;
     public int companySize;
-    public string [] investors;
-    public int [] investorDebts;
-    public int [] investorPayBack;
+    public List<string> investors;
+    public List<int> investorDebts;
+    public List<int> investorPayBack;
     // Start is called before the first frame update
     void Start()
     {

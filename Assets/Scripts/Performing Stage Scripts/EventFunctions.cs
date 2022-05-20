@@ -84,7 +84,9 @@ public class EventFunctions : MonoBehaviour
         DontDestroyOnLoad(company);
     }
     public void addInvestor(int invInd, int plan) {
-
+        company.GetComponent<Company>().investors.Add(this.GetComponentInParent<EventGenerator>().myEvents.Investors[invInd]);
+        company.GetComponent<Company>().investorDebts.Add(plan);
+        company.GetComponent<Company>().investorPayBack.Add((int)(plan*0.12));
     }
     public void futureEvent(int ind, int count) {
         this.GetComponentInParent<EventHandler>().followUpStack.Add(ind);
