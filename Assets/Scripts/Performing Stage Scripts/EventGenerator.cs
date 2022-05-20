@@ -170,12 +170,14 @@ public class EventGenerator : MonoBehaviour
         newEvent.transform.SetParent(canvas.transform, false);
     }
     public void randomizeEvents() {
+        //Generates a random number, based on roughly what stage you are in
+        int rand = Random.Range(System.Math.Max(0, count-5), System.Math.Min(35, count+5));
         //Places employees in a list in a randomized order
         this.GetComponentInParent<EventFunctions>().randomEmployees();
         //Creates event object
         GameObject newEvent = Instantiate(Event);
         //Gets string for current event
-        string desc = myEvents.Events[count];
+        string desc = myEvents.Events[rand];
         //Parses names of employees into description, if applicable
         for (int i = 0; i < this.GetComponentInParent<EventFunctions>().randEmploy.Length; i++) {
             desc = System.String.Format(desc, this.GetComponentInParent<EventFunctions>().randEmploy[i].GetComponent<Employee>().fName, this.GetComponentInParent<EventFunctions>().randEmploy[i].GetComponent<Employee>().lName, "{0}", "{1}", "{2}", "{3}", "{4}", "{5}", "{6}", "{7}");
@@ -186,8 +188,8 @@ public class EventGenerator : MonoBehaviour
         RectTransform descRT = newEvent.transform.GetChild(0).GetComponent<RectTransform>();
         RectTransform rt = newEvent.transform.GetChild(1).GetComponent<RectTransform>();
         //Creates a button and places it based on the size of the window
-        for (int i = 0; i < myEvents.EventButtons[count].Count; i++) {
-            int temp  = myEvents.EventButtons[count][i];
+        for (int i = 0; i < myEvents.EventButtons[rand].Count; i++) {
+            int temp  = myEvents.EventButtons[rand][i];
             rt.offsetMax = new Vector2(rt.offsetMax.x, rt.offsetMax.y+(float)37.5);
             descRT.offsetMin = new Vector2(descRT.offsetMin.x, descRT.offsetMin.y+(float)37.5);
             Button newButton = Instantiate(button);
