@@ -9,10 +9,13 @@ public class TileNav : MonoBehaviour
     public GameObject navigableTileSystemInstance;
 
     //The size of a tile in Unity units.
-    public float tileSize = 1;
+    public float tileSize = 0.2f;
 
     //How many seconds it takes to move one tile
-    public float secondsPerStep = 0.5f;
+    public float secondsPerStep = 0.05f;
+
+    //A mask to only check collision on the relevant layer that contains the obstructions.
+    private LayerMask obstacleMask;
 
     //List of steps to take.
     private List<Vector3> directions;
@@ -23,6 +26,9 @@ public class TileNav : MonoBehaviour
     //Internal variables that have to be preserved between frames
     private int stepIndex = 0;
     private float stepElapsedTime = 0;
+
+    //for editor testing.
+    public bool drawPath = false;
 
     //This is a somewhat crappy version of the A* algorithm designed to
     //avoid making an actual graph representation. It's a little slower.
@@ -39,6 +45,8 @@ public class TileNav : MonoBehaviour
         prevLoc[currentLoc] = default;
         Dictionary<Vector3, float> costToReach = new Dictionary<Vector3, float>();
         costToReach[currentLoc] = 0;
+
+        RaycastHit hit = new RaycastHit();
 
         while(frontier.Count != 0)
         {
@@ -57,15 +65,20 @@ public class TileNav : MonoBehaviour
 
             foreach(Vector3 next in neighbours)
             {
-                float newCost = costToReach[currentLoc] + 1;
-                if (navigableTileSystemInstance.GetComponent<Tilemap>()
-                    .GetTile(navigableTileSystemInstance.GetComponent<Grid>().WorldToCell(next)) == null
+                float newCost = costToReach[currentLoc] + 0.1f;
+                //if (navigableTileSystemInstance.GetComponent<Tilemap>()
+                //    .GetTile(navigableTileSystemInstance.GetComponent<Grid>().WorldToCell(next)) == null
+                if (Physics2D.OverlapCircle(next, 0.1f, obstacleMask.value) == null
                     && (!costToReach.ContainsKey(next) || newCost < costToReach[next] ))
                 {
                     costToReach[next] = newCost;
-                    float priority = costToReach[next] + (targetLoc - next).magnitude;
+                    float priority = newCost + Mathf.Abs(targetLoc.x - next.x) + Mathf.Abs(targetLoc.y - next.y);//(targetLoc - next).magnitude;
                     frontier.Add(next, priority);
                     prevLoc[next] = currentLoc;
+                }
+                else if (drawPath)
+                {
+                    Debug.DrawLine(currentLoc, next, Color.red, 5, false);
                 }
             }
         }
@@ -77,6 +90,10 @@ public class TileNav : MonoBehaviour
             if(prevLoc[currentLoc] == default)
             {
                 break;
+            }
+            if (drawPath)
+            {
+                Debug.DrawLine(currentLoc, prevLoc[currentLoc], Color.green, 5, false);
             }
             instructions.Add(currentLoc - prevLoc[currentLoc]);
             currentLoc = prevLoc[currentLoc];
@@ -110,6 +127,11 @@ public class TileNav : MonoBehaviour
     }
     */
     public bool moving => needsToMove;
+
+    private void Awake()
+    {
+        obstacleMask = LayerMask.GetMask("Obstacle");
+    }
 
     // Start is called before the first frame update
     void Start()
