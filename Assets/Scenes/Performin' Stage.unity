@@ -1216,6 +1216,10 @@ PrefabInstance:
       value: WallTileSystem
       objectReference: {fileID: 0}
     - target: {fileID: 5558748123702422194, guid: b10e17dc4884032488937e7a39f4054b, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558748123702422194, guid: b10e17dc4884032488937e7a39f4054b, type: 3}
       propertyPath: m_TagString
       value: Nav Tile System
       objectReference: {fileID: 0}
