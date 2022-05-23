@@ -1293,24 +1293,19 @@ MonoBehaviour:
   heads:
   - {fileID: 21300000, guid: 318fe2bd1a6349c4aa0b3da3fb6b5ede, type: 3}
   hats:
-  - {fileID: 21300000, guid: 15a6584a5b759344bb2f64883cc728c3, type: 3}
-  - {fileID: 21300000, guid: bf984dc763d9f1c4fa1a1ccd44bd348f, type: 3}
-  - {fileID: 21300000, guid: b8a8501ff59718f41a398fdb5d74c9b9, type: 3}
-  - {fileID: 21300000, guid: 99e442a7110965d4c9870c43781a9f7e, type: 3}
-  - {fileID: 21300000, guid: f5ef700dbab6a5e418a74307b3fc559d, type: 3}
-  - {fileID: 21300000, guid: f1cea630743578242a88ed2549f59592, type: 3}
-  - {fileID: 21300000, guid: 4ba81a218a496af4589995d662fe1830, type: 3}
-  - {fileID: 21300000, guid: 3697008f59b76a841ab3d80c8be802d7, type: 3}
-  - {fileID: 21300000, guid: 10c5afdab50efd940af0981de92bd979, type: 3}
-  - {fileID: 21300000, guid: 8b317a2aa014fd64f80476362a63f456, type: 3}
-  - {fileID: 21300000, guid: e2ed848411eddca4e96b20494df6f712, type: 3}
+  - {fileID: 21300000, guid: c7a14bef817aa89449e254292f0acf9b, type: 3}
   - {fileID: 21300000, guid: a9f3a7b9ca37f0149a20bff443131283, type: 3}
-  - {fileID: 21300000, guid: c7a14bef817aa89449e254292f0acf9b, type: 3}
-  - {fileID: 21300000, guid: c7a14bef817aa89449e254292f0acf9b, type: 3}
-  - {fileID: 21300000, guid: 99e442a7110965d4c9870c43781a9f7e, type: 3}
+  - {fileID: 21300000, guid: e2ed848411eddca4e96b20494df6f712, type: 3}
+  - {fileID: 21300000, guid: 8b317a2aa014fd64f80476362a63f456, type: 3}
   - {fileID: 21300000, guid: 10c5afdab50efd940af0981de92bd979, type: 3}
-  - {fileID: 21300000, guid: 99e442a7110965d4c9870c43781a9f7e, type: 3}
+  - {fileID: 21300000, guid: 3697008f59b76a841ab3d80c8be802d7, type: 3}
+  - {fileID: 21300000, guid: 4ba81a218a496af4589995d662fe1830, type: 3}
   - {fileID: 21300000, guid: f1cea630743578242a88ed2549f59592, type: 3}
+  - {fileID: 21300000, guid: f5ef700dbab6a5e418a74307b3fc559d, type: 3}
+  - {fileID: 21300000, guid: 99e442a7110965d4c9870c43781a9f7e, type: 3}
+  - {fileID: 21300000, guid: b8a8501ff59718f41a398fdb5d74c9b9, type: 3}
+  - {fileID: 21300000, guid: bf984dc763d9f1c4fa1a1ccd44bd348f, type: 3}
+  - {fileID: 21300000, guid: 15a6584a5b759344bb2f64883cc728c3, type: 3}
   lNamelist: {fileID: 4900000, guid: e5e037e3a03fb454bb42d7db7ab205ae, type: 3}
   fNamelist: {fileID: 4900000, guid: fc6f1d0f63a86b446aa2d4327cdda0b2, type: 3}
   employeePrefab: {fileID: 5204304335863479497, guid: 21e677d4f6b4ba84da09f92cfc5e7c27, type: 3}
