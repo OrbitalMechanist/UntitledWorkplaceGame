@@ -1596,9 +1596,24 @@ MonoBehaviour:
   - {r: 1, g: 0.69687366, b: 0.20392156, a: 1}
   - {r: 0.20392156, g: 0.384783, b: 1, a: 1}
   shirts:
-  - {fileID: 21300000, guid: 9278ab03556e498418317dc1726c2071, type: 3}
-  - {fileID: 21300000, guid: 6a7f40054911cd84f8fa16c9120ad99a, type: 3}
-  - {fileID: 21300000, guid: 6d08e0fdccd306f4b92249584c7c25b5, type: 3}
+  - {fileID: 21300000, guid: 406bad80c1e2bee4f92c73f585374628, type: 3}
+  - {fileID: 21300000, guid: 5d6287ca9d778ed4ca193899dea44b75, type: 3}
+  - {fileID: 21300000, guid: c08b9a6b941c20e4baaab27b3e1f0e0d, type: 3}
+  - {fileID: 21300000, guid: 3d125f65f027e2c449b015acc7699de8, type: 3}
+  - {fileID: 21300000, guid: 2ba3f798500a98c448ce6ab219b21cda, type: 3}
+  - {fileID: 21300000, guid: 766d4178e1272814ea3863186afeeac4, type: 3}
+  - {fileID: 21300000, guid: b65d00ab42ffaa9489ebf3d22825d515, type: 3}
+  - {fileID: 21300000, guid: fd021eba679c3d3478c98164a7c5b5a9, type: 3}
+  - {fileID: 21300000, guid: d04038117626cca49a2bbf267672cd5d, type: 3}
+  - {fileID: 21300000, guid: e739b2c88da2c584a9757964014a5b14, type: 3}
+  - {fileID: 21300000, guid: 8a2c6f5d8ef5f6e44a18022324f1d5a1, type: 3}
+  - {fileID: 21300000, guid: 9aa56424f26e65e44ab7f703af8d62f4, type: 3}
+  - {fileID: 21300000, guid: ab6e5d4941276ca4b9c1d3e500ebea2c, type: 3}
+  - {fileID: 21300000, guid: 18b9b523aa7c06c4883c080d44c19626, type: 3}
+  - {fileID: 21300000, guid: de8bc565747f11947baeb34fa349efa8, type: 3}
+  - {fileID: 21300000, guid: 26ecf7edfec72654197c1dfcadc2a046, type: 3}
+  - {fileID: 21300000, guid: 7211f215bff645e4dab1f91ba937c7b1, type: 3}
+  - {fileID: 21300000, guid: 25ed857c99d52c247a8d6f6f716c087f, type: 3}
   heads:
   - {fileID: 21300000, guid: 318fe2bd1a6349c4aa0b3da3fb6b5ede, type: 3}
   hats:
