@@ -75,8 +75,9 @@ public class EmployeeSelectionHandler : MonoBehaviour
         int selCash = totalSelectedSalaries();
         budgetTextInstance.GetComponent<Text>().text = "Budget Left: $" + (compCash - selCash);
 
-        blockableButtonInstance.GetComponent<Button>().interactable = selectionLimit == selected 
-            &&  compCash > selCash;
+        blockableButtonInstance.GetComponent<TooltipInterface>().enableTooltip = selectionLimit != selected &&  compCash > selCash;
+        blockableButtonInstance.GetComponent<Button>().interactable = selectionLimit == selected &&  compCash > selCash;
+        
     }
 
     public int countSelectedEmployees()

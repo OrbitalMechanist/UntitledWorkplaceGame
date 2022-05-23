@@ -773,8 +773,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -454.2, y: -70.482635}
-  m_SizeDelta: {x: 262.8525, y: 32.6228}
+  m_AnchoredPosition: {x: -385.64, y: -70.482635}
+  m_SizeDelta: {x: 399.96, y: 32.6228}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &467888204
 MonoBehaviour:
@@ -1757,7 +1757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2167,7 +2167,8 @@ MonoBehaviour:
   enableDescription: 1
   enableTooltip: 1
   headerText: Hold up!
-  descriptionText: You must have exactly 5 employees to continue!
+  descriptionText: You must have exactly 5 employees and be within your budget to
+    continue!
 --- !u!114 &2095616029
 MonoBehaviour:
   m_ObjectHideFlags: 0
