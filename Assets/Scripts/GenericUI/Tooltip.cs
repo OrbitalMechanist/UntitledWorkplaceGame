@@ -14,7 +14,7 @@ public class Tooltip : MonoBehaviour
     /** Camera of the UI. */
     public Camera uiCamera;
 
-    /** Mina nd max boundaries of the camera. */
+    /** Min and max boundaries of the camera. */
     private Vector3 min;
     private Vector3 max;
 

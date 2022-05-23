@@ -9,14 +9,38 @@ public class DisplayMinigameResults : MonoBehaviour
     public Text resultHeader;
     public Text blurb;
     public Text rewards;
+    public GameObject employeeManagerInstance; 
 
-    public string resultHeaderText;
-    public string blurbText;
-    public string rewardText;
+    private int MIN_EMP_STAT = 0;
+    private int MAX_EMP_STAT = 256;
+    private string rewardText;
 
-    public void DisplayResults() {
+    public void BoostEmployeeWorkEthic(int statIncrease, string resultHeaderText, string blurbText) {
+        employeeManagerInstance = GameObject.Find("employeeOwner");
+        rewardText = "";
+
+        // Get number of employees
+        int numEmployees = employeeManagerInstance.transform.childCount;
+
+        // Display all employees in list panel
+        for (int i = 0; i < numEmployees; i++)
+        {
+            // Get the employee of the current idnex
+            GameObject emp = employeeManagerInstance.transform.GetChild(i).gameObject;
+
+            // Add stat increase to employee, clamped between 0 and 255
+            emp.GetComponent<Employee>().ethic = Mathf.Clamp(statIncrease + emp.GetComponent<Employee>().ethic, MIN_EMP_STAT, MAX_EMP_STAT);
+
+            // Add the employee to the reward text for the results screen
+            rewardText += emp.GetComponent<Employee>().fName + " " + emp.GetComponent<Employee>().lName + ": <color=green>+" + statIncrease + "</color> Work Ethic\n";
+        }
+
+        DisplayResults(resultHeaderText, blurbText);
+    }
+
+    private void DisplayResults(string resultHeaderText, string blurbText) {
         resultHeader.text = resultHeaderText;
         blurb.text = blurbText;
-        rewards.text = Regex.Unescape(rewardText);
+        rewards.text = rewardText;
     }
 }
