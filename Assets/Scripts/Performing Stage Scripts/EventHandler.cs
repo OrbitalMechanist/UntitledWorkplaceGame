@@ -94,6 +94,7 @@ public class EventHandler : MonoBehaviour
     {
         if (!hasEvent) {
             if (time<=0.0f) {
+                this.GetComponentInParent<EventFunctions>().company.GetComponent<Company>().payDebts();
                 bool followUp = false;
                 for (int i = 0; i < followUpTimer.Count; i++) {
                     followUpTimer[i] -= 1;

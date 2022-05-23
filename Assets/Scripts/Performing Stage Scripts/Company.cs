@@ -9,7 +9,6 @@ public class Company : MonoBehaviour
     public int endState;
     public int happiness = 100;
     public int companySize;
-    public List<string> investors;
     public List<int> investorDebts;
     public List<int> investorPayBack;
     // Start is called before the first frame update
@@ -31,5 +30,17 @@ public class Company : MonoBehaviour
     void Update()
     {
         
+    }
+    public void payDebts() {
+        for (int i = 0; i < investorDebts.Count;) {
+            investorDebts[i]-=investorPayBack[i];
+            cash -= investorPayBack[i];
+            if (investorDebts[i]<=0) {
+                investorDebts.Remove(i);
+                investorPayBack.Remove(i);
+            } else {
+                i++;
+            }
+        }
     }
 }

@@ -20,8 +20,8 @@ public class EventFunctions : MonoBehaviour
     {
         company = GameObject.FindGameObjectWithTag("Company");
         //Assigns each function to a list to be called by the event generator
-        delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame, Fire};
-        checkList = new List<CheckDelegate> {alwaysFalse, alwaysTrue, randomCheck, ethicCheck, happinessCheck, capabilityCheck, personalityCheck, moneyCheck, masshappinessCheck};
+        delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame, Fire, cutPay};
+        checkList = new List<CheckDelegate> {alwaysFalse, alwaysTrue, randomCheck, ethicCheck, happinessCheck, capabilityCheck, personalityCheck, moneyCheck, masshappinessCheck, capaPersonalCheck};
     }
 
     // Update is called once per frame
@@ -83,35 +83,100 @@ public class EventFunctions : MonoBehaviour
         SceneManager.LoadScene("results");
         DontDestroyOnLoad(company);
     }
-    public void addInvestor(int invInd, int plan) {
-        company.GetComponent<Company>().investors.Add(this.GetComponentInParent<EventGenerator>().myEvents.Investors[invInd]);
+    public void addInvestor(int percent, int plan) {
         company.GetComponent<Company>().investorDebts.Add(plan);
-        company.GetComponent<Company>().investorPayBack.Add((int)(plan*0.12));
+        company.GetComponent<Company>().investorPayBack.Add((int)(plan*percent/100));
     }
     public void futureEvent(int ind, int count) {
         this.GetComponentInParent<EventHandler>().followUpStack.Add(ind);
         this.GetComponentInParent<EventHandler>().followUpTimer.Add(count);
     }
+    public void cutPay(int delta, int emp) {
+        randEmploy[emp].GetComponent<Employee>().salary+=delta;
+        if (randEmploy[emp].GetComponent<Employee>().salary > MAX_STAT) {
+            randEmploy[emp].GetComponent<Employee>().salary = MAX_STAT;
+        } if (randEmploy[emp].GetComponent<Employee>().salary < MIN_STAT) {
+            randEmploy[emp].GetComponent<Employee>().salary = MIN_STAT;
+        }
+    }
+    //Prob is a value between 0 and 256
+    //Higher value equals higher chance to succeed
     public bool ethicCheck(int emp, int prob, int sucInd, int failInd) {
         int check = Random.Range(0, 256);
-        int modProb = (int)(randEmploy[emp].GetComponent<Employee>().ethic-128-prob);
+        int modProb = (int)(randEmploy[emp].GetComponent<Employee>().ethic-128+prob);
         bool pass = check<=modProb;
-        return (check<=modProb);
+        Debug.Log(modProb);
+        Debug.Log(check);
+        if (pass) {
+            for (int i = 0; i < this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[sucInd].Count-1; i++) {
+                delList[this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[sucInd][i]](this.GetComponentInParent<EventGenerator>().myEvents.ButtonValues[sucInd][i], this.GetComponentInParent<EventGenerator>().myEvents.EmployeeIndices[sucInd][i]);
+            }
+        } else {
+            for (int i = 0; i < this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[failInd].Count-1; i++) {
+                delList[this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[failInd][i]](this.GetComponentInParent<EventGenerator>().myEvents.ButtonValues[failInd][i], this.GetComponentInParent<EventGenerator>().myEvents.EmployeeIndices[failInd][i]);
+            }
+        }
+        return pass;
     }
     public bool happinessCheck(int emp, int prob, int sucInd, int failInd) {
         int check = Random.Range(0, 256);
         int modProb = (int)(randEmploy[emp].GetComponent<Employee>().happiness-128+prob);
-        return (check<=modProb);
+        bool pass = check<=modProb;
+        if (pass) {
+            for (int i = 0; i < this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[sucInd].Count-1; i++) {
+                delList[this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[sucInd][i]](this.GetComponentInParent<EventGenerator>().myEvents.ButtonValues[sucInd][i], this.GetComponentInParent<EventGenerator>().myEvents.EmployeeIndices[sucInd][i]);
+            }
+        } else {
+            for (int i = 0; i < this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[failInd].Count-1; i++) {
+                delList[this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[failInd][i]](this.GetComponentInParent<EventGenerator>().myEvents.ButtonValues[failInd][i], this.GetComponentInParent<EventGenerator>().myEvents.EmployeeIndices[failInd][i]);
+            }
+        }
+        return pass;
     }
     public bool capabilityCheck(int emp, int prob, int sucInd, int failInd) {
         int check = Random.Range(0, 256);
         int modProb = (int)(randEmploy[emp].GetComponent<Employee>().capability-128+prob);
-        return (check<=modProb);
+        bool pass = check<=modProb;
+        if (pass) {
+            for (int i = 0; i < this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[sucInd].Count-1; i++) {
+                delList[this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[sucInd][i]](this.GetComponentInParent<EventGenerator>().myEvents.ButtonValues[sucInd][i], this.GetComponentInParent<EventGenerator>().myEvents.EmployeeIndices[sucInd][i]);
+            }
+        } else {
+            for (int i = 0; i < this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[failInd].Count-1; i++) {
+                delList[this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[failInd][i]](this.GetComponentInParent<EventGenerator>().myEvents.ButtonValues[failInd][i], this.GetComponentInParent<EventGenerator>().myEvents.EmployeeIndices[failInd][i]);
+            }
+        }
+        return pass;
     }
     public bool personalityCheck(int emp, int prob, int sucInd, int failInd) {
         int check = Random.Range(0, 256);
         int modProb = (int)(randEmploy[emp].GetComponent<Employee>().personal-128+prob);
-        return (check<=modProb);
+        bool pass = check<=modProb;
+        if (pass) {
+            for (int i = 0; i < this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[sucInd].Count-1; i++) {
+                delList[this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[sucInd][i]](this.GetComponentInParent<EventGenerator>().myEvents.ButtonValues[sucInd][i], this.GetComponentInParent<EventGenerator>().myEvents.EmployeeIndices[sucInd][i]);
+            }
+        } else {
+            for (int i = 0; i < this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[failInd].Count-1; i++) {
+                delList[this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[failInd][i]](this.GetComponentInParent<EventGenerator>().myEvents.ButtonValues[failInd][i], this.GetComponentInParent<EventGenerator>().myEvents.EmployeeIndices[failInd][i]);
+            }
+        }
+        return pass;
+    }
+    public bool capaPersonalCheck(int emp, int prob, int sucInd, int failInd) {
+        int check = Random.Range(0, 256);
+        int modProb = (int)((randEmploy[emp].GetComponent<Employee>().personal-128)+(randEmploy[emp].GetComponent<Employee>().capability-128)/2)+prob;
+        bool pass = check<=modProb;
+        if (pass) {
+            for (int i = 0; i < this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[sucInd].Count-1; i++) {
+                delList[this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[sucInd][i]](this.GetComponentInParent<EventGenerator>().myEvents.ButtonValues[sucInd][i], this.GetComponentInParent<EventGenerator>().myEvents.EmployeeIndices[sucInd][i]);
+            }
+        } else {
+            for (int i = 0; i < this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[failInd].Count-1; i++) {
+                delList[this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[failInd][i]](this.GetComponentInParent<EventGenerator>().myEvents.ButtonValues[failInd][i], this.GetComponentInParent<EventGenerator>().myEvents.EmployeeIndices[failInd][i]);
+            }
+        }
+        return pass;
     }
     public bool moneyCheck(int emp, int prob, int sucInd, int failInd) {
         return (company.GetComponent<Company>().cash>prob);
@@ -121,6 +186,7 @@ public class EventFunctions : MonoBehaviour
     }
     public bool randomCheck(int emp, int prob, int sucInd, int failInd) {
         int check = Random.Range(0, 256);
+        bool pass = check<=prob;
         return (check<=prob);
     }
     public bool alwaysTrue(int emp, int prob, int sucInd, int failInd) {
