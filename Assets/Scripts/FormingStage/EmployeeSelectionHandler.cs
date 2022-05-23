@@ -77,7 +77,6 @@ public class EmployeeSelectionHandler : MonoBehaviour
 
         blockableButtonInstance.GetComponent<TooltipInterface>().enableTooltip = selectionLimit != selected &&  compCash > selCash;
         blockableButtonInstance.GetComponent<Button>().interactable = selectionLimit == selected &&  compCash > selCash;
-        
     }
 
     public int countSelectedEmployees()

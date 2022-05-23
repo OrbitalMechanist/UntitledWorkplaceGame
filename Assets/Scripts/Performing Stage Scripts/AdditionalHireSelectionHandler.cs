@@ -112,8 +112,8 @@ public class AdditionalHireSelectionHandler : MonoBehaviour
         int selCash = totalSelectedSalaries();
         budgetTextInstance.GetComponent<Text>().text = "Budget Left: $" + (compCash - selCash);
 
-        blockableButtonInstance.GetComponent<Button>().interactable = selectionLimit >= selected + selectionStart
-            && compCash > selCash;
+        blockableButtonInstance.GetComponent<TooltipInterface>().enableTooltip = selectionLimit < selected + selectionStart || compCash < selCash;
+        blockableButtonInstance.GetComponent<Button>().interactable = selectionLimit >= selected + selectionStart && compCash > selCash;
     }
 
     public int countSelectedEmployees()

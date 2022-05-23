@@ -1141,6 +1141,7 @@ GameObject:
   - component: {fileID: 5038409173864735991}
   - component: {fileID: 5038409173864735985}
   - component: {fileID: 6008710177063168889}
+  - component: {fileID: 7467451200562377912}
   m_Layer: 5
   m_Name: continueButton
   m_TagString: Untagged
@@ -1321,6 +1322,23 @@ MonoBehaviour:
   blockableButtonInstance: {fileID: 5038409173864735945}
   selectionStart: 0
   selectionLimit: 5
+--- !u!114 &7467451200562377912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5038409173864735945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableDescription: 1
+  enableTooltip: 1
+  headerText: Hold Up!
+  descriptionText: You cannot exceed 5 employees and must be within your budget to
+    finish hiring!
 --- !u!1 &5038409174071129527
 GameObject:
   m_ObjectHideFlags: 0
