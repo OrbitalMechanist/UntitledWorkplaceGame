@@ -272,9 +272,9 @@ public class EventGenerator : MonoBehaviour
     }
     public void closeEvent(GameObject thisEvent) {
         //Destroys the event object, and increments the counter of events that have passed
-        count+=1;
-        if (count>20) {
-            count = 20;
+        count++;
+        if (count > MAX_TICKS) {
+            count = MAX_TICKS;
         }
         Destroy(thisEvent);
     }
