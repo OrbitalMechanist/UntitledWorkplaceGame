@@ -273,24 +273,19 @@ public class EventFunctions : MonoBehaviour
         //Assigns each employee to a random index
         for (int i = 0; i < empCount; i++) {
             //In order to ensure we don't get duplicates, we need to always go from i, which is the value of the current index of the employee
-            GameObject temp = employees.transform.GetChild(i).gameObject;
-            int randInd = (int)Random.Range(i, empCount);
-            if (randInd > i && randEmploy[randInd] == null) {
-                randEmploy[randInd] = employees.transform.GetChild(randInd).gameObject;
-            } 
-            randEmploy[i] = randEmploy[randInd];
-            Debug.Log(randInd);
-            randEmploy[randInd] = temp;
-            //delta[i] = 0;
+            empInd[i] = (int)Random.Range(i, empCount);
             //Compares our number against every other generated number, and lowers it by 1 for every number that's greater than or equal to itself
-            // for (int j = 0; j < i; j++) {
-            //     if (empInd[i]<=(empInd[j]+delta[j])) {
-            //         delta[i]++;
-            //     }
-            // }
-            //empInd[i]-=delta[i];
+            for (int j = i-1; j >= 0; j--) {
+                if (empInd[i]==empInd[j]) {
+                    empInd[i]--;
+                    j = i;
+                }
+                if (empInd[i]<0) {
+                    empInd[i] = empCount-1;
+                }
+            }
             //Assigns the employee at that index to an index in the random employee list
-            //randEmploy[i] = employees.transform.GetChild(empInd[i]).gameObject;
+            randEmploy[i] = employees.transform.GetChild(empInd[i]).gameObject;
         }
     }
 }
