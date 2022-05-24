@@ -5,7 +5,8 @@ using UnityEngine;
 public class MultidisciplinaryAttribute : EmployeeAttribute
 {
 
-    public new const string attributeTitle = "Multidisciplinary";
+    public new const string attributeTitle = "Broad Skills";
+//    public new const string attributeTitle = "Multidisciplinary";
 
     public override int ethicDelta { get; set; } = 0;
     public override int personalDelta { get; set; } = 0;
