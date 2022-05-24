@@ -16,7 +16,7 @@ public class Tile : MonoBehaviour
     private bool isFilled = false;
 
     /** Whether or not this tile is enabled. */
-    private bool enabled = true;
+    private bool tileIsEnabled = true;
 
     /** The colour of this tile when it is enabled. */
     private Color enabledColour = new Color(242, 182, 4);
@@ -25,13 +25,13 @@ public class Tile : MonoBehaviour
     private Color disabledColour = Color.grey;
 
     public void enableTile() {
-        enabled = true;
+        tileIsEnabled = true;
         this.gameObject.GetComponent<Image>().color = enabledColour;
         this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
     }
 
     public void disableTile() {
-        enabled = false;
+        tileIsEnabled = false;
         isFilled = false;
         this.gameObject.GetComponent<Image>().color = disabledColour;
         this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
@@ -46,7 +46,7 @@ public class Tile : MonoBehaviour
     }
 
     public bool isEnabled() {
-        return enabled;
+        return tileIsEnabled;
     }
 
     public bool getFillStatus() {
