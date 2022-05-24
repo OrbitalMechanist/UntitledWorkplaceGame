@@ -37,10 +37,12 @@ public class Company : MonoBehaviour
             //Deducts your payback value from the company's money as well as from the debt
             investorDebts[i] -= investorPayBack[i];
             cash -= investorPayBack[i];
+            Debug.Log("You're paying: " + investorPayBack[i]);
+            Debug.Log("You owe:" + investorDebts[i]);
             if (investorDebts[i]<=0) {
                 //Removes investor from list if the debt is paid
-                investorDebts.Remove(i);
-                investorPayBack.Remove(i);
+                investorDebts.RemoveAt(i);
+                investorPayBack.RemoveAt(i);
             } else {
                 //This needs to be here instead of up above so we don't skip over any investors should we remove one
                 i++;
