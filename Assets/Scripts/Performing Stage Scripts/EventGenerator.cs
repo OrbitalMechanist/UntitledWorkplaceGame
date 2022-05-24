@@ -209,6 +209,7 @@ public class EventGenerator : MonoBehaviour
             AudioSource click = soundObject.transform.Find("Click").gameObject.GetComponent<AudioSource>();
             //Places function calls into button on click, along with playing a click sound effect
             newButton.onClick.AddListener(delegate{
+                this.GetComponentInParent<EventFunctions>().company.GetComponent<Company>().increaseCompany();
                 int suc = myEvents.ProbChecks[temp][3];
                 int fail = myEvents.ProbChecks[temp][4];
                 bool state = this.GetComponentInParent<EventFunctions>().checkList[myEvents.ProbChecks[temp][0]](myEvents.ProbChecks[temp][1], myEvents.ProbChecks[temp][2], myEvents.ProbChecks[temp][3], myEvents.ProbChecks[temp][4]);
