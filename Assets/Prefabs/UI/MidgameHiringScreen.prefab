@@ -806,7 +806,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5038409173436436130}
   m_HandleRect: {fileID: 5038409173436436133}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1826,6 +1826,7 @@ MonoBehaviour:
   employeeManagerInstance: {fileID: 7977175694433520318}
   UiContainerInstance: {fileID: 5038409173303155695}
   UiDisplayItemPrefab: {fileID: 2993631591654952256, guid: 67ec49d22139a2043b73a31c18dc8439, type: 3}
+  attributeTextPrefab: {fileID: 9080543937483652302, guid: 99ccbde6dc8dba44199f0dd65730a25d, type: 3}
 --- !u!114 &8690960535251174727
 MonoBehaviour:
   m_ObjectHideFlags: 0

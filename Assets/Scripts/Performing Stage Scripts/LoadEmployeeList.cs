@@ -8,6 +8,7 @@ public class LoadEmployeeList : MonoBehaviour
     public GameObject employeeManagerInstance; 
     public GameObject UiContainerInstance;
     public GameObject UiDisplayItemPrefab;
+    public GameObject attributeTextPrefab;
 
     private float containerWidth;
     private float containerHeight;
@@ -64,21 +65,16 @@ public class LoadEmployeeList : MonoBehaviour
         for(int i = 0; i < employeeObject.GetComponent<Employee>().attributeNames.Count; i++)
         {
             // Create text object to display attribute
-            GameObject newAttribute = new GameObject("Attr" + (i + 1));
-            Text newAttributeText = newAttribute.AddComponent<Text>();
+            GameObject newAttribute = Instantiate(attributeTextPrefab); 
+            Text newAttributeText = newAttribute.GetComponent<Text>();
 
             // Add tooltip to attribute
             TooltipInterface newAttributeTooltip = newAttribute.AddComponent<TooltipInterface>();
             newAttributeTooltip.setTooltipHeaderText(employeeObject.GetComponent<Employee>().attributes[i].tooltipHeaderText);
             newAttributeTooltip.setTooltipDescriptionText(employeeObject.GetComponent<Employee>().attributes[i].tooltipDescriptionText);
 
-            // set text properties of attribute display
+            // Set text of attribute display
             newAttributeText.text = employeeObject.GetComponent<Employee>().attributeNames[i];
-            Font ArialFont = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
-            newAttributeText.font = ArialFont;
-            newAttributeText.fontSize = 16;
-            newAttributeText.color = new Color32(41, 41, 41, 255);
-            newAttributeText.alignment = TextAnchor.MiddleCenter;
             
             // Add attribute to employee card
             newAttribute.transform.SetParent(UIElement.transform.Find("AttrHolder"));
