@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class EventGenerator : MonoBehaviour
 {
-    private const int MAX_TICKS = 25;
+    private const int MAX_TICKS = 6;
     public GameObject soundObject;
     public TextAsset eventJsonFile;
     public TextAsset buttonsFile;
@@ -175,7 +175,15 @@ public class EventGenerator : MonoBehaviour
     public void randomizeEvents() {
         //Generates a random number, based on roughly what stage you are in
         //int rand = Random.Range(System.Math.Max(0, count-5), System.Math.Min(MAX_TICKS, count+5));
-        int rand = 13;
+        int rand = 7;
+        if (count == 1) {
+            rand = 6;
+        } else if (count == 3) {
+            rand = 10;
+        } else if (count == 4) {
+            rand = 20;
+        }
+        //int rand = 13;
         //Places employees in a list in a randomized order
         this.GetComponentInParent<EventFunctions>().randomEmployees();
         //Creates event object
@@ -209,6 +217,7 @@ public class EventGenerator : MonoBehaviour
             AudioSource click = soundObject.transform.Find("Click").gameObject.GetComponent<AudioSource>();
             //Places function calls into button on click, along with playing a click sound effect
             newButton.onClick.AddListener(delegate{
+                this.GetComponentInParent<EventFunctions>().company.GetComponent<Company>().increaseCompany();
                 int suc = myEvents.ProbChecks[temp][3];
                 int fail = myEvents.ProbChecks[temp][4];
                 bool state = this.GetComponentInParent<EventFunctions>().checkList[myEvents.ProbChecks[temp][0]](myEvents.ProbChecks[temp][1], myEvents.ProbChecks[temp][2], myEvents.ProbChecks[temp][3], myEvents.ProbChecks[temp][4]);

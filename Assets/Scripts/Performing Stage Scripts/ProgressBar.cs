@@ -13,7 +13,7 @@ public class ProgressBar : MonoBehaviour
     private int currentTicks;
     private float progressLength;
 
-    private const int MAX_TICKS = 25;
+    private const int MAX_TICKS = 6;
     
     // Start is called before the first frame update
     void Start()
