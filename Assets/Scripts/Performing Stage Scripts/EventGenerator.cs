@@ -118,6 +118,7 @@ public class EventGenerator : MonoBehaviour
     {
         
     }
+    //Generates a specific event from the follow-up list in myEvents
     public void specifiedEvent(int ind) {
         //Places employees in a list in a randomized order
         this.GetComponentInParent<EventFunctions>().randomEmployees();
@@ -170,6 +171,7 @@ public class EventGenerator : MonoBehaviour
         descRT.offsetMin = new Vector2(descRT.offsetMin.x, descRT.offsetMin.y+(float)37.5);
         newEvent.transform.SetParent(canvas.transform, false);
     }
+    //Generates a random event from the Events list in myEvents
     public void randomizeEvents() {
         //Generates a random number, based on roughly what stage you are in
         int rand = Random.Range(System.Math.Max(0, count-5), System.Math.Min(MAX_TICKS, count+5));
@@ -225,6 +227,7 @@ public class EventGenerator : MonoBehaviour
         descRT.offsetMin = new Vector2(descRT.offsetMin.x, descRT.offsetMin.y+(float)37.5);
         newEvent.transform.SetParent(canvas.transform, false);
     }
+    //Generates a result based on the index at the end of the ButtonValues list in myEvents
     public void generateResult(int resultIndex, int gamestateIndex) {
         //Loads sound effects
         AudioSource click = soundObject.transform.Find("Click").gameObject.GetComponent<AudioSource>();
