@@ -28,6 +28,7 @@ public class StageOrganizer : MonoBehaviour
             emp.GetComponent<Employee>().workplaceInstance = workplacesInstances[i];
             emp.GetComponent<Employee>().companyManagerInstance = companyManagerInstance;
             emp.GetComponent<TileNav>().navigableTileSystemInstance = ts;
+            emp.GetComponent<TileNav>().needsToMove = false;
             emp.transform.position = workplacesInstances[i].transform.position;
         }
     }

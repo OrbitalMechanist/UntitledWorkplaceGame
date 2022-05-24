@@ -20,8 +20,8 @@ public class TileNav : MonoBehaviour
     //List of steps to take.
     private List<Vector3> directions;
 
-    //Needs to be set to true to start moving.
-    private bool needsToMove = false;
+    //Needs to be set to true to start moving. Can be set to false to forcibly stop.
+    public bool needsToMove = false;
 
     //Internal variables that have to be preserved between frames
     private int stepIndex = 0;

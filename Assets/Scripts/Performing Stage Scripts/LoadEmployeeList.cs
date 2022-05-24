@@ -98,7 +98,7 @@ public class LoadEmployeeList : MonoBehaviour
         numEmployees = employeeManagerInstance.transform.childCount;
 
         // Clear pre-existing loaded employees
-        // Note, index 0 is intentionally skipped as that is the add hire button
+        // Note, indeces 0, 1 and 2 are intentionally skipped as that is the hiring interface
         for (int i = 3; i < UiContainerInstance.transform.childCount; i++)
         {
             GameObject.Destroy(UiContainerInstance.transform.GetChild(i).gameObject);
