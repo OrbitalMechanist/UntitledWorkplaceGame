@@ -393,6 +393,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableDescription: 1
+  enableTooltip: 1
   headerText: Personal Skills
   descriptionText: How well the employee gets along with others. Low personal skills
     may result in conflict...
@@ -430,7 +432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 87.3, y: -30.7}
+  m_AnchoredPosition: {x: 85.79994, y: -37.843708}
   m_SizeDelta: {x: 32.0374, y: 32.0374}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5856331639590184699
@@ -699,7 +701,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 87.3, y: -30.699997}
+  m_AnchoredPosition: {x: 85.79994, y: -37.843704}
   m_SizeDelta: {x: 10.4871, y: 10.487}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7776044002757219025
@@ -1163,6 +1165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableDescription: 1
+  enableTooltip: 1
   headerText: Work Ethic
   descriptionText: The work ethic of the employee. Higher work ethic employees generate
     money more often
@@ -2019,7 +2023,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 87.30005, y: -78.75627}
+  m_AnchoredPosition: {x: 85.8, y: -85.9}
   m_SizeDelta: {x: 64.0749, y: 64.0749}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1930428762977161373
@@ -2050,7 +2054,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 19ef6165db8f99944a679c06f1a2b73a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 406bad80c1e2bee4f92c73f585374628, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2428,6 +2432,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableDescription: 1
+  enableTooltip: 1
   headerText: Capability
   descriptionText: How good an employee is at their job. Higher capability employees
     will generate more money

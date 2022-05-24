@@ -30,12 +30,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5038409173450235262}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 301.77942, y: -70.7572}
-  m_SizeDelta: {x: 215.3988, y: 31.8825}
+  m_AnchoredPosition: {x: 311.5, y: -68.49997}
+  m_SizeDelta: {x: 277.8315, y: 32.3711}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1994955594735833445
 CanvasRenderer:
@@ -79,6 +79,181 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Budget Left: $10000'
+--- !u!1 &3791240631736004211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4571363722144026880}
+  - component: {fileID: 1209936564900085753}
+  - component: {fileID: 1518457511925202492}
+  - component: {fileID: 1777302157139875326}
+  m_Layer: 5
+  m_Name: Help
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4571363722144026880
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791240631736004211}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4184630523820035475}
+  m_Father: {fileID: 5038409173450235262}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -4.6862, y: 190.26}
+  m_SizeDelta: {x: 27.4319, y: 27.4319}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1209936564900085753
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791240631736004211}
+  m_CullTransparentMesh: 1
+--- !u!114 &1518457511925202492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791240631736004211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 853c471d014155c47af56962144977f6, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 12
+--- !u!114 &1777302157139875326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791240631736004211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableDescription: 1
+  enableTooltip: 1
+  headerText: What do employees do?
+  descriptionText: Your employees help you run your company. They generate you money
+    over time, which is affected by their Work Ethic and Capability stats. They are
+    also involved in events you experience throughout the game, and the outcomes
+    of some may depend on your employees' stats.
+--- !u!1 &3918541759072083673
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4184630523820035475}
+  - component: {fileID: 7924028264551577224}
+  - component: {fileID: 478683387376309523}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4184630523820035475
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3918541759072083673}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4571363722144026880}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.000016212463, y: 0.000014305115}
+  m_SizeDelta: {x: -0.000017166, y: -0.000030518}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7924028264551577224
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3918541759072083673}
+  m_CullTransparentMesh: 1
+--- !u!114 &478683387376309523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3918541759072083673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 24
+    m_FontStyle: 1
+    m_BestFit: 1
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: '?'
 --- !u!1 &5038409171976038096
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,7 +806,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5038409173436436130}
   m_HandleRect: {fileID: 5038409173436436133}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -695,7 +870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -749,7 +924,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00043343694}
+  m_AnchoredPosition: {x: 0, y: -0.000015606978}
   m_SizeDelta: {x: 0, y: 130}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5038409173303155693
@@ -887,6 +1062,7 @@ RectTransform:
   - {fileID: 5038409171976038097}
   - {fileID: 5038409173103723692}
   - {fileID: 5038409172708170669}
+  - {fileID: 4571363722144026880}
   - {fileID: 5038409173864735990}
   - {fileID: 5038409174071129524}
   - {fileID: 7026835690247268363}
@@ -1140,8 +1316,8 @@ GameObject:
   - component: {fileID: 5038409173864735988}
   - component: {fileID: 5038409173864735991}
   - component: {fileID: 5038409173864735985}
-  - component: {fileID: 5038409173864735984}
   - component: {fileID: 6008710177063168889}
+  - component: {fileID: 7467451200562377912}
   m_Layer: 5
   m_Name: continueButton
   m_TagString: Untagged
@@ -1162,7 +1338,7 @@ RectTransform:
   m_Children:
   - {fileID: 5038409173182771803}
   m_Father: {fileID: 5038409173450235262}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -1302,18 +1478,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 3, y: -3}
   m_UseGraphicAlpha: 1
---- !u!114 &5038409173864735984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5038409173864735945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb7c1d678b3d3f46bee194043eebf99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6008710177063168889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1334,6 +1498,23 @@ MonoBehaviour:
   blockableButtonInstance: {fileID: 5038409173864735945}
   selectionStart: 0
   selectionLimit: 5
+--- !u!114 &7467451200562377912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5038409173864735945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableDescription: 1
+  enableTooltip: 1
+  headerText: Hold Up!
+  descriptionText: You cannot exceed 5 employees and must be within your budget to
+    finish hiring!
 --- !u!1 &5038409174071129527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1368,7 +1549,7 @@ RectTransform:
   - {fileID: 5038409173025014026}
   - {fileID: 5038409173165746808}
   m_Father: {fileID: 5038409173450235262}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1432,7 +1613,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 20
+  m_ScrollSensitivity: 25
   m_Viewport: {fileID: 5038409173641266066}
   m_HorizontalScrollbar: {fileID: 5038409173025014027}
   m_VerticalScrollbar: {fileID: 5038409173165746809}
@@ -1548,7 +1729,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5038409173450235262}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2987099022975826388
 MonoBehaviour:
@@ -1596,9 +1777,24 @@ MonoBehaviour:
   - {r: 1, g: 0.69687366, b: 0.20392156, a: 1}
   - {r: 0.20392156, g: 0.384783, b: 1, a: 1}
   shirts:
-  - {fileID: 21300000, guid: 9278ab03556e498418317dc1726c2071, type: 3}
-  - {fileID: 21300000, guid: 6a7f40054911cd84f8fa16c9120ad99a, type: 3}
-  - {fileID: 21300000, guid: 6d08e0fdccd306f4b92249584c7c25b5, type: 3}
+  - {fileID: 21300000, guid: 406bad80c1e2bee4f92c73f585374628, type: 3}
+  - {fileID: 21300000, guid: 5d6287ca9d778ed4ca193899dea44b75, type: 3}
+  - {fileID: 21300000, guid: c08b9a6b941c20e4baaab27b3e1f0e0d, type: 3}
+  - {fileID: 21300000, guid: 3d125f65f027e2c449b015acc7699de8, type: 3}
+  - {fileID: 21300000, guid: 2ba3f798500a98c448ce6ab219b21cda, type: 3}
+  - {fileID: 21300000, guid: 766d4178e1272814ea3863186afeeac4, type: 3}
+  - {fileID: 21300000, guid: b65d00ab42ffaa9489ebf3d22825d515, type: 3}
+  - {fileID: 21300000, guid: fd021eba679c3d3478c98164a7c5b5a9, type: 3}
+  - {fileID: 21300000, guid: d04038117626cca49a2bbf267672cd5d, type: 3}
+  - {fileID: 21300000, guid: e739b2c88da2c584a9757964014a5b14, type: 3}
+  - {fileID: 21300000, guid: 8a2c6f5d8ef5f6e44a18022324f1d5a1, type: 3}
+  - {fileID: 21300000, guid: 9aa56424f26e65e44ab7f703af8d62f4, type: 3}
+  - {fileID: 21300000, guid: ab6e5d4941276ca4b9c1d3e500ebea2c, type: 3}
+  - {fileID: 21300000, guid: 18b9b523aa7c06c4883c080d44c19626, type: 3}
+  - {fileID: 21300000, guid: de8bc565747f11947baeb34fa349efa8, type: 3}
+  - {fileID: 21300000, guid: 26ecf7edfec72654197c1dfcadc2a046, type: 3}
+  - {fileID: 21300000, guid: 7211f215bff645e4dab1f91ba937c7b1, type: 3}
+  - {fileID: 21300000, guid: 25ed857c99d52c247a8d6f6f716c087f, type: 3}
   heads:
   - {fileID: 21300000, guid: 318fe2bd1a6349c4aa0b3da3fb6b5ede, type: 3}
   hats:

@@ -13,6 +13,7 @@ public class EventHandler : MonoBehaviour
     public bool hasEvent = false;
     public List<int> followUpStack = new List<int>();
     public List<int> followUpTimer = new List<int>();
+    public int eventCount = 0;
     // public int count;
     // int randEvent;
     // UnityAction buttonCallBack;
@@ -115,6 +116,7 @@ public class EventHandler : MonoBehaviour
                 //test.transform.SetParent(canvas.transform, false);
                 //Time.timeScale = 0;
                 hasEvent = true;
+                eventCount++;
             } else {
                 time-=Time.deltaTime;
             }

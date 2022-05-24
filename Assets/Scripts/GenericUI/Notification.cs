@@ -5,12 +5,19 @@ using UnityEngine.UI;
 
 public class Notification : MonoBehaviour
 {
+    public Text notificationHeader;
+    public Text notificationText;
+    
     public float notificationTimer = 4.0f;
     public float fadeInTimer = 0.25f;
     public float fadeOutTimer = 1.0f;
 
-    public void NotificationPopUp()
+    public void NotificationPopUp(string header, string text)
     {
+        // Display text for notification
+        notificationHeader.text = header;
+        notificationText.text = text;
+
         // Fade in notification
         FadeInNotification();
 

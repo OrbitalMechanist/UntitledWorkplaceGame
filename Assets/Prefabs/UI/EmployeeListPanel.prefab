@@ -795,6 +795,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableDescription: 1
+  enableTooltip: 1
   headerText: Work Ethic
   descriptionText: The work ethic of the employee. Higher work ethic employees generate
     money more often
@@ -1289,6 +1291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableDescription: 1
+  enableTooltip: 1
   headerText: Personal Skills
   descriptionText: How well the employee gets along with others. Low personal skills
     may result in conflict...
@@ -1827,8 +1831,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 43.738922, y: -30.699966}
-  m_SizeDelta: {x: 32.0374, y: 32.0374}
+  m_AnchoredPosition: {x: 44.022, y: -30}
+  m_SizeDelta: {x: 63.5081, y: 63.5081}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8542095184711587080
 CanvasRenderer:
@@ -1858,7 +1862,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9d9b8571ecbe9964e9bf7a4139d1e270, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 99e442a7110965d4c9870c43781a9f7e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1960,6 +1964,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fe0fdc69b6d8844a68384299cdc037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableDescription: 1
+  enableTooltip: 1
   headerText: Capability
   descriptionText: How good an employee is at their job. Higher capability employees
     will generate more money
@@ -2500,7 +2506,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 19ef6165db8f99944a679c06f1a2b73a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 406bad80c1e2bee4f92c73f585374628, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
