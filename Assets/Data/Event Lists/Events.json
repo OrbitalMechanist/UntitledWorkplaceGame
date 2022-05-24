@@ -20,8 +20,10 @@
         "Your sales team is growing and they are handling account management and customer support after they close new business. Their expertise in selling to others is not in handling all their requests and needs.\nDo you...",
         "You have the opportunity to partner with a complementary player in your market. They offer some pretty great cross selling opportunities with their customers, but they compete with one division of one of your large customers.\nDo you...",
         "Your organization has grown too quickly and revenues haven't kept pace. Your investors are nervous and you need to raise more money to execute on your next strategic plan. Your investors recommend some drastic changes to make the company more attractive for future investments.\nDo you...",
+        "An investor is interested in giving you $100,000. In exchange, they expect 12% to be paid every event cycle until the investment is paid off.\nDo you...",
         "Your organization is scaling faster than you could imagine. Your need for talented people to join your team continues at a pace that you could never have imagined. It's time to consider looking outside of your local area for talent.\nDo you...",
         "Your internal leadership team has begun to outgrow your early leadership group, including two close friends and your business partner's relative who had been hired as head of operations, causing tension between what is known as \"The Old Guard\" and \"The New Guard\".\nDo you...",
+        "A long simmering issue among your team members is coming to a head and needs to be dealt with. A number of long term employees feel disgruntled because they have never been compensated well compared to their industry and they recently discovered that new team members with the same role make more than them.\nDo you...",
         "The technology that your company uses to run your business is straining under its growth and scale. Your technology team tells you that if no action is taken, a total system failure could occur in the coming 6-18 months, depending on activity.\nDo you...",
         "You've done a great job building and scaling your team and the culture of the company has been attracting great talent and keeping your top people happy. Things are starting to stretch as the ways of the old team are clashing with the ways of the new team. Issues seem to be coming to a head.\nDo you...",
         "Your company has grown to the point where you don't know everyone who works for you and some unfortunate things are beginning to occur with some team members at and outside of work. Your investors and mentors recommend some outside assistance.\nDo you...",
@@ -30,7 +32,8 @@
         "Wow! You and your team have done an incredible job developing your business and growing your team. As founder, you have built an incredible job developing your business and growing your team. As founder, you have build an incredible amount of value and wealth for your team and your shareholders. You have new ideas and ventures you are ready to put your tine into. You want to find an exit for yourself, not necessarily for your business.\nDo you..."
     ],
     "FollowUps": [
-        "The investor you asked for time to think has returned. They're offering the same amount of money, but with an extra 3% to be paid every event cycle. They say this is non-negotiable.\nDo you..."
+        "The investor you asked for time to think has returned. They're offering the same amount of money, $50000, but with an extra 3% to be paid every event cycle, making it 15%. They say this is non-negotiable.\nDo you...",
+        "The investor you asked for time to think has returned. They're offering the same amount of money, $100000, but with an extra 8% to be paid every event cycle, making it 20%. They say this is non-negotiable.\nDo you..."
     ],
     "Results": [
         "Your action causes them to realize the error of their ways and they apologize.\nHappiness up greatly",
@@ -60,9 +63,9 @@
         "The world and more customers than you would have thought learn about your product. Your team feels pride in the choice you have made, and the exposure for your product.\nMoney up\nHappiness up",
         "You take them to court, but because it's very difficult to defend the feature and you have no registered parents to support your argument, you have significant court costs and do not win. Your team sees your decision as foolish and lose some faith.\nHappiness down slightly\nMoney down greatly",
         "Your team, inspired by this decision, spend day and night working overtime to complete the work.\nMoney down\nHappiness up",
-        "Your competitor accelerates their work on this feature and begins to take away customers. The next big thing you focus on, while flashy, doesn't drive revenue, and your team is disappointed to lose so much business to your competition.\nHappiness down slightly\nMoney down greatly",
-        "They are surprised to hear this, as they didn't notice. Upon hearing this, you are very surprised based on what you know, and you let them go regardless. To your surprise, sales don't slow down. Clearly, it wasn't their sales acumen that's selling, rather the incredible product and the team behind it.\nHappiness up greatly\nMoney up slightly",
-        "Everyone is pretty surprised that you decided to fire the top salesman. The team worries about your their jobs, but to your surprise, sales don't slow down. Clearly, it wasn't their sales acumen that's selling, rather the incredible product and the team behind it.\nHappiness down\nMoney up slightly",
+        "Your competitor accelerates their work on this feature and begins to take away customers. The next big thing you focus on, while flashy, doesn't drive revenue, and your team is disappointed to lose so much business to your competition.\nHappiness down slightly\nMoney down greatly\nA team member was fired. You can hire new team members from the team member menu",
+        "They are surprised to hear this, as they didn't notice. Upon hearing this, you are very surprised based on what you know, and you let them go regardless. To your surprise, sales don't slow down. Clearly, it wasn't their sales acumen that's selling, rather the incredible product and the team behind it.\nHappiness up greatly\nMoney up slightly\nA team member was fired. You can hire new team members from the team member menu",
+        "Everyone is pretty surprised that you decided to fire the top salesman. The team worries about your their jobs, but to your surprise, sales don't slow down. Clearly, it wasn't their sales acumen that's selling, rather the incredible product and the team behind it.\nHappiness down\nMoney up slightly\nA team member was fired. You can hire new team members from the team member menu",
         "They get a little intoxicated at the meal and acts like a fool. You are forced to fire them on the spot as a result of their behaviour. Everyone wonders what happened to them when they return to work the next week. The team is worried, but to your surprise, sales don't slow down. Clearly, it wasn't their sales acumen that's selling, rather the incredible product and the team behind it.\nHappiness down greatly\nMoney up slightly",
         "Everyone else in your organization that matters decides to leave the next week. Your organization is in shambles, and you are forced to take everything on yourself. The business begins to fail, and you are left with a great salesperson and nothing more.\nGAME OVER",
         "The recruiting firm is costly and helps bring in great candidates, on paper. They don't understand your company culture, and recommend overqualified and costly candidates that your team doesn't always work well with.\nHappiness down\nMoney down greatly",
@@ -131,7 +134,11 @@
         "The investor agrees to invest in your company under your terms.",
         "The investor declines your terms and pulls the investment opportunity from you.",
         "You decline the investment.",
-        "The investor says they will consider returning."
+        "The investor says they will consider returning.",
+        "Your team appreciates your move and explains that they were about to leave, but are now happy to stay and play to win.\nHappiness up significantly\nMoney down slightly",
+        "Your legacy team revolts and half of them leave. Because of this, there is a lack of historic knowledge among your people which causes some headaches and leaves some legacy issues behind.\nHappiness down significantly\n2 team members have left. You can hire new team members from the team member menu",
+        "Early team members appreciate your thoughts and proceed to explain that is why they've stuck around until now, and most of them have already received all their shares. Your people view your decisions as petty and insensitive.\nHappiness down",
+        "This is catastrophic. Most of the new employees leave, and so do some of the legacy team members. You end up having to pay everyone else more as they weren't paid what they are worth in the market.\nHappiness down significantly\nMoney down\n3 team members have left. You can hire new team members from the team member menu"
     ],
     "ButtonTexts": [
         "Confront {0}",
@@ -235,6 +242,16 @@
         "Ask if you can take some time to think about it",
         "Decline the investment",
         "Accept",
-        "Decline"
+        "Decline",
+        "Accept the investment",
+        "Push for $120,000",
+        "Ask if you can take some time to think about it",
+        "Decline the investment",
+        "Accept",
+        "Decline",
+        "Apologize and pay team members the same salary",
+        "Say nothing and let the team sort it out",
+        "Explain that early employees received more equity than later ones",
+        "Reduce the salaries of your new employees"
     ]
 }
