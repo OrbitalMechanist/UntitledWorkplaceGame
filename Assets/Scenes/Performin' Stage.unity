@@ -2345,7 +2345,7 @@ MonoBehaviour:
   employeeManagerInstance: {fileID: 0}
   UiContainerInstance: {fileID: 816450044}
   UiDisplayItemPrefab: {fileID: 2993631591654952256, guid: 50e88758bbac359489a393d3e330364f, type: 3}
-  attributeTextPrefab: {fileID: 0}
+  attributeTextPrefab: {fileID: 9080543937483652302, guid: 99ccbde6dc8dba44199f0dd65730a25d, type: 3}
 --- !u!114 &452010555
 MonoBehaviour:
   m_ObjectHideFlags: 0
