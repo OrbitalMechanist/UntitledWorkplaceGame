@@ -11,6 +11,9 @@ public class Tooltip : MonoBehaviour
     /** Horizontal offset of the tooltip relative to the mouse position. */
     private const float HORIZONTAL_OFFSET = 15f;
 
+    /** Vertical offset of the tooltip relative to the mouse position. */
+    private const float VERTICAL_OFFSET = 45f;
+
     /** Camera of the UI. */
     public Camera uiCamera;
 
@@ -59,10 +62,16 @@ public class Tooltip : MonoBehaviour
         int scaledTooltipWidth = (int)(scaleWidth * rect.rect.width);
         int scaledTooltipHeight = (int)(scaleHeight * rect.rect.height);
 
-        // Get the tooltip position with offset
-        Vector3 position = new Vector3(Input.mousePosition.x + HORIZONTAL_OFFSET + (scaledTooltipWidth / 2), 
-                                       Input.mousePosition.y - scaledTooltipHeight, 0f);
+        // If the tooltip would go off the bottom of the screen, make it to appear above the mouse instead of under
+        float tooltipY;
+        if (Input.mousePosition.y - (VERTICAL_OFFSET + scaledTooltipHeight) < min.y) {
+            tooltipY = Input.mousePosition.y + (VERTICAL_OFFSET + (scaledTooltipHeight / 2));
+        } else {
+            tooltipY = Input.mousePosition.y - (VERTICAL_OFFSET + (scaledTooltipHeight / 2)); 
+        }
 
+        Vector3 position  = new Vector3(Input.mousePosition.x + HORIZONTAL_OFFSET + (scaledTooltipWidth / 2), tooltipY, 0f);
+        
         // Clamp it to the screen size so it doesn't go outside
         this.gameObject.transform.position = new Vector3(Mathf.Clamp(position.x, min.x + (scaledTooltipWidth / 2), max.x - (scaledTooltipWidth / 2)), 
                                                          Mathf.Clamp(position.y, min.y + (scaledTooltipHeight / 2), max.y - (scaledTooltipHeight / 2)), 
