@@ -6,33 +6,43 @@ using System.Text;
 
 public class GridManager : MonoBehaviour
 {
+    /** The row prefab to use when generating the meeting blocks. */
     public GameObject rowPrefab;
 
     /** Camera of the UI. */
     public Camera uiCamera;
 
+    /** The width of the grid. */
     [SerializeField]
     private int width;
 
+    /** The height of the grid. */
     [SerializeField]
     private int height;
 
+    /** The prefab to use for the grid tiles */
     [SerializeField]
     private Tile tilePrefab;
 
+    /** The grid GameObject. */
     [SerializeField]
     private GameObject grid;
 
+    /** The minigame result window pop-up. */
     [SerializeField]
     private GameObject resultPopUp;
 
+    /** The GameObject responsible for holding the meeting blocks. */
     [SerializeField]
     private GameObject meetingBlockHolder;
 
+    /** The prefab for the meeting tiles. */
     private GameObject[] meetingTilePrefabs;
-
+    
+    /** Whether or not the minigame is currently active. */
     private bool gameIsActive = false;
 
+    /** Whether or not the game is finished. */
     private bool gameFinished = false;
 
     /** The total maximum height of the blocks that can be displayed in the meeting tile holder. Used to determine max meeting tiles to generate. */
@@ -41,10 +51,13 @@ public class GridManager : MonoBehaviour
     /** The total maximum width of the blocks that can be displayed in the meeting tile holder. Used to determine max meeting tiles to generate. */
     private const int MAX_GENERATED_BLOCK_WIDTH = 2;
 
+    /** The stat increase for the employee. */
     private const int STAT_INCREASE = 5;
 
+    /** The header for the result pop-up. */
     private const string RESULT_HEADER_TEXT = "Hooray! Meetings Scheduled!";
 
+    /** The blurb text for the result pop-up. */
     private const string BLURB_TEXT = "You were able to masterfully fit all the required meetings into everyone’s schedules, boosting the organization of the team.";
 
     public void Start() {
@@ -53,16 +66,20 @@ public class GridManager : MonoBehaviour
     }
 
     public void Update() {
+        // Check the status of the minigame if it is currently active.
         if (gameIsActive) {
             bool tilesFilled = true;
             int childCount = grid.transform.childCount;
-
+            
+            // Check to see if every tile is filled
             for (int i = 5; i < childCount; i++) {
                 Tile tile = grid.transform.GetChild(i).GetComponent<Tile>();
                 if (tile.isEnabled() == true) {
                     tilesFilled &= tile.getFillStatus();
                 }
             }
+            
+            // If all tiles are filled, finish the game
             if (tilesFilled && !gameFinished) {
                 gameFinished = true;
                 resultPopUp.SetActive(true);
@@ -81,6 +98,7 @@ public class GridManager : MonoBehaviour
         // Generate new grid
         GenerateGridUI(GenerateGridLayout(tileLayoutList));
 
+        // The game is now active
         gameIsActive = true;
     }
 
@@ -161,8 +179,6 @@ public class GridManager : MonoBehaviour
     }
 
     public bool VerifyOpenTilePlacement(int[,] gridLayout, int[,] tile, ref int xIndex, ref int yIndex) {
-        bool isOpen = true;
-
         // Adjust starting coordinates to make sure the tile can fit onto the grid
         while (xIndex + tile.GetLength(1) > width) {
             xIndex--;
@@ -171,18 +187,18 @@ public class GridManager : MonoBehaviour
             yIndex--;
         }
 
-        // Check if the area covered by the tile to insert is open
+        // Check if the area covered by the tile to insert is not already filled
         for (int y = 0; y < tile.GetLength(0); y++) {
             for (int x = 0; x < tile.GetLength(1); x++) {
+                // If a part of the intended area is already filled, return false
                 if (gridLayout[yIndex + y, xIndex + x] == tile[y, x]) {
-                    isOpen = false;
-
-                    return isOpen;
+                    return false;
                 }
             }
         }
 
-        return isOpen;
+        // If none of the intended area was found to be already filled, return true
+        return true;
     }
 
     public void GenerateGridUI(int[,] gridLayout) {
@@ -220,6 +236,7 @@ public class GridManager : MonoBehaviour
             GameObject.Destroy(meetingBlockHolder.transform.GetChild(i).gameObject);
         }
 
+        // Game is no longer active or finished
         gameIsActive = false;
         gameFinished = false;
     }

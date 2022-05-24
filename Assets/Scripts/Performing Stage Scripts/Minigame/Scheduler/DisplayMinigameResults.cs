@@ -6,17 +6,32 @@ using System.Text.RegularExpressions;
 
 public class DisplayMinigameResults : MonoBehaviour
 {
+    /** The text object to display the result text. */
     public Text resultHeader;
+
+    /** The text object to display the blurb about winning the minigame. */
     public Text blurb;
+
+    /** The text object to display the rewards for completing the minigame. */
     public Text rewards;
+
+    /** The object that holds the employees. */
     public GameObject employeeManagerInstance; 
 
+    /** The minimum stat for an employee. */
     private int MIN_EMP_STAT = 0;
+
+    /** The maximum stat for an employee. */
     private int MAX_EMP_STAT = 256;
+
+    /** The text to display as the reward. */
     private string rewardText;
 
     public void BoostEmployeeWorkEthic(int statIncrease, string resultHeaderText, string blurbText) {
+        // Find the employee manager
         employeeManagerInstance = GameObject.Find("employeeOwner");
+
+        // Initialize reward text for use
         rewardText = "";
 
         // Get number of employees

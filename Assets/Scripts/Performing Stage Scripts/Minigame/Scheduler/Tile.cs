@@ -6,11 +6,22 @@ using UnityEngine.EventSystems;
 
 public class Tile : MonoBehaviour
 {
+    /** The X position of this tile. */
     public int x;
+
+    /** The Y position of this tile. */
     public int y;
+
+    /** Whether or not this tile has been filled with a meeting block. */
     private bool isFilled = false;
+
+    /** Whether or not this tile is enabled. */
     private bool enabled = true;
+
+    /** The colour of this tile when it is enabled. */
     private Color enabledColour = new Color(242, 182, 4);
+
+    /** The colour of this tile when it is disabled. */
     private Color disabledColour = Color.grey;
 
     public void enableTile() {
