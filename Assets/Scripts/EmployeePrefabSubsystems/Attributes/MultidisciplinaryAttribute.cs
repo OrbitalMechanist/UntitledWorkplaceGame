@@ -10,7 +10,7 @@ public class MultidisciplinaryAttribute : EmployeeAttribute
     public override int ethicDelta { get; set; } = 0;
     public override int personalDelta { get; set; } = 0;
     public override int capabilityDelta { get; set; } = 10;
-    public override string tooltipHeaderText { get; set; } = "<color=green>Specialist</color>\nCapability: <color=green>+10</color>";
+    public override string tooltipHeaderText { get; set; } = "<color=green>Multidisciplinary</color>\nCapability: <color=green>+10</color>";
     public override string tooltipDescriptionText { get; set; } = "This employee has an education in multiple relevant fields.";
 
     public MultidisciplinaryAttribute(Employee empToAttachTo) : base(empToAttachTo)
