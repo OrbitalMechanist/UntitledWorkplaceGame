@@ -3,11 +3,14 @@
         
     ],
     "Events": [
+        "An investor is interested in giving you $10,000. In exchange, they expect 12% to be paid every event cycle until the investment is paid off.\nDo you...",
         "{0} {1} is treating {2} {3} poorly. No one wants to confronts {0} and something must be done.\nDo you...",
         "Your first office space is your apartment. You welcome the early team to join you. Your family begins to feel a little cramped after two weeks.\nDo you...",
         "Your early investment funds are caught up with the investment bankers and you are unable to pay your team after their third week working.\nDo you...",
         "Your company's first logo results in a lawsuit from the largest company in the world as their lawyers consider it too close to the logo of an acquisition they made 10 years ago and shelved.\nDo you...",
         "You're presented with an opportunity to partner with a big traditional national media company. They'll put you in newspapers, TV, and radio for a cut of your business. This partnership will certainly mean more exposure.\nDo you...",
+        "Your team is participating in a hack-a-thon to develop solutions to help co-workers with their tasks and work. {0} {1} is part of the strongest project where their work ethic and personal skills will factor in greatly, and they want to lead the project.\nDo you...",
+        "An investor is interested in giving you $50,000. In exchange, they expect 12% to be paid every event cycle until the investment is paid off.\nDo you...",
         "Your first large customer asks you to customize your product for their specific needs. It may be a deal breaker, but you can't be sure.\nDo you..",
         "A competitor has copied your best feature, but it's not quite as good.\nDo you...",
         "Your early team members aren't happy with {0} {1}. Their attitude and behaviors are (maybe unknowingly) disrespectful to the other team members, but they never show this side to leadership.\nDo you...",
@@ -27,7 +30,7 @@
         "Wow! You and your team have done an incredible job developing your business and growing your team. As founder, you have built an incredible job developing your business and growing your team. As founder, you have build an incredible amount of value and wealth for your team and your shareholders. You have new ideas and ventures you are ready to put your tine into. You want to find an exit for yourself, not necessarily for your business.\nDo you..."
     ],
     "FollowUps": [
-        
+        "The investor you asked for time to think has returned. They're offering the same amount of money, but with an extra 3% to be paid every event cycle. They say this is non-negotiable.\nDo you..."
     ],
     "Results": [
         "Your action causes them to realize the error of their ways and they apologize.\nHappiness up greatly",
@@ -116,7 +119,19 @@
         "Your employee is disgruntled by your decision, but decides to go along with it anyways.\nTheir work ethic has been reduced\nEveryone is very upset about it",
         "Your employee is furious with your decision, and they quit.\nEveryone is very upset about it.",
         "Everyone unanimously agrees that the team member you chose is the best fit for the job.\nOverall happiness increases\nYour promoted employee gains more work ethic",
-        "Everyone thinks that your decision was poorly made, based on their subpar performance and attitude.\nOverall happiness decreases harshly\nYour promoted employee gains more work ethic"
+        "Everyone thinks that your decision was poorly made, based on their subpar performance and attitude.\nOverall happiness decreases harshly\nYour promoted employee gains more work ethic",
+        "The team leader does a great job leading the project. Your team is all incredibly proud of the work they have done.\nHappiness goes up significantly\nThe team leader's work ethic goes up",
+        "The team leader does an underwhelming job. The project is completed, however several planned features are either underdeveloped or left out entirely.\nHappiness goes down slightly\nThe team leader's work ethic goes down slightly",
+        "The team leader does an underwhelming job, leaving the person who suggested the project to be upset. The project is completed, however several planned features are either underdeveloped or left out entirely.\nHappiness goes down slightly\nThe team leader's work ethic goes down slightly\nThe person who suggested the project loses some work ethic",
+        "You do a great job leading the project. Your team is all incredibly proud of the work they have done.\nHappiness goes up significantly",
+        "You're so distracted with the rest of the company that you do a subpar job on the project itself. This leaves the person who suggested the project to be upset. The project is completed, however several planned features are either underdeveloped or left out entirely.\nHappiness goes down slightly\nThe person who suggested the project loses some work ethic",
+        "Your team settles on electing the person who suggested the project as the team leader, who does a great job leading the project. Your team is all incredibly proud of the work they have done.\nHappiness goes up significantly\nThe team leader's work ethic goes up",
+        "Your team is unable to decide on a team leader for this project. As a result, no progress is made towards the project, and everyone loses some motivations to work.\nHappiness goes down\nEverybody's work ethic goes down",
+        "You accept the investment under their terms.",
+        "The investor agrees to invest in your company under your terms.",
+        "The investor declines your terms and pulls the investment opportunity from you.",
+        "You decline the investment.",
+        "The investor says they will consider returning."
     ],
     "ButtonTexts": [
         "Confront {0}",
@@ -206,6 +221,20 @@
         "{0} {1}",
         "{2} {3}",
         "{4} {5}",
-        "{6} {7}"
+        "{6} {7}",
+        "Allow them to lead the project",
+        "Say that you think {2} {3} is a better fit for the job",
+        "Lead the project yourself",
+        "Let the team sort it out themselves",
+        "Accept the investment",
+        "Push for $12,000",
+        "Push to pay 8% every cycle",
+        "Decline the investment",
+        "Accept the investment",
+        "Push for $60,000",
+        "Ask if you can take some time to think about it",
+        "Decline the investment",
+        "Accept",
+        "Decline"
     ]
 }

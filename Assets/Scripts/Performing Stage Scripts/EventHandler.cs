@@ -103,6 +103,7 @@ public class EventHandler : MonoBehaviour
                         followUp = true;
                         followUpTimer.RemoveAt(i);
                         followUpStack.RemoveAt(i);
+                        this.GetComponentInParent<EventGenerator>().specifiedEvent(i);
                         break;
                     }
                 }

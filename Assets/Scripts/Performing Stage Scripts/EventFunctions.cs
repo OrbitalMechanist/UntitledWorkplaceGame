@@ -20,7 +20,7 @@ public class EventFunctions : MonoBehaviour
     {
         company = GameObject.FindGameObjectWithTag("Company");
         //Assigns each function to a list to be called by the event generator
-        delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame, Fire, cutPay};
+        delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame, Fire, cutPay, MassChangeEthic, addInvestor, futureEvent};
         checkList = new List<CheckDelegate> {alwaysFalse, alwaysTrue, randomCheck, ethicCheck, happinessCheck, capabilityCheck, personalityCheck, moneyCheck, masshappinessCheck, capaPersonalCheck};
     }
 
@@ -88,6 +88,7 @@ public class EventFunctions : MonoBehaviour
         company.GetComponent<Company>().investorPayBack.Add((int)(plan*percent/100));
     }
     public void futureEvent(int ind, int count) {
+        Debug.Log("Event logged");
         this.GetComponentInParent<EventHandler>().followUpStack.Add(ind);
         this.GetComponentInParent<EventHandler>().followUpTimer.Add(count);
     }
@@ -97,6 +98,16 @@ public class EventFunctions : MonoBehaviour
             randEmploy[emp].GetComponent<Employee>().salary = MAX_STAT;
         } if (randEmploy[emp].GetComponent<Employee>().salary < MIN_STAT) {
             randEmploy[emp].GetComponent<Employee>().salary = MIN_STAT;
+        }
+    }
+    public void MassChangeEthic(int delta, int emp) {
+        for (int i = 0; i < randEmploy.Length; i++) {
+            randEmploy[i].GetComponent<Employee>().ethic+=delta;
+            if (randEmploy[i].GetComponent<Employee>().ethic > MAX_STAT) {
+                randEmploy[i].GetComponent<Employee>().ethic = MAX_STAT;
+            } if (randEmploy[i].GetComponent<Employee>().ethic < MIN_STAT) {
+                randEmploy[i].GetComponent<Employee>().ethic = MIN_STAT;
+            }
         }
     }
     //Prob is a value between 0 and 256
@@ -186,7 +197,16 @@ public class EventFunctions : MonoBehaviour
     }
     public bool randomCheck(int emp, int prob, int sucInd, int failInd) {
         int check = Random.Range(0, 256);
-        bool pass = check<=prob;
+        bool pass = (check<=prob);
+        if (pass) {
+            for (int i = 0; i < this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[sucInd].Count-1; i++) {
+                delList[this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[sucInd][i]](this.GetComponentInParent<EventGenerator>().myEvents.ButtonValues[sucInd][i], this.GetComponentInParent<EventGenerator>().myEvents.EmployeeIndices[sucInd][i]);
+            }
+        } else {
+            for (int i = 0; i < this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[failInd].Count-1; i++) {
+                delList[this.GetComponentInParent<EventGenerator>().myEvents.ButtonIndices[failInd][i]](this.GetComponentInParent<EventGenerator>().myEvents.ButtonValues[failInd][i], this.GetComponentInParent<EventGenerator>().myEvents.EmployeeIndices[failInd][i]);
+            }
+        }
         return (check<=prob);
     }
     public bool alwaysTrue(int emp, int prob, int sucInd, int failInd) {

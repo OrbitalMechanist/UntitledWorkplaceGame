@@ -145,8 +145,8 @@ public class EventGenerator : MonoBehaviour
             //Loads text as string
             string btext = myEvents.ButtonTexts[temp];
             //Parses names of employees into buttons, if applicable
-            for (int k = 0; k < myEvents.EmployeeIndices[temp].Count; k++) {
-                btext = System.String.Format(btext, this.GetComponentInParent<EventFunctions>().randEmploy[myEvents.EmployeeIndices[temp][k]].GetComponent<Employee>().fName, "{0}", "{1}", "{2}", "{3}", "{4}");
+            for (int k = 0; k < this.GetComponentInParent<EventFunctions>().randEmploy.Length; k++) {
+                btext = System.String.Format(btext, this.GetComponentInParent<EventFunctions>().randEmploy[k].GetComponent<Employee>().fName, this.GetComponentInParent<EventFunctions>().randEmploy[k].GetComponent<Employee>().lName, "{0}", "{1}", "{2}", "{3}", "{4}", "{5}", "{6}", "{7}");
             }
             AudioSource click = soundObject.transform.Find("Click").gameObject.GetComponent<AudioSource>();
             //Places function calls into button on click, along with playing a click sound effect
@@ -172,7 +172,7 @@ public class EventGenerator : MonoBehaviour
     public void randomizeEvents() {
         //Generates a random number, based on roughly what stage you are in
         //int rand = Random.Range(System.Math.Max(0, count-5), System.Math.Min(35, count+5));
-        int rand = 10;
+        int rand = 7;
         //Places employees in a list in a randomized order
         this.GetComponentInParent<EventFunctions>().randomEmployees();
         //Creates event object
