@@ -65,9 +65,9 @@ public class Tooltip : MonoBehaviour
         // If the tooltip would go off the bottom of the screen, make it to appear above the mouse instead of under
         float tooltipY;
         if (Input.mousePosition.y - (VERTICAL_OFFSET + scaledTooltipHeight) < min.y) {
-            tooltipY = Input.mousePosition.y + (VERTICAL_OFFSET + (scaledTooltipHeight / 2));
+            tooltipY = Input.mousePosition.y + ((VERTICAL_OFFSET * scaleHeight) + (scaledTooltipHeight / 2));
         } else {
-            tooltipY = Input.mousePosition.y - (VERTICAL_OFFSET + (scaledTooltipHeight / 2)); 
+            tooltipY = Input.mousePosition.y - ((VERTICAL_OFFSET * scaleHeight) + (scaledTooltipHeight / 2)); 
         }
 
         Vector3 position  = new Vector3(Input.mousePosition.x + HORIZONTAL_OFFSET + (scaledTooltipWidth / 2), tooltipY, 0f);
