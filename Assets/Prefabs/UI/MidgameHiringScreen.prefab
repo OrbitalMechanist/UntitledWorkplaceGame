@@ -1751,10 +1751,14 @@ MonoBehaviour:
   maxSalary: 2500
   attributeNames:
   - Workaholic
-  - Alcoholic
+  - Specialist
   - Tired
   - Friendly
-  attributeRelativeProbabilities: 01000000010000000300000002000000
+  - Absorbed
+  - True Believer
+  - Multidisciplinary
+  - Adaptable
+  attributeRelativeProbabilities: 0100000003000000030000000200000002000000010000000200000001000000
   minAttributes: 0
   maxAttributes: 4
   avgAttributes: 1
