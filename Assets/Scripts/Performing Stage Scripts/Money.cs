@@ -9,6 +9,7 @@ public class Money : MonoBehaviour
 {
     public Text moneyDisplay;
     public Text happyDisplay;
+    public Text sizeDisplay;
     public GameObject company;
 
     /** The  game object with the TooltipInterface. */
@@ -39,6 +40,9 @@ public class Money : MonoBehaviour
 
         // Happiness
         happyDisplay.text = parseCash(company.GetComponent<Company>().happiness);
+
+        // Company size
+        sizeDisplay.text = parseCash(company.GetComponent<Company>().companySize);
     }
 
     void updateCashTooltip(int difference) {

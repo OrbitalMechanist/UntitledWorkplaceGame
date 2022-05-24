@@ -2876,7 +2876,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100
+  m_Text: 5
 --- !u!222 &581393870
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24422,6 +24422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moneyDisplay: {fileID: 412299697}
   happyDisplay: {fileID: 1662546920}
+  sizeDisplay: {fileID: 581393869}
   company: {fileID: 626733551}
   tooltipObject: {fileID: 591056682}
 --- !u!114 &1983844960
