@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class EventGenerator : MonoBehaviour
 {
+    private const int MAX_TICKS = 25;
     public GameObject soundObject;
     public TextAsset eventJsonFile;
     public TextAsset buttonsFile;
@@ -171,7 +172,7 @@ public class EventGenerator : MonoBehaviour
     }
     public void randomizeEvents() {
         //Generates a random number, based on roughly what stage you are in
-        int rand = Random.Range(System.Math.Max(0, count-5), System.Math.Min(24, count+5));
+        int rand = Random.Range(System.Math.Max(0, count-5), System.Math.Min(MAX_TICKS, count+5));
         //int rand = 20;
         //Places employees in a list in a randomized order
         this.GetComponentInParent<EventFunctions>().randomEmployees();
