@@ -19,7 +19,8 @@ public class EventFunctions : MonoBehaviour
     void Start()
     {
         company = GameObject.FindGameObjectWithTag("Company");
-        //Assigns each function to a list to be called by the event generator
+        //Assigns each function to a list to be called by the probability functions
+        //These functions are called from indices found in the EventButtons file
         delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame, Fire, cutPay, MassChangeEthic, addInvestor, futureEvent};
         checkList = new List<CheckDelegate> {alwaysFalse, alwaysTrue, randomCheck, ethicCheck, happinessCheck, capabilityCheck, personalityCheck, moneyCheck, masshappinessCheck, capaPersonalCheck};
     }
@@ -29,7 +30,9 @@ public class EventFunctions : MonoBehaviour
     {
         
     }
-
+    //Functions called from the probability functions found below
+    //The first argument comes from the file ButtonValues, and is typically used as a number to add or subtract
+    //The second argument comes from the file EmployeeIndices, and is typically used to point to a specific employee
     public void RaiseMoney(int delta, int emp) {
         company.GetComponent<Company>().cash+=delta;
     }
@@ -110,8 +113,13 @@ public class EventFunctions : MonoBehaviour
             }
         }
     }
-    //Prob is a value between 0 and 256
-    //Higher value equals higher chance to succeed
+    //Probability checking functions to calculate success or failure
+    //These functions are called from the EventGenerator, and calculate either success or failure, depending on a set of different parameters
+    //All of these values are found in the file ProbCheck, ordered from left to right. The first value in ProbCheck refers to which probability function to use
+    //Emp refers to an employee index, used for employee stat check to calculate the modded probability
+    //Prob is a value between 0 and 256. If it's less than the modded probability, then it's a success. Higher prob value means a higher chance to succeed
+    //sucInd is an index to a function on the delList found up above
+    //failInd is an index to a function on the delList found up above
     public bool ethicCheck(int emp, int prob, int sucInd, int failInd) {
         int check = Random.Range(0, 256);
         int modProb = (int)(randEmploy[emp].GetComponent<Employee>().ethic-128+prob);
