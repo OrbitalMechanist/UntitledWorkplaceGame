@@ -34,17 +34,23 @@ public class MeetingBlock : MonoBehaviour, IBeginDragHandler, IEndDragHandler, I
     private float scaleHeight;
 
     /** The list of colliders this object has collided with. Note: should be implemnted so that only grid tiles are added to this list. */
-    private List<Collider2D> collisionList;
+    private List<Collider2D> collisionList = new List<Collider2D>();
 
     /** Min and max boundaries of the camera. */
     private Vector3 min;
     private Vector3 max;
 
-    /** The initial position of this meeting tile. */
+    /** The initial position of this meeting block. */
     private Vector3 initialPosition;
 
-    /** Whether or not the initial position of this meeting tile has been obtained. */
+    /** Whether or not the initial position of this meeting block has been obtained. */
     private bool obtainedInitialPos = false;
+
+    /** Whether or not the meeting block fits on the currently available space. */
+    private bool fitsOnOpenSpace = false;
+
+    /** Whether or not this meeting block is currently colliding with a tile. */
+    private bool isColliding = false;
 
     /** The default width that the game was initially developed with. */
     private const int DEFAULT_WIDTH = 800;
@@ -52,7 +58,7 @@ public class MeetingBlock : MonoBehaviour, IBeginDragHandler, IEndDragHandler, I
     /** The default height that the game was initially developed with. */
     private const int DEFAULT_HEIGHT = 600;
 
-    /** The number to represent the blocks of the tile in the 2D array form. */
+    /** The number to represent the tiles of the block in the 2D array form. */
     private const int FILLED_TILE_NUM = 1;
 
     private void Start() {
@@ -76,9 +82,17 @@ public class MeetingBlock : MonoBehaviour, IBeginDragHandler, IEndDragHandler, I
             initialPosition = rectTransform.anchoredPosition;
             obtainedInitialPos = true;
         }
-        
-        if (!isDragging && !placedOnGrid) {
-            //rectTransform.anchoredPosition = initialPosition; 
+
+        // Check if the tiles currently colliding with the meeting block are enough to fit the meeting block
+        if (collisionList.Count != tileWidth * tileHeight) {
+            fitsOnOpenSpace = false;
+        } else {
+            fitsOnOpenSpace = true;
+        }
+
+        // Snap the meeting block back to its initial position of it did not get successfully placed
+        if (!isDragging && !placedOnGrid && !fitsOnOpenSpace && !isColliding) {
+            rectTransform.anchoredPosition = initialPosition; 
         }
     }
 
@@ -99,18 +113,19 @@ public class MeetingBlock : MonoBehaviour, IBeginDragHandler, IEndDragHandler, I
     }
 
     public void OnBeginDrag(PointerEventData eventData) {
+        // Update status bools
+        isDragging = true;
+        placedOnGrid = false;
+        fitsOnOpenSpace = false;
+
         // Unfill the tiles this block was occupying when it is moved, if any
-        if (collisionList != null) {
+        if (collisionList.Count > 0) {
             foreach (Collider2D collider in collisionList) {
                 collider.gameObject.GetComponent<Tile>().unFillTile();
             }
         }
         // reset the collision list
         collisionList = new List<Collider2D>();
-
-        // Update status bools
-        isDragging = true;
-        placedOnGrid = false;
     }
 
     public void OnDrag(PointerEventData eventData) {
@@ -126,10 +141,10 @@ public class MeetingBlock : MonoBehaviour, IBeginDragHandler, IEndDragHandler, I
     public void OnTriggerStay2D(Collider2D collider) {
         // If this meeting block is not being dragged and is not already placed on the grid, add the collided tile to the collision list
         if (!isDragging && !placedOnGrid) {
-            // If the object this meeting block has collided with is a tile, is not filled and has not already been added to the list, add the collider to the list
-            if (collider.gameObject.GetComponent<Tile>() != null && !collider.gameObject.GetComponent<Tile>().getFillStatus() && !collisionList.Contains(collider)) {
+            // If the tile is colliding and has not already been added to the list, add the collider to the list
+            if (isColliding && !collisionList.Contains(collider)) {
                 collisionList.Add(collider);
-            }
+            }  
         }
 
         // If this meeting block is not being dragged, is not already placed on the grid and has collided with exactly the number of tiles needed to 
@@ -138,6 +153,20 @@ public class MeetingBlock : MonoBehaviour, IBeginDragHandler, IEndDragHandler, I
             placedOnGrid = true;
             placeTile();
         }
+    }
+
+    public void OnTriggerEnter2D(Collider2D collider) {
+        // If the object this meeting block has collided with is a tile and is not filled, consider it to be collided with
+        if (collider.gameObject.GetComponent<Tile>() != null && !collider.gameObject.GetComponent<Tile>().getFillStatus()) {
+            isColliding = true;
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D collider) {
+        isColliding = false;
+
+        // Remove collider from the collider list on exit
+        collisionList.Remove(collider);
     }
 
     public void placeTile() {
