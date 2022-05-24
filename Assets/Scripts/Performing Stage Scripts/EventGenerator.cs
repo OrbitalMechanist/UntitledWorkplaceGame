@@ -174,8 +174,8 @@ public class EventGenerator : MonoBehaviour
     //Generates a random event from the Events list in myEvents
     public void randomizeEvents() {
         //Generates a random number, based on roughly what stage you are in
-        int rand = Random.Range(System.Math.Max(0, count-5), System.Math.Min(MAX_TICKS, count+5));
-        //int rand = 20;
+        //int rand = Random.Range(System.Math.Max(0, count-5), System.Math.Min(MAX_TICKS, count+5));
+        int rand = 13;
         //Places employees in a list in a randomized order
         this.GetComponentInParent<EventFunctions>().randomEmployees();
         //Creates event object
@@ -260,7 +260,7 @@ public class EventGenerator : MonoBehaviour
             jeer.Play();
             resultButton.GetComponentInChildren<Text>().text = "Depression...";
             resultButton.onClick.AddListener(delegate{click.Play();EndGame(3);});
-        } else if (count>=19) {
+        } else if (count>=MAX_TICKS-1) {
             cheer.Play();
             resultButton.GetComponentInChildren<Text>().text = "Congratulations!";
             resultButton.onClick.AddListener(delegate{click.Play();EndGame(0);});

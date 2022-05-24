@@ -21,7 +21,7 @@ public class EventFunctions : MonoBehaviour
         company = GameObject.FindGameObjectWithTag("Company");
         //Assigns each function to a list to be called by the probability functions
         //These functions are called from indices found in the EventButtons file
-        delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame, Fire, cutPay, MassChangeEthic, addInvestor, futureEvent};
+        delList = new List<MethodDelegate> {RaiseMoney, ChangeHappiness, ChangePersonality, ChangeCapability, ChangeEthic, MassChangeHappiness, EndGame, Fire, cutPay, MassChangeEthic, addInvestor, futureEvent, DivideCompany};
         checkList = new List<CheckDelegate> {alwaysFalse, alwaysTrue, randomCheck, ethicCheck, happinessCheck, capabilityCheck, personalityCheck, moneyCheck, masshappinessCheck, capaPersonalCheck};
     }
 
@@ -112,6 +112,10 @@ public class EventFunctions : MonoBehaviour
                 randEmploy[i].GetComponent<Employee>().ethic = MIN_STAT;
             }
         }
+    }
+    public void DivideCompany(int delta, int emp) {
+        int deltaSize = Random.Range((int)(company.GetComponent<Company>().companySize/(delta*2)), (int)(company.GetComponent<Company>().companySize/(delta*0.5)));
+        company.GetComponent<Company>().companySize-=deltaSize;
     }
     //Probability checking functions to calculate success or failure
     //These functions are called from the EventGenerator, and calculate either success or failure, depending on a set of different parameters
@@ -269,17 +273,24 @@ public class EventFunctions : MonoBehaviour
         //Assigns each employee to a random index
         for (int i = 0; i < empCount; i++) {
             //In order to ensure we don't get duplicates, we need to always go from i, which is the value of the current index of the employee
-            empInd[i] = (int)Random.Range(i, empCount);
-            delta[i] = 0;
+            GameObject temp = employees.transform.GetChild(i).gameObject;
+            int randInd = (int)Random.Range(i, empCount);
+            if (randInd > i && randEmploy[randInd] == null) {
+                randEmploy[randInd] = employees.transform.GetChild(randInd).gameObject;
+            } 
+            randEmploy[i] = randEmploy[randInd];
+            Debug.Log(randInd);
+            randEmploy[randInd] = temp;
+            //delta[i] = 0;
             //Compares our number against every other generated number, and lowers it by 1 for every number that's greater than or equal to itself
-            for (int j = 0; j < i; j++) {
-                if (empInd[i]<=(empInd[j]+delta[j])) {
-                    delta[i]++;
-                }
-            }
-            empInd[i]-=delta[i];
+            // for (int j = 0; j < i; j++) {
+            //     if (empInd[i]<=(empInd[j]+delta[j])) {
+            //         delta[i]++;
+            //     }
+            // }
+            //empInd[i]-=delta[i];
             //Assigns the employee at that index to an index in the random employee list
-            randEmploy[i] = employees.transform.GetChild(empInd[i]).gameObject;
+            //randEmploy[i] = employees.transform.GetChild(empInd[i]).gameObject;
         }
     }
 }

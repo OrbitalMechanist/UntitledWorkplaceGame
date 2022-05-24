@@ -47,4 +47,7 @@ public class Company : MonoBehaviour
             }
         }
     }
+    public void increaseCompany() {
+        companySize += 5;
+    }
 }
