@@ -194,7 +194,7 @@ public class EmployeeGenerator : MonoBehaviour
     }
 
     //This is dreadfully slow but I can't figure out how to make it better right now.
-    EmployeeAttribute generateAttribute(Employee empToAttachTo, List<string> namesToExclude = null)
+    EmployeeAttribute generateAttribute(Employee empToAttachTo, List<string> namesToExclude)
     {
         if(attributeTypes.Count == 0)
         {
@@ -205,7 +205,7 @@ public class EmployeeGenerator : MonoBehaviour
 
         if(namesToExclude != null && attributeRelativeProbabilities.Length == attributeNames.Length)
         {
-            for(int i = 0; i < attributeRelativeProbabilities.Length; i++)
+            for (int i = 0; i < attributeRelativeProbabilities.Length; i++)
             {
                 if (namesToExclude.Contains(attributeNames[i]))
                 {
@@ -219,6 +219,7 @@ public class EmployeeGenerator : MonoBehaviour
         int attrIndex = 0;
         if (attributeRelativeProbabilities.Length != attributeNames.Length)
         {
+            Debug.LogWarning("Hit fallback in Attribute Generation: bad input lengths.");
             attrIndex = Random.Range(0, attributeNames.Length);
         }
         else
@@ -228,7 +229,7 @@ public class EmployeeGenerator : MonoBehaviour
             int totalSoFar = 0;
             for (int i = 0; i < attributeRelativeProbabilities.Length; i++)
             {
-                if (indicesToExclude.Contains(i))
+                while (indicesToExclude.Contains(i))
                 {
                     i++;
                     if(i >= attributeRelativeProbabilities.Length)
@@ -246,8 +247,9 @@ public class EmployeeGenerator : MonoBehaviour
         }
 
         string name = attributeNames[attrIndex];
-        
-        foreach(var t in attributeTypes)
+        Debug.Log("Generated Attribute: " + name);
+
+        foreach (var t in attributeTypes)
         {
             if((string)t.GetField("attributeTitle").GetRawConstantValue() == name)
             {
@@ -256,7 +258,6 @@ public class EmployeeGenerator : MonoBehaviour
                 break;
             }
         }
-
 
         return result;
     }
@@ -321,6 +322,7 @@ public class EmployeeGenerator : MonoBehaviour
         //Generate and add attributes.
         int attrNum = randomIntRangeWithWeight(minAttributes, maxAttributes, avgAttributes);//Random.Range(minAttributes, maxAttributes + 1);
         List<string> namesToExclude = new List<string>();
+        namesToExclude.Add("Default Attribute Do Not Use");
         for(int i = 0; i < attrNum; i++)
         {
             //All of these are incredibly slow and I hate myself for it but I see no better way.

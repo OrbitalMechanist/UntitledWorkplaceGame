@@ -2200,11 +2200,13 @@ MonoBehaviour:
   minSalary: 200
   maxSalary: 2500
   attributeNames:
-  - Workaholic
-  - Alcoholic
+  - padding
+  - Specialist
   - Tired
   - Friendly
-  attributeRelativeProbabilities: 01000000010000000300000002000000
+  - Workaholic
+  - padding
+  attributeRelativeProbabilities: 000000000200000003000000020000000100000000000000
   minAttributes: 0
   maxAttributes: 4
   avgAttributes: 1
