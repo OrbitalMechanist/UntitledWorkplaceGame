@@ -26,9 +26,9 @@ public class DisplayResults : MonoBehaviour
     private const int HAPPINESS_T3 = 1000;
 
     // Size value tiers
-    private const int SIZE_T1 = 5;
-    private const int SIZE_T2 = 10; // Not currently in use
-    private const int SIZE_T3 = 15;
+    private const int SIZE_T1 = 100;
+    private const int SIZE_T2 = 150; // Not currently in use
+    private const int SIZE_T3 = 200;
 
     void Start()
     {

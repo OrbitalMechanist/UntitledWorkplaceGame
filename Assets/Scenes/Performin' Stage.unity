@@ -23392,8 +23392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcb4bd52fc4bcb042bab5b74aa89199e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notificationHeader: {fileID: 0}
-  notificationText: {fileID: 0}
+  notificationHeader: {fileID: 1162638031}
+  notificationText: {fileID: 1071077926}
   notificationTimer: 2
   fadeInTimer: 1
   fadeOutTimer: 2
