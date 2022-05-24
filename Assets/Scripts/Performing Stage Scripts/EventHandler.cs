@@ -97,7 +97,11 @@ public class EventHandler : MonoBehaviour
             if (time<=0.0f) {
                 this.GetComponentInParent<EventFunctions>().company.GetComponent<Company>().payDebts();
                 bool followUp = false;
-                for (int i = 0; i < followUpTimer.Count; i++) {
+                if (eventCount >= 25) {
+                    followUp = true;
+                    this.GetComponentInParent<EventGenerator>().specifiedEvent(3);
+                }
+                else for (int i = 0; i < followUpTimer.Count; i++) {
                     followUpTimer[i] -= 1;
                     if (followUpTimer[i] <= 0) {
                         //Call specified function

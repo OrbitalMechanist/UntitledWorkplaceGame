@@ -171,8 +171,8 @@ public class EventGenerator : MonoBehaviour
     }
     public void randomizeEvents() {
         //Generates a random number, based on roughly what stage you are in
-        //int rand = Random.Range(System.Math.Max(0, count-5), System.Math.Min(24, count+5));
-        int rand = 20;
+        int rand = Random.Range(System.Math.Max(0, count-5), System.Math.Min(24, count+5));
+        //int rand = 20;
         //Places employees in a list in a randomized order
         this.GetComponentInParent<EventFunctions>().randomEmployees();
         //Creates event object
