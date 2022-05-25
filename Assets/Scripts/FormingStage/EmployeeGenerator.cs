@@ -130,8 +130,8 @@ public class EmployeeGenerator : MonoBehaviour
             for (int x = 1; x <= numElementsPerRow; x++) {
                 GameObject emp = generateEmployee();
 
-                //Add employee object to manager object and keep it off the screen
-                emp.transform.parent = employeeManagerInstance.transform;
+                //Add employee object to manager object and keep it off the screen but keep the scale
+                emp.transform.SetParent(employeeManagerInstance.transform, false);
                 emp.transform.localPosition = Vector3.zero;
 
                 //create the UI element and attach it to the container
