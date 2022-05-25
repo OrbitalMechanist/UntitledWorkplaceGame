@@ -52,6 +52,9 @@ public class MeetingBlock : MonoBehaviour, IBeginDragHandler, IEndDragHandler, I
     /** Whether or not this meeting block is currently colliding with a tile. */
     private bool isColliding = false;
 
+    /** Whether or not the current collision has already been detected. */
+    private bool repeatCollision = false;
+
     /** The default width that the game was initially developed with. */
     private const int DEFAULT_WIDTH = 800;
 
@@ -90,6 +93,13 @@ public class MeetingBlock : MonoBehaviour, IBeginDragHandler, IEndDragHandler, I
             fitsOnOpenSpace = true;
         }
 
+        // If the current collision is a repeat collision, don't consider it to be colliding anymore
+        // Note: this is used to fix the issue with multi-tile meeting blocks not snapping back if they are still touching at least 1 tile
+        // but not being placed
+        if (repeatCollision) {
+            isColliding = false;
+        }
+
         // Snap the meeting block back to its initial position of it did not get successfully placed
         if (!isDragging && !placedOnGrid && !fitsOnOpenSpace && !isColliding) {
             rectTransform.anchoredPosition = initialPosition; 
@@ -117,6 +127,7 @@ public class MeetingBlock : MonoBehaviour, IBeginDragHandler, IEndDragHandler, I
         isDragging = true;
         placedOnGrid = false;
         fitsOnOpenSpace = false;
+        repeatCollision = false;
 
         // Unfill the tiles this block was occupying when it is moved, if any
         if (collisionList.Count > 0) {
@@ -143,8 +154,11 @@ public class MeetingBlock : MonoBehaviour, IBeginDragHandler, IEndDragHandler, I
         if (!isDragging && !placedOnGrid) {
             // If the tile is colliding and has not already been added to the list, add the collider to the list
             if (isColliding && !collisionList.Contains(collider)) {
+                repeatCollision = false;
                 collisionList.Add(collider);
-            }  
+            } else {
+                repeatCollision = true;
+            } 
         }
 
         // If this meeting block is not being dragged, is not already placed on the grid and has collided with exactly the number of tiles needed to 
