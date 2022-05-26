@@ -21,9 +21,9 @@ public class DisplayResults : MonoBehaviour
     private const int CASH_T3 = 35000;
 
     // Happiness value tiers
-    private const int HAPPINESS_T1 = 500;
-    private const int HAPPINESS_T2 = 800; // Not currently in use
-    private const int HAPPINESS_T3 = 1000;
+    private const int HAPPINESS_T1 = 800;
+    private const int HAPPINESS_T2 = 1600; // Not currently in use
+    private const int HAPPINESS_T3 = 2000;
 
     // Size value tiers
     private const int SIZE_T1 = 90;
