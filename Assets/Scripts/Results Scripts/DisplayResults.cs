@@ -16,9 +16,9 @@ public class DisplayResults : MonoBehaviour
     private Company company;
     
     // Cash value tiers
-    private const int CASH_T1 = 10000;
-    private const int CASH_T2 = 20000; // Not currently in use
-    private const int CASH_T3 = 35000;
+    private const int CASH_T1 = 5000;
+    private const int CASH_T2 = 10000; // Not currently in use
+    private const int CASH_T3 = 20000;
 
     // Happiness value tiers
     private const int HAPPINESS_T1 = 800;
