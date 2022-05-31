@@ -984,7 +984,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Budget Left: $10000'
+  m_Text: 'Budget Left: $20000'
 --- !u!222 &467888205
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1132,6 +1132,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5879824292451530060, guid: 44601945dfcfc2a43baccad00e95eb9c, type: 3}
+      propertyPath: cash
+      value: 20000
+      objectReference: {fileID: 0}
     - target: {fileID: 2221200215827940605, guid: 44601945dfcfc2a43baccad00e95eb9c, type: 3}
       propertyPath: m_RootOrder
       value: 1

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Company : MonoBehaviour
 {
-    public int cash = 10000;
+    public int cash = 20000;
     public int count;
     public int endState;
     public int happiness = 100;
